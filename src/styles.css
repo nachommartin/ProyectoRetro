@@ -1,1 +1,12 @@
+
+body{
+    font-family: 'Numans', sans-serif;
+	height:100vh;
+	background-image: url(https://wallpaperaccess.com/full/1181260.jpg);
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-position:center;
+	position:relative;
+}
+   
 /* You can add global styles to this file, and also import other style files */
