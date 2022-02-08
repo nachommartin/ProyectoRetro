@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -20,12 +22,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.servicio.login(this.email,this.password).subscribe( resp => {
-      localStorage.setItem('token',JSON.stringify(resp))
-      this.router.navigateByUrl('/');
-  },
-  error => {
-    this.router.navigateByUrl('/');
+    this.servicio.login(this.email,this.password).subscribe({
+      next: (resp => {
+      localStorage.setItem('token',resp.access_token!)
+      this.router.navigateByUrl('/main');
+  }),
+  error: resp=> {
+         
+    Swal.fire('Error', resp.error.message, 'error')
+  }
   
   });
 }
