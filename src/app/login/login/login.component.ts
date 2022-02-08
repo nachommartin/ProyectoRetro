@@ -21,8 +21,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.servicio.login(this.email,this.password).subscribe( resp => {
-      localStorage.setItem('jwt',JSON.stringify(resp))
+      localStorage.setItem('token',JSON.stringify(resp))
       this.router.navigateByUrl('/');
+  },
+  error => {
+    this.router.navigateByUrl('/');
+  
   });
 }
 
