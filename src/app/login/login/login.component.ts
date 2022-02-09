@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,18 +12,25 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  email!: string;
-  password!: string;
+  validPattern = "^[a-zA-Z0-9]{10}$";
+
+  miFormulario: FormGroup = this.fb.group({
+
+  email:  ['', [Validators.required, Validators.email ]],
+  password: ['', [Validators.required, Validators.pattern(this.validPattern)]]
+
+  })
 
 
-
-  constructor(private servicio: LoginService, private router: Router) { }
+  constructor(private servicio: LoginService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    this.servicio.login(this.email,this.password).subscribe({
+    const { email, password } = this.miFormulario.value;
+
+    this.servicio.login(email,password).subscribe({
       next: (resp => {
       localStorage.setItem('token',resp.access_token!)
       this.router.navigateByUrl('/main');

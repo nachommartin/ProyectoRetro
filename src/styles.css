@@ -8,5 +8,35 @@ body{
 	background-position:center;
 	position:relative;
 }
+
+
+.swal2-styled.swal2-confirm {   
+    background-color: #2917e9 !important;
+}
+
+.swal2-popup{
+	width: 20em !important;
+	border: 0.1em solid #f5b60a !important;
+	border-bottom: 0.5em solid #f5b60a !important;
+	background-color: black !important;
+	opacity: 0.9;
+}
+
+.swal2-title, .swal2-html-container{
+	color: blanchedalmond !important;
+}
+
+.swal2-icon.swal2-error{
+	border-color: #c20a0a !important;
+  }
+
+  .swal2-x-mark-line-left, .swal2-x-mark-line-right{
+	background-color: #c20a0a !important;
+  }
+
+.swal2-height-auto{
+	height: 100% !important;
+}
+  
    
 /* You can add global styles to this file, and also import other style files */
