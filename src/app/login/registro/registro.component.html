@@ -10,36 +10,47 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form class="custom-form" method="post">
+				<form class="custom-form" method="post"  [formGroup]="formGroup">	
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<span class="input-group-text"><i class="fas fa-user-ninja"></i></span>
 						</div>
-						<input type="email"  name="email" class="form-control" placeholder="Correo electrónico" required="required"/>
+						<input type="text"  name="nick" class="form-control" formControlName="nick" placeholder="Alias" required="required"/>
 						
+					</div>				
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-at"></i></span>
+						</div>
+						<input type="email"  name="email" class="form-control"  formControlName="email"	placeholder="Correo electrónico" required="required"/>	
+						<span class="error" *ngIf="campoNoValido('email')">{{ emailErrorMsg}}</span>					
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password"  name="password" class="form-control" placeholder="Contraseña"  required="required"/>                        >
+						<input type="password"  name="password" class="form-control" formControlName="password" placeholder="Contraseña"  required="required"/>  
+						<span class="error"	*ngIf="campoNoValido('password')">  La contraseña debe de ser mayor de 6 caracteres y tener una mayúscula y un número
+					 </span>
 					</div>
                     <div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text"><i class="fas fa-user-shield"></i></span>
 						</div>
-						<input type="password"  name="password" class="form-control" placeholder="Repite la contraseña"  required="required"/>                        >
-					</div>
+						<input type="password"  name="repitePass" class="form-control" formControlName="repitePass" placeholder="Repite la contraseña"  required="required"/> 						
+						<span class="error"	*ngIf="campoNoValido('repitePass')">  Las contraseñas deben de ser iguales </span>											
+					</div>				
 					<div class="form-group">
-						<input type="submit" value="Registrar" class="btn float-right login_btn">
+						<input type="submit" value="Registrar"  (click)="registrar()" [disabled]="formGroup.invalid"  class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					¿No tienes una cuenta?<a routerLink="/registro">Regístrate</a>
+					¿Ya tienes cuenta?<a routerLink="/login">Accede</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+

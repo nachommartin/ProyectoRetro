@@ -31,6 +31,13 @@ export class LoginService {
     this.router.navigate(['/login']);
 }
 
+registrar(usuario:string){
+  
+  const path = `${this.url}/auth/register`;
+  const peticion =usuario
+  return this.http.post<Respuesta>(path, peticion);
+
+}
 
 
 
@@ -47,5 +54,7 @@ validarToken():Observable<Respuesta>{
   
 
 }
+
+
 
 }

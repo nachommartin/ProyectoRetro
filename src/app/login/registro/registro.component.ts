@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-registro',
@@ -7,9 +9,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor() { }
+  public formGroup!: FormGroup;
+  public emailPattern   : string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  public passwordPattern  : string= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$";
+  
+
+
+
+  constructor(private formBuilder: FormBuilder, private servicio: LoginService) { }
 
   ngOnInit(): void {
+
+    this.buildForm();
+
+    
   }
 
+  private buildForm(){
+    this.formGroup = this.formBuilder.group({
+      nick: '',
+      email: ['',[      Validators.required, Validators.pattern(this.emailPattern)
+      ]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)]],
+      repitePass: ['', [Validators.required] ]
+    },     
+    {validators: [ this.camposIguales('password','repitePass') ]
+  }    
+  )
+  }
+
+  public registrar() {
+    const user = this.formGroup.value;
+    console.log(user)
+    this.servicio.registrar(JSON.stringify(user))
+  }
+
+  get emailErrorMsg(): string {
+    
+    const errors = this.formGroup.get('email')?.errors!;
+    if ( errors['pattern'] ) {
+      return 'Introduce un correo con un formato válido';
+        }
+
+    return '';
+  }
+
+  
+
+  campoNoValido( campo: string ) {
+    return this.formGroup.get(campo)?.invalid
+            && this.formGroup.get(campo)?.touched;
+  }
+
+
+  
+  camposIguales( campo1: string, campo2: string ) {
+
+    return ( formGroup: AbstractControl ): ValidationErrors | null => {
+
+      const pass1 = formGroup.get(campo1)?.value;
+      const pass2 = formGroup.get(campo2)?.value;
+
+      if ( pass1 !== pass2 ) {
+        formGroup.get(campo2)?.setErrors({ noIguales: true });
+        return { noIguales: true }
+      } 
+
+
+
+      formGroup.get(campo2)?.setErrors(null);
+
+      return null
+    }
+
+  }
+
+ 
 }
