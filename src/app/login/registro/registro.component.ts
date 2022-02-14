@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class RegistroComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private servicio: LoginService) { }
+  constructor(private formBuilder: FormBuilder, private servicio: LoginService, 
+    private router:Router) { }
 
   ngOnInit(): void {
 
@@ -39,10 +41,19 @@ export class RegistroComponent implements OnInit {
   }
 
   public registrar() {
-    const user = this.formGroup.value;
+    const user = JSON.stringify(this.formGroup.value);
     console.log(user)
-    this.servicio.registrar(JSON.stringify(user))
+    this.servicio.registrar(JSON.parse(user)).subscribe({
+    next: (resp => {
+      console.log("Usuario registrado correctamente")
+      this.router.navigateByUrl('/login');
+  }),
+  error: resp=> {
+         
+    console.log('Error inesperado')
   }
+  })
+}
 
   get emailErrorMsg(): string {
     
