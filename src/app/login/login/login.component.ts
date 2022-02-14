@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -11,9 +10,12 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
+  user = {
 
-  email!: string;
-  password!: string;
+  email!: '',
+  password!: ''
+  }
 
 
   constructor(private servicio: LoginService, private router: Router) { }
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    this.servicio.login(this.email,this.password).subscribe({
+    this.servicio.login(this.user.email,this.user.password).subscribe({
       next: (resp => {
       localStorage.setItem('token',resp.access_token!)
       this.router.navigateByUrl('/main');

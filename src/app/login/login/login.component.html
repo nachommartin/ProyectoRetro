@@ -15,7 +15,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="email" name="email" ngModel #email="ngModel"  class="form-control" placeholder="Correo electrónico"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+						<input type="email" name="email"  [(ngModel)]="user.email"  #email="ngModel"  class="form-control" placeholder="Correo electrónico"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
 						required>						
 					<div *ngIf="email.touched">
 						<span class="error" *ngIf="email.errors?.['required']">Por favor, para acceder introduzca su correo</span>
@@ -26,7 +26,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password"  ngModel #password="ngModel" name="password" class="form-control" placeholder="Contraseña" required/>                      
+						<input type="password"   [(ngModel)]="user.password" #password="ngModel" name="password" class="form-control" placeholder="Contraseña" required/>                      
 						<div *ngIf="password.touched">
 							<span class="error" *ngIf="password.errors?.['required']">Para acceder introduzca su contraseña</span>
 						  </div>

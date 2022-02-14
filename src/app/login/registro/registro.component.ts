@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, EmailValidator, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import { MailService } from '../services/mail.service';
 
 @Component({
   selector: 'app-registro',
@@ -18,7 +19,7 @@ export class RegistroComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private servicio: LoginService, 
-    private router:Router) { }
+    private router:Router, private validadorMail: MailService) { }
 
   ngOnInit(): void {
 
@@ -30,9 +31,8 @@ export class RegistroComponent implements OnInit {
   private buildForm(){
     this.formGroup = this.formBuilder.group({
       nick: '',
-      email: ['',[      Validators.required, Validators.pattern(this.emailPattern)
-      ]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)]],
+      email: ['',[      Validators.required, Validators.pattern(this.emailPattern)], [this.validadorMail]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)] ],
       repitePass: ['', [Validators.required] ]
     },     
     {validators: [ this.camposIguales('password','repitePass') ]
