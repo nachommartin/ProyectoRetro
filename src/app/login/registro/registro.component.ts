@@ -61,6 +61,9 @@ export class RegistroComponent implements OnInit {
     if ( errors['pattern'] ) {
       return 'Introduce un correo con un formato válido';
         }
+    else if ( errors['emailTomado'] ) {
+        return 'El email ya está registrado';
+        }
 
     return '';
   }

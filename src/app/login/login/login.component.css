@@ -76,3 +76,7 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+.error{
+    color:white;
+}

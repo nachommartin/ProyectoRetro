@@ -10,25 +10,32 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form class="custom-form" method="post">
+				<form class="custom-form" method="post" #loginForm="ngForm"  novalidate>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Correo electrónico" required="required"/>
-						
+						<input type="email" name="email" ngModel #email="ngModel"  class="form-control" placeholder="Correo electrónico"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+						required>						
+					<div *ngIf="email.touched">
+						<span class="error" *ngIf="email.errors?.['required']">Por favor, para acceder introduzca su correo</span>
+						<span class="error" *ngIf="email.errors?.['pattern']">Este correo no tiene el formato correcto</span>
+  					</div>
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password"  [(ngModel)]="password" name="password" class="form-control" placeholder="Contraseña"  required="required"/>                        >
+						<input type="password"  ngModel #password="ngModel" name="password" class="form-control" placeholder="Contraseña" required/>                      
+						<div *ngIf="password.touched">
+							<span class="error" *ngIf="password.errors?.['required']">Para acceder introduzca su contraseña</span>
+						  </div>
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Recuérdame
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Entra" (click)="login()" class="btn float-right login_btn">
+						<input type="submit" value="Entra" [disabled]="!loginForm.valid" (click)="login()" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
@@ -36,9 +43,11 @@
 				<div class="d-flex justify-content-center links">
 					¿No tienes una cuenta?<a routerLink="/registro">Regístrate</a>
 				</div>
+				<!-- 
 				<div class="d-flex justify-content-center">
 					<a href="#">¿Olvidaste tu contraseña?</a>
 				</div>
+			-->
 			</div>
 		</div>
 	</div>

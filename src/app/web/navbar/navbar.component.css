@@ -207,6 +207,16 @@ cursor: pointer;
     color: #fff;        
 }
 
+.button{    
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;   
+    color: white;     
+    }
+    
+
 @media screen and (max-height: 450px) {
   .sidenav a {font-size: 18px;}
 }
