@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class LoginService  {
 
-  private url: string = 'http://localhost:8000'; 
+  private url: string = 'http://localhost:8080'; 
 
 
 
@@ -19,7 +19,7 @@ export class LoginService  {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email:string, password:string)  {
-    const path = `${this.url}/auth/login`;
+    const path = `${this.url}/login/`;
     const peticion = {
       'email': email,
       'password': password 
