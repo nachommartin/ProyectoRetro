@@ -26,16 +26,16 @@ export class LoginComponent implements OnInit {
   login() {
 
     this.servicio.login(this.user.email,this.user.password).subscribe({
-      next: (resp => {
-      localStorage.setItem('token',resp.access_token!)
+      next: (resp => { 
+      localStorage.setItem('token',resp.access_token)
       this.router.navigateByUrl('/main');
+      console.log(resp)
+
   }),
   error: resp=> {
          
     Swal.fire('Error', resp.error.message, 'error')
-  }
-  
-  });
+  }  });
 }
 
 }

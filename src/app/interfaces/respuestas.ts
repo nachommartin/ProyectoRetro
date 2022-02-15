@@ -1,5 +1,5 @@
 export interface Respuesta{
-    access_token?: string;
+    access_token: string;
     // status?: number;
     // message?: string;     
 }
