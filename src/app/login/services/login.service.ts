@@ -21,7 +21,7 @@ export class LoginService  {
   login(email:string, password:string)  {
     const path = `${this.url}/login/`;
     const peticion = {
-      'email': email,
+      'correo': email,
       'password': password 
     }
   
@@ -48,9 +48,9 @@ obtenerToken(){
 }
 
 validarToken():Observable<Respuesta>{
-  const url = `${ this.url }/games`;
+  const url = `${ this.url }/juego/`;
   const headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
+    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}` || '' );
 
   return this.http.get<Respuesta>( url, { headers } )
   
