@@ -35,7 +35,7 @@ export class LoginService  {
 
 registrar(usuario:string){
   
-  const path = `${this.url}/auth/register`;
+  const path = `${this.url}/register`;
   const peticion =usuario
   return this.http.post<Respuesta>(path, peticion);
 
@@ -50,8 +50,7 @@ obtenerToken(){
 validarToken():Observable<Respuesta>{
   const url = `${ this.url }/juego/`;
   const headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${localStorage.getItem('jwt')}` || '' );
-
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
   return this.http.get<Respuesta>( url, { headers } )
   
 

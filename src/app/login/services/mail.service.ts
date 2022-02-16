@@ -14,7 +14,7 @@ export class MailService implements AsyncValidator {
 
     const email = control.value;
     console.log(email);
-    return this.http.get<any[]>(`http://localhost:8000/usuarios?q=${ email }`)
+    return this.http.get<any[]>(`http://localhost:8080/usuario/${ email }`)
                 .pipe(
                   // delay(3000),
                   map ( resp => {

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       next: (resp => {
       localStorage.setItem('token',resp.access_token!)
       this.router.navigateByUrl('/main');
+      console.log(resp)
   }),
   error: resp=> {
          
