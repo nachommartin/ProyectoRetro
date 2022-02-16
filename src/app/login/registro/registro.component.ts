@@ -31,7 +31,7 @@ export class RegistroComponent implements OnInit {
   private buildForm(){
     this.formGroup = this.formBuilder.group({
       nick: '',
-      email: ['',[      Validators.required, Validators.pattern(this.emailPattern)], [this.validadorMail]],
+      correo: ['',[      Validators.required, Validators.pattern(this.emailPattern)], [this.validadorMail]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)] ],
       repitePass: ['', [Validators.required] ]
     },     

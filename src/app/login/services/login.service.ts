@@ -51,10 +51,6 @@ validarToken():Observable<Respuesta>{
   const url = `${ this.url }/juego/`;
   const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
-<<<<<<< HEAD
-
-=======
->>>>>>> 89fa43184ebf74eb0eb3600affc65810b8cf2890
   return this.http.get<Respuesta>( url, { headers } )
   
 

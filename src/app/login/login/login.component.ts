@@ -30,10 +30,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',resp.access_token)
       this.router.navigateByUrl('/main');
       console.log(resp)
-<<<<<<< HEAD
-
-=======
->>>>>>> 89fa43184ebf74eb0eb3600affc65810b8cf2890
   }),
   error: resp=> {
          
