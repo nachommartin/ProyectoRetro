@@ -8,3 +8,9 @@ export interface Error{
     status: number;
     message: string;
 }
+
+export interface RespuestaCorreo{
+    correo: string;
+    // status?: number;
+    // message?: string;     
+}

@@ -57,7 +57,7 @@ export class RegistroComponent implements OnInit {
 
   get emailErrorMsg(): string {
     
-    const errors = this.formGroup.get('email')?.errors!;
+    const errors = this.formGroup.get('correo')?.errors!;
     if ( errors['pattern'] ) {
       return 'Introduce un correo con un formato válido';
         }
