@@ -19,10 +19,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'resultados', component: ResultadosComponent,
-    children: [
-      { path: '', component:NavbarComponent },
-      { path: '**', redirectTo: '' }
-    ]
+    
   },
   { path: '**', redirectTo: ''}
 ];

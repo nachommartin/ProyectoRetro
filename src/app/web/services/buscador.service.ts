@@ -17,6 +17,11 @@ export class BuscadorService {
     this.getJuegos();      
   }
 
+  buscarAvanzado(cat:String, query:String){
+    this.url= "http://localhost:8080/juego?"+cat+"="+query+"";
+    this.getJuegos();      
+  }
+
   getJuegos() {
     this.http.get<Juego[]>(this.url)
     .subscribe((resp)=>{
