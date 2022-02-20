@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/login/services/login.service';
+import { BuscadorService } from '../services/buscador.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +9,10 @@ import { LoginService } from 'src/app/login/services/login.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  cadena:string= ''; 
 
-  constructor(private servicioLogin: LoginService) { }
+
+  constructor(private servicioLogin: LoginService, private servicioBusqueda: BuscadorService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -16,5 +20,15 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.servicioLogin.logout(); 
   }
+
+  buscar(x:any){
+    this.cadena= x.target.value
+
+    this.servicioBusqueda.buscarJuego(this.cadena); 
+    this.router.navigateByUrl('/resultados');
+
+
+  }
+
 
 }
