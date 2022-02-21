@@ -13,7 +13,6 @@ export class MailService implements AsyncValidator {
   validate( control: AbstractControl): Observable<ValidationErrors| null> {
 
     const email = control.value;
-    console.log(email);
     return this.http.get<any>(`http://localhost:8080/usuario?correo=${ email }`)
                 .pipe(
                   map ( resp => {

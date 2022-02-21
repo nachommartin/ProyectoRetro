@@ -16,7 +16,7 @@
 							<span class="input-group-text"><i class="fas fa-user-ninja"></i></span>
 						</div>
 						<input type="text"  name="nick" class="form-control" formControlName="nick" placeholder="Alias" required="required"/>
-						
+						<span class="error" *ngIf="campoNoValido('correo')">Es obligatorio que el usuario tenga alias</span>					
 					</div>				
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
