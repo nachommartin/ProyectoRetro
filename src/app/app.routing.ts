@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { GuardianService } from "./guardian/guardian.service";
+import { JuegoComponent } from "./web/juego/juego.component";
 import { NavbarComponent } from "./web/navbar/navbar.component";
 import { ResultadosComponent } from "./web/resultados/resultados.component";
 
@@ -19,6 +20,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'resultados', component: ResultadosComponent,
+    
+  },
+
+  {
+    path: 'juego', component: JuegoComponent,
     
   },
   { path: '**', redirectTo: ''}

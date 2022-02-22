@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
 import { WebRoutingModule } from './web-routing.module';
 import { ResultadosComponent } from './resultados/resultados.component';
+import { JuegoComponent } from './juego/juego.component';
 
 
 
@@ -12,7 +13,8 @@ import { ResultadosComponent } from './resultados/resultados.component';
   declarations: [
     NavbarComponent,
     MainComponent,
-    ResultadosComponent
+    ResultadosComponent,
+    JuegoComponent
   ],
   imports: [
     CommonModule,

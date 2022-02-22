@@ -9,6 +9,7 @@ export class BuscadorService {
 
   url : string= "";
   datosJuegos: Juego[]=[];
+  juegoObtenido!: Juego; 
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +31,15 @@ export class BuscadorService {
   );
   }
 
+  obtenerJuego(query:string){
+    let ruta:string= "http://localhost:8080/juego?titulo="; 
+
+    this.http.get<Juego>(ruta+query+"")
+    .subscribe((resp)=>{
+      return this.juegoObtenido= resp;
+    }
+  );
+
+  }
 
 }

@@ -1,0 +1,23 @@
+<p>juego works!</p>
+<div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12" *ngModel= "juegoAMostrar">
+
+        <div class="card align-items-center text-justify">
+            <img class="card-img-top" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
+            <div class="card-body">
+                <h5 class="card-title text-center">
+                    {{juegoAMostrar.titulo}}
+                </h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Año: {{juegoAMostrar.year}}</li>
+                    <li class="list-group-item">Desarrollador: {{juegoAMostrar.desarrollador}}</li>
+                    <li class="list-group-item">Categoría:  {{juegoAMostrar.categoria}}</li>
+                  </ul>
+                <p class="card-text">
+                    Aquí irá una breve sinopsis del juego
+                </p>
+                <div style="text-align: center">
+                    <a href="" class="btn btn-primary">Accede para votar</a>
+                </div>
+            </div>
+        </div>

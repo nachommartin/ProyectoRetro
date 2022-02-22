@@ -39,8 +39,11 @@ export class ResultadosComponent implements OnInit {
         this.router.navigateByUrl('/resultados');
     
     
-    
     }
 
+    getJuego(pk:any){
+    
+      this.router.navigate(["/juego/"+pk]);
+    }
 
 }
