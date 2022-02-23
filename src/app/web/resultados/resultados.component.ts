@@ -43,7 +43,7 @@ export class ResultadosComponent implements OnInit {
 
     getJuego(pk:any){
     
-      this.router.navigate(["/juego/"+pk]);
+      this.router.navigate(["/juego/",pk]);
     }
 
 }

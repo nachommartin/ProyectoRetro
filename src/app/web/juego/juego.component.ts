@@ -13,19 +13,29 @@ export class JuegoComponent implements OnInit {
   constructor(private ruta: ActivatedRoute, private buscador: BuscadorService) { }
 
   titulo!:string;
+  carga:boolean= false; 
+  juegoCargado!:Juego;
+
 
   ngOnInit() {
 
     this.titulo=this.ruta.snapshot.params['titulo']
-    this.buscador.obtenerJuego(this.titulo)
-    
- 
+    this.cargarJuego()
+
 
 
   }
 
-  get juegoAMostrar(){
-    return this.buscador.juegoObtenido
+  cargarJuego(){
+    this.buscador.obtenerJuego(this.titulo).
+    subscribe((resp)=> {
+      this.juegoCargado=resp[0];
+      this.carga=true
+      console.log(resp)
+
+    }
+);
+
     }
 
   }

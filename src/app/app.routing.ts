@@ -24,9 +24,10 @@ const appRoutes: Routes = [
   },
 
   {
-    path: 'juego', component: JuegoComponent,
-    
-  },
+    path: 'juego', component: JuegoComponent 
+   },
+  {
+    path:'juego/:titulo', component: JuegoComponent},
   { path: '**', redirectTo: ''}
 ];
 

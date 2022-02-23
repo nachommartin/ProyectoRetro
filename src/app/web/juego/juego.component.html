@@ -1,17 +1,18 @@
 <p>juego works!</p>
 <div class="row">
-    <div class="col-md-4 col-sm-6 col-xs-12" *ngModel= "juegoAMostrar">
+    <div class="col-md-4 col-sm-6"></div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
 
-        <div class="card align-items-center text-justify">
+        <div *ngIf="carga==true" class="card align-items-center text-justify">
             <img class="card-img-top" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
             <div class="card-body">
                 <h5 class="card-title text-center">
-                    {{juegoAMostrar.titulo}}
+                    {{juegoCargado.titulo}}
                 </h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Año: {{juegoAMostrar.year}}</li>
-                    <li class="list-group-item">Desarrollador: {{juegoAMostrar.desarrollador}}</li>
-                    <li class="list-group-item">Categoría:  {{juegoAMostrar.categoria}}</li>
+                    <li class="list-group-item">Año: {{juegoCargado.year}}</li>
+                    <li class="list-group-item">Desarrollador: {{juegoCargado.desarrollador}}</li>
+                    <li class="list-group-item">Categoría:  {{juegoCargado.categoria}}</li>
                   </ul>
                 <p class="card-text">
                     Aquí irá una breve sinopsis del juego
