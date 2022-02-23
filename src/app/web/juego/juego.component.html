@@ -1,4 +1,4 @@
-<p>juego works!</p>
+<app-navbar></app-navbar>
 <div class="row">
     <div class="col-md-4 col-sm-6"></div>
     <div class="col-md-4 col-sm-6 col-xs-12">
@@ -18,7 +18,13 @@
                     Aquí irá una breve sinopsis del juego
                 </p>
                 <div style="text-align: center">
-                    <a href="" class="btn btn-primary">Accede para votar</a>
+                    <select class="form-control" (ngModelChange)="selectOption($event)" [(ngModel)]="opcionElegida" name="buscador"> 
+                        <optgroup label="Nota">
+                        <option [ngValue]="o.id" *ngFor="let o of options">
+                           {{o.name}}
+                        </option>
+                    </optgroup>
+                </select>
                 </div>
             </div>
         </div>
