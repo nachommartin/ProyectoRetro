@@ -20,6 +20,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'resultados', component: ResultadosComponent,
+    canActivate: [ GuardianService ]
     
   },
 
@@ -27,7 +28,9 @@ const appRoutes: Routes = [
     path: 'juego', component: JuegoComponent 
    },
   {
-    path:'juego/:titulo', component: JuegoComponent},
+    path:'juego/:titulo', component: JuegoComponent, 
+    canActivate: [ GuardianService ]
+  },
   { path: '**', redirectTo: ''}
 ];
 

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/login/services/login.service';
 import { Juego } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
+import { VotacionService } from '../services/votacion.service';
 
 @Component({
   selector: 'app-juego',
@@ -10,7 +12,8 @@ import { BuscadorService } from '../services/buscador.service';
 })
 export class JuegoComponent implements OnInit {
 
-  constructor(private ruta: ActivatedRoute, private buscador: BuscadorService) { }
+  constructor(private ruta: ActivatedRoute, private buscador: BuscadorService, 
+    private servicioVoto: VotacionService, private servicio:LoginService) { }
 
   titulo!:string;
   carga:boolean= false; 
@@ -27,7 +30,8 @@ export class JuegoComponent implements OnInit {
     { name: 9, id: 9 },
     { name: 10, id: 10 }
   ];
-  opcionElegida:string='';
+  opcionElegida:number=0;
+  usuario!:string; 
 
 
 
@@ -52,8 +56,19 @@ export class JuegoComponent implements OnInit {
 
     }
 
-    selectOption(opcion:string) {
+    selectOption(opcion:number) {
       this.opcionElegida=opcion;
+    }
+
+    votar(){
+      this.servicio.obtenerUsuarioPorToken().
+      subscribe((resp)=>{
+        this.usuario=resp; 
+        console.log(this.usuario)
+      }
+      )
+
+      this.servicioVoto.votarJuego(1,this.opcionElegida,this.usuario);
     }
   
 

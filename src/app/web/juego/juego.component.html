@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
 <div class="row">
-    <div class="col-md-4 col-sm-6"></div>
+    <div class="col-md-4 col-sm-3"></div>
     <div class="col-md-4 col-sm-6 col-xs-12">
 
         <div *ngIf="carga==true" class="card align-items-center text-justify">
             <img class="card-img-top" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
             <div class="card-body">
-                <h5 class="card-title text-center">
+                <h5 class="card-title text-center font-weight-bold">
                     {{juegoCargado.titulo}}
                 </h5>
                 <ul class="list-group list-group-flush">
@@ -17,6 +17,7 @@
                 <p class="card-text">
                     Aquí irá una breve sinopsis del juego
                 </p>
+                <h5 class="card-title text-center">Media de votos: {{juegoCargado.votacionMedia}}</h5>
                 <div style="text-align: center">
                     <select class="form-control" (ngModelChange)="selectOption($event)" [(ngModel)]="opcionElegida" name="buscador"> 
                         <optgroup label="Nota">
@@ -25,6 +26,7 @@
                         </option>
                     </optgroup>
                 </select>
+                <button type="button" class="btn btn-primary" (click)="votar()">Votar</button>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ export interface Juego {
         desarrollador: string;
         categoria:     string;
         votos:         any[];
+        votacionMedia: number; 
     }
     
     export enum Plataforma {
