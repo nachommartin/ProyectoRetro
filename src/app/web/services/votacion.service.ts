@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Votacion } from '../interfaces/juego';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,15 @@ export class VotacionService {
       'correo': usuario 
     }
 
-    this.http.post(ruta,peticion)
+    return this.http.post(ruta,peticion)
 
   }
 
+  obtenerVotacionesUsuario(usuario:string){
+    let ruta:string= "http://localhost:8080/usuario/"+usuario+"/votacion"; 
+    return this.http.get<Votacion[]>(ruta);
+
+
+  }
  
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Respuesta } from 'src/app/interfaces/respuestas';
 import { map } from 'rxjs/operators';
+import { Usuario } from 'src/app/web/interfaces/juego'; 
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +62,7 @@ obtenerUsuarioPorToken(){
   const url = `${ this.url }/usuario`;
   const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
-  return this.http.get<string>(url, {headers});
+  return this.http.get<Usuario>(url, {headers});
 }
 
 

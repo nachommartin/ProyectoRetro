@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/login/services/login.service';
-import { Juego } from '../interfaces/juego';
+import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 import { VotacionService } from '../services/votacion.service';
 
@@ -32,6 +32,10 @@ export class JuegoComponent implements OnInit {
   ];
   opcionElegida:number=0;
   usuario!:string; 
+  votosUsuario:Votacion[]=[];
+  votoAislado!:Votacion;
+  notaUsuario!:number
+  nota!:boolean;
 
 
 
@@ -40,7 +44,13 @@ export class JuegoComponent implements OnInit {
     this.titulo=this.ruta.snapshot.params['titulo']
     this.cargarJuego()
 
+    this.servicio.obtenerUsuarioPorToken().
+    subscribe((resp)=>{
+      this.usuario=resp.correo; 
+    }
+    )
 
+   
 
   }
 
@@ -49,7 +59,6 @@ export class JuegoComponent implements OnInit {
     subscribe((resp)=> {
       this.juegoCargado=resp[0];
       this.carga=true
-      console.log(resp)
 
     }
 );
@@ -61,18 +70,40 @@ export class JuegoComponent implements OnInit {
     }
 
     votar(){
-      this.servicio.obtenerUsuarioPorToken().
-      subscribe((resp)=>{
-        this.usuario=resp; 
-        console.log(this.usuario)
-      }
-      )
-
-      this.servicioVoto.votarJuego(1,this.opcionElegida,this.usuario);
+     this.servicioVoto.votarJuego(this.juegoCargado.referencia,this.opcionElegida,this.usuario).subscribe({
+      next: (resp => {
+        console.log("Juego votado correctamente")
+    }),
+    error: resp=> {
+           
+      console.log('Error inesperado')
     }
-  
+    })
+    this.refresh();
+  }
+    
+  refresh(): void {
+    window.location.reload();
+}
+
+ mostrarVotacionUsuario(){
+    let aux!:Votacion[]; 
+    this.servicioVoto.obtenerVotacionesUsuario(this.usuario).subscribe((data)=>{
+      this.votosUsuario=data;
+      })
+    aux= this.votosUsuario.filter(v =>v.juego.titulo ===this.titulo)
+    if (aux.length>0){
+    this.votoAislado= aux[0];
+    this.notaUsuario=this.votoAislado.voto;
+    this.nota=true
+  }
+  else{
+    this.nota=false;
+  }
 
   }
+
+}
 
 
 

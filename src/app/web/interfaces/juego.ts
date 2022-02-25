@@ -1,7 +1,7 @@
 
 
 export interface Juego {
-
+        referencia:    number;
         titulo:        string;
         plataforma:    Plataforma;
         year:          string;
@@ -15,5 +15,19 @@ export interface Juego {
         MegaDrive = "Mega Drive",
     }
 
-   
+    export interface Usuario {
+        correo: string;
+        nick:   string;
+    }
+    
+
+    export interface Votacion {
+        codigo:  number;
+        juego:   Juego;
+        usuario: Usuario;
+        voto:    number;
+        review:  any;
+        fecha:   Date;
+    }
+    
     
