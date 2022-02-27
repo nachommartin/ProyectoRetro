@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card m-5 p-3">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Año</th>
+                    <th>Desarrollador</th>
+                    <th>Categoría</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let juego of datosJuegos">
+                    <td>{{ juego.titulo }}</td>
+                    <td>{{ juego.year }}</td>
+                    <td>{{ juego.desarrollador }}</td>
+                    <td>{{ juego.categoria }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

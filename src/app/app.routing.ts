@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { GuardianService } from "./guardian/guardian.service";
+import { DatosComponent } from "./not-register/datos/datos.component";
+import { InicioComponent } from "./not-register/inicio/inicio.component";
 import { JuegoComponent } from "./web/juego/juego.component";
 import { NavbarComponent } from "./web/navbar/navbar.component";
 import { ResultadosComponent } from "./web/resultados/resultados.component";
@@ -9,7 +11,10 @@ import { ResultadosComponent } from "./web/resultados/resultados.component";
 
 const appRoutes: Routes = [
   {    
-    path: '',
+    path: '',component: InicioComponent
+  },
+  {    
+    path: 'login',
     loadChildren: () => import('./login/login.module')
     .then(m => m.LoginModule)
   },
@@ -31,6 +36,9 @@ const appRoutes: Routes = [
     path:'juego/:titulo', component: JuegoComponent, 
     canActivate: [ GuardianService ]
   },
+  {
+    path: 'datos', component: DatosComponent 
+   },
   { path: '**', redirectTo: ''}
 ];
 

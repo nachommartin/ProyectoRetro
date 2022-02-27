@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { GuardianService } from './guardian/guardian.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
+import { NotRegisterModule } from './not-register/not-register.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule, 
+    NotRegisterModule
   ],
   providers: [],
   bootstrap: [AppComponent, GuardianService]

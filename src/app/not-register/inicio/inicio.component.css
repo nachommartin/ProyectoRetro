@@ -1,0 +1,30 @@
+.card {
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    border: 0.2rem;
+    color: white;
+    padding: 0.625rem 1.25rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0.25rem 0.125rem;
+    border-radius: 1rem;
+  }
+
+  .btn{
+    color: black;
+    background-color: #f5b60a;
+    cursor: pointer;
+    margin: 0.25rem 0.125rem;
+  }
+
+  .card-body{
+    display: inline-block;
+
+  }
+  
+  h1{
+      color: white ;
+  }
+
+  @media (min-width: 1200px) { .container-fluid {padding-top: 16rem;} } 
