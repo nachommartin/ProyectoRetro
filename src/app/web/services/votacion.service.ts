@@ -30,5 +30,18 @@ export class VotacionService {
 
 
   }
+
+  incluirReview(ref:number,review:string, usuario:string){
+    let ruta:string= "http://localhost:8080/juego/"+ref+"/votacion"; 
+
+    const peticion = {
+      'review': review,
+      'correo': usuario 
+    }
+
+    return this.http.put(ruta,peticion)
+
+
+  }
  
 }

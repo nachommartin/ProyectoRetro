@@ -36,6 +36,7 @@ export class JuegoComponent implements OnInit {
   votoAislado!:Votacion;
   notaUsuario!:number
   nota!:boolean;
+  review!:string; 
 
 
 
@@ -75,7 +76,6 @@ export class JuegoComponent implements OnInit {
         console.log("Juego votado correctamente")
     }),
     error: resp=> {
-           
       console.log('Error inesperado')
     }
     })
@@ -83,7 +83,7 @@ export class JuegoComponent implements OnInit {
   }
     
   refresh(): void {
-    window.location.reload();
+    setTimeout(function(){window.location.reload()}, 500)
 }
 
  mostrarVotacionUsuario(){
@@ -101,6 +101,19 @@ export class JuegoComponent implements OnInit {
     this.nota=false;
   }
 
+  }
+
+  addReview(){
+    this.servicioVoto.incluirReview(this.juegoCargado.referencia, this.usuario,this.review).
+    subscribe({
+      next: (resp => {
+        console.log("Juego reseñado correctamente")
+    }),
+    error: resp=> {
+      console.log('Error inesperado')
+    }
+    })
+    //this.refresh();
   }
 
 }

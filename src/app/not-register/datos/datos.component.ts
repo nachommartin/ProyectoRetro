@@ -22,7 +22,6 @@ export class DatosComponent implements OnInit, OnDestroy {
   constructor(private servicio : DatatableService) { }
 
   ngOnInit(): void {
-    this.dtOptions={language:lenguaje};
     this.datos();
 
     
