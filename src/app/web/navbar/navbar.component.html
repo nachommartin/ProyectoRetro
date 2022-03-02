@@ -2,22 +2,35 @@
     <div class="container">
         <div class="row row1">
             <ul class="largenav pull-right">
-                <li class="upper-links"><a class="links" href="">Link 1</a></li>
-                <li class="upper-links"><a class="links" href="">Link 2</a></li>
-                <li class="upper-links"><a class="links" href="">Link 3</a></li>
-                <li class="upper-links"><a class="links" href="">Link 4</a></li>
-                <li class="upper-links"><a class="links" href="">Link 5</a></li>
-                <li class="upper-links"><button type="button" class="button" (click)="logout()">Cerrar sesión</button></li>
+                <li class="upper-links">
+                    <a class="links" href="">
+                       <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li class="upper-links"><a class="links" href="">Base de datos</a></li>
+                <li class="upper-links"><a class="links" href="">Más votados</a></li>
+                <li class="upper-links">
+                    <a class="links" href="">
+                       <i class="fab fa-twitter-square"></i>
+                    </a>
+                </li>
+                <li class="upper-links">
+
+                <a class="links" href="">
+                    <i class="fab fa-instagram"></i>
+                 </a>
+                </li>                       
                 <li class="upper-links">
                     <a class="links" href="">
                        <i class="fab fa-facebook-square"></i>
                     </a>
                 </li>
-                <li class="upper-links dropdown"><a class="links" href="http://clashhacks.in/">Más enlaces</a>
+                <li class="upper-links dropdown"><i class="fa fa-user"></i>
                     <ul class="dropdown-menu">
-                        <li class="profile-li"><a class="profile-links" href="http://yazilife.com/">Link</a></li>
-                        <li class="profile-li"><a class="profile-links" href="http://hacksociety.tech/">Link</a></li>
-                        <li class="profile-li"><a class="profile-links" href="http://clashhacks.in/">Link</a></li>
+                        <li class="profile-li"><a class="profile-links" href="#">{{usuario}}</a></li>
+                        <li class="profile-li"><a class="profile-links" href="#">Ver tus votos</a></li>
+                        <li class="profile-li"><a class="profile-links" href="#">Ver tus mensajes</a></li>
+                        <li class="profile-li"><a class="profile-links" (click)="logout()">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>

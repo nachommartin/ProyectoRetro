@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { WebRoutingModule } from './web-routing.module';
 import { ResultadosComponent } from './resultados/resultados.component';
 import { JuegoComponent } from './juego/juego.component';
+import { ReviewComponent } from './review/review.component';
 
 
 
@@ -14,7 +15,8 @@ import { JuegoComponent } from './juego/juego.component';
     NavbarComponent,
     MainComponent,
     ResultadosComponent,
-    JuegoComponent
+    JuegoComponent,
+    ReviewComponent
   ],
   imports: [
     CommonModule,

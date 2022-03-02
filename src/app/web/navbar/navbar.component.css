@@ -13,6 +13,12 @@ margin-left: 350px;
 padding-bottom: 20px;
 }
 
+.profile-li:hover {background:#2874f0; color:white; cursor: pointer}
+
+.upper-links.dropdown:hover{
+    color: #2874f0;
+  }
+
 .flipkart-navbar-input {
 margin-left: 230px;
 padding: 11px 16px;

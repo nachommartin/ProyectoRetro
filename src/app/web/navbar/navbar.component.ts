@@ -10,11 +10,19 @@ import { BuscadorService } from '../services/buscador.service';
 })
 export class NavbarComponent implements OnInit {
   cadena:string= ''; 
+  usuario!:string; 
+
 
 
   constructor(private servicioLogin: LoginService, private servicioBusqueda: BuscadorService, private router: Router) { }
 
   ngOnInit(): void {
+
+    this.servicioLogin.obtenerUsuarioPorToken().
+    subscribe((resp)=>{
+      this.usuario=resp.nick; 
+    }
+    )
   }
 
   logout(){

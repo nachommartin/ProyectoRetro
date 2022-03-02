@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
@@ -13,7 +13,8 @@ import { VotacionService } from '../services/votacion.service';
 export class JuegoComponent implements OnInit {
 
   constructor(private ruta: ActivatedRoute, private buscador: BuscadorService, 
-    private servicioVoto: VotacionService, private servicio:LoginService) { }
+    private servicioVoto: VotacionService, private servicio:LoginService, 
+    private router: Router) { }
 
   titulo!:string;
   carga:boolean= false; 
@@ -104,7 +105,7 @@ export class JuegoComponent implements OnInit {
   }
 
   addReview(){
-    this.servicioVoto.incluirReview(this.juegoCargado.referencia, this.usuario,this.review).
+    this.servicioVoto.incluirReview(this.juegoCargado.referencia, this.review,this.usuario).
     subscribe({
       next: (resp => {
         console.log("Juego reseñado correctamente")
@@ -115,6 +116,12 @@ export class JuegoComponent implements OnInit {
     })
     //this.refresh();
   }
+
+  getReview(pk:any){
+    
+    this.router.navigate(["/review/",pk]);
+  }
+
 
 }
 
