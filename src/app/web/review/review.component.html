@@ -9,8 +9,15 @@
                     {{juegoCargado.titulo}}
                 </h5>
                 <h5>Reseñas</h5>
-                <div class="col-md-6" *ngFor= "let votoReview of reviewsJuego">
+                <div *ngIf="sizeArray==0">
+                    <p>No hay reseñas aún</p>
+                </div>
+                <div class="col-md-12" *ngFor= "let votoReview of reviewsJuego">                
                 <p class="card-text"> {{votoReview.review}}     </p>
+                <p class="card-text"> Por {{votoReview.usuario.nick}}  </p>
+                <p class="card-text"> El {{votoReview.fecha}}     </p>
+
+
                 </div>
 
             <footer class="blockquote-footer">Ordenar por votacion media</footer>           

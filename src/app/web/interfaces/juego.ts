@@ -7,7 +7,7 @@ export interface Juego {
         year:          string;
         desarrollador: string;
         categoria:     string;
-        votos:         any[];
+        votos:         Votacion[];
         votacionMedia: number; 
     }
     
@@ -26,7 +26,7 @@ export interface Juego {
         juego:   Juego;
         usuario: Usuario;
         voto:    number;
-        review:  any;
+        review:  string;
         fecha:   Date;
     }
     

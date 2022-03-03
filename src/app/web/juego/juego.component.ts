@@ -4,6 +4,8 @@ import { LoginService } from 'src/app/login/services/login.service';
 import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 import { VotacionService } from '../services/votacion.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-juego',
@@ -111,7 +113,7 @@ export class JuegoComponent implements OnInit {
         console.log("Juego reseñado correctamente")
     }),
     error: resp=> {
-      console.log('Error inesperado')
+      Swal.fire('Error', resp.error.mensaje, 'error')
     }
     })
     //this.refresh();

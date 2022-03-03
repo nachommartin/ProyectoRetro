@@ -43,5 +43,12 @@ export class VotacionService {
 
 
   }
+
+  obtenerVotacionesJuego(ref:number){
+    let ruta:string= "http://localhost:8080/juego/"+ref+"/votacion"; 
+    return this.http.get<Votacion[]>(ruta);
+
+
+  }
  
 }
