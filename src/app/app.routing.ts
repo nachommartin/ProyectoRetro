@@ -16,34 +16,34 @@ const appRoutes: Routes = [
     path: '',component: InicioComponent
   },
   {    
-    path: '/login',
+    path: 'login',
     loadChildren: () => import('./login/login.module')
     .then(m => m.LoginModule)
   },
   {
-    path: '/main',
+    path: 'main',
     loadChildren: () => import('./web/web.module').then( m => m.WebModule),
     canActivate: [ GuardianService ]
   },
   {
-    path: '/resultados', component: ResultadosComponent,
+    path: 'resultados', component: ResultadosComponent,
     canActivate: [ GuardianService ]
     
   },
 
   {
-    path: '/registro', component: RegistroComponent 
+    path: 'registro', component: RegistroComponent 
    },
   {
-    path:'/juego/:titulo', component: JuegoComponent, 
+    path:'juego/:titulo', component: JuegoComponent, 
     canActivate: [ GuardianService ]
   },
   {
-    path:'/review/:titulo', component: ReviewComponent, 
+    path:'review/:titulo', component: ReviewComponent, 
     canActivate: [ GuardianService ]
   },
   {
-    path: '/datos', component: DatosComponent 
+    path: 'datos', component: DatosComponent 
    },
   { path: '**', redirectTo: ''}
 ];
