@@ -12,7 +12,7 @@ import { Usuario } from 'src/app/web/interfaces/juego';
 })
 export class LoginService  {
 
-  private url: string = 'http://localhost:8080'; 
+  private url: string = 'https://megadriver.herokuapp.com'; 
 
 
 
@@ -33,7 +33,7 @@ export class LoginService  {
 //Método para cerrar sesión y que se elimine nuestro token de autenticación
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigate(['./login']);
 }
 
 //Método para registrar un usuario

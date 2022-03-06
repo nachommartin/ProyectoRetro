@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.servicio.login(this.user.email,this.user.password).subscribe({
       next: (resp => { 
       localStorage.setItem('token',resp.access_token)
-      this.router.navigateByUrl('/main');
+      this.router.navigateByUrl('./main');
       console.log(resp)
   }),
   error: resp=> {

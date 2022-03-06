@@ -14,7 +14,7 @@ export class MailService implements AsyncValidator {
   validate( control: AbstractControl): Observable<ValidationErrors| null> {
 
     const email = control.value;
-    return this.http.get<any>(`http://localhost:8080/register?correo=${ email }`)
+    return this.http.get<any>(`https://megadriver.herokuapp.com/register?correo=${ email }`)
                 .pipe(
                   map ( resp => {
                     return ( resp.length === 0 ) 
