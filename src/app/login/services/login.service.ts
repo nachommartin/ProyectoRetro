@@ -19,6 +19,7 @@ export class LoginService  {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+//Método para login con el que conseguiremos desde el backend un token
   login(email:string, password:string)  {
     const path = `${this.url}/login/`;
     const peticion = {
@@ -29,11 +30,13 @@ export class LoginService  {
     return this.http.post<Respuesta>(path, peticion);
   }
 
+//Método para cerrar sesión y que se elimine nuestro token de autenticación
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
 }
 
+//Método para registrar un usuario
 registrar(usuario:string){
   
   const path = `${this.url}/register`;
@@ -43,11 +46,14 @@ registrar(usuario:string){
 }
 
 
-
+//Método para obtener nuestro token del local storage que nos permitirá obtener el usuario mediante
+//el mismo token
 obtenerToken(){
   return localStorage.getItem('token'); 
 }
 
+//Método para validar el token, útil para que nuestro guardián impida el acceso a páginas si no estamos
+//autenticados
 validarToken():Observable<Respuesta>{
   const url = `${ this.url }/juego/`;
   const headers = new HttpHeaders()
@@ -57,7 +63,7 @@ validarToken():Observable<Respuesta>{
 
 }
 
-
+//Método para obtener nuestro usuario a través de la signature del token
 obtenerUsuarioPorToken(){
   const url = `${ this.url }/usuario`;
   const headers = new HttpHeaders()

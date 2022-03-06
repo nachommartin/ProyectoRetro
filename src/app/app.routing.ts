@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { GuardianService } from "./guardian/guardian.service";
+import { RegistroComponent } from "./login/registro/registro.component";
 import { DatosComponent } from "./not-register/datos/datos.component";
 import { InicioComponent } from "./not-register/inicio/inicio.component";
 import { JuegoComponent } from "./web/juego/juego.component";
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
   },
 
   {
-    path: 'juego', component: JuegoComponent 
+    path: 'registro', component: RegistroComponent 
    },
   {
     path:'juego/:titulo', component: JuegoComponent, 
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: ''}
 ];
 
-
+// A excepción del Login, Registro, la Datatable y el inicio de la web, el Guardián evitará el acceso sin haberse autenticado 
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes)

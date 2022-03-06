@@ -10,13 +10,16 @@
 				</div>
 			</div>
 			<div class="card-body">
+				<!--Forumulario template driven-->
 				<form class="custom-form" method="post" #loginForm="ngForm"  novalidate>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
+						<!--El campo email es un campo requerido y con un formato concreto-->
 						<input type="email" name="email"  [(ngModel)]="user.email"  #email="ngModel"  class="form-control" placeholder="Correo electrónico"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
-						required>						
+						required>		
+						<!--Si el usuario ha tocado el input del correo y no lo ha cumplimentado correctamente se le avisa-->				
 					<div *ngIf="email.touched">
 						<span class="error" *ngIf="email.errors?.['required']">Por favor, para acceder introduzca su correo</span>
 						<span class="error" *ngIf="email.errors?.['pattern']">Este correo no tiene el formato correcto</span>
@@ -26,14 +29,18 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
+						<!-- El campo password es un campo requerido -->
 						<input type="password"   [(ngModel)]="user.password" #password="ngModel" name="password" class="form-control" placeholder="Contraseña" required/>                      
+						<!--Si el usuario ha tocado el input del password y no lo ha cumplimentado correctamente se le avisa-->				
 						<div *ngIf="password.touched">
 							<span class="error" *ngIf="password.errors?.['required']">Para acceder introduzca su contraseña</span>
 						  </div>
 					</div>
+					<!--Checkbox sin utilidad, se intentará añadir la funcionalidad más adelante-->
 					<div class="row align-items-center remember">
 						<input type="checkbox">Recuérdame
 					</div>
+					<!--Hasta que no estén todos los campos correctamente rellenos no se activa el botón de login-->
 					<div class="form-group">
 						<input type="submit" value="Entra" [disabled]="!loginForm.valid" (click)="login()" class="btn float-right login_btn">
 					</div>
@@ -47,6 +54,7 @@
 				<div class="d-flex justify-content-center">
 					<a href="#">¿Olvidaste tu contraseña?</a>
 				</div>
+				Esta funcionalidad se intentará incorporar más adelante
 			-->
 			</div>
 		</div>

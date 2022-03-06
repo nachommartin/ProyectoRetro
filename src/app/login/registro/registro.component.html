@@ -10,7 +10,10 @@
 				</div>
 			</div>
 			<div class="card-body">
+				<!--Formulario reactivo-->
 				<form class="custom-form" method="post"  [formGroup]="formGroup">	
+					<!--El correcto completado del campo de formulario se gestiona con un la función campoNoValido y en el template se especifica
+					el contenido textual del error a mostrar-->
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user-ninja"></i></span>
@@ -39,7 +42,8 @@
 						</div>
 						<input type="password"  name="repitePass" class="form-control" formControlName="repitePass" placeholder="Repite la contraseña"  required="required"/> 						
 						<span class="error"	*ngIf="campoNoValido('repitePass')">  Las contraseñas deben de ser iguales </span>											
-					</div>				
+					</div>
+					<!--Hasta que no estén todos los campos correctamente rellenos no se activa el botón de login-->				
 					<div class="form-group">
 						<input type="submit" value="Registrar"  (click)="registrar()" [disabled]="formGroup.invalid"  class="btn float-right login_btn">
 					</div>

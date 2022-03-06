@@ -12,7 +12,9 @@ import { MailService } from '../services/mail.service';
 export class RegistroComponent implements OnInit {
 
   public formGroup!: FormGroup;
+  //Patrón para el correo
   public emailPattern   : string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  //Patrón para la contraseña
   public passwordPattern  : string= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$";
   
 
@@ -28,6 +30,7 @@ export class RegistroComponent implements OnInit {
     
   }
 
+  // Constructor del formulario reactivo con sus respectivos campos y sus validadores asignados
   private buildForm(){
     this.formGroup = this.formBuilder.group({
       nick: ['', [Validators.required]],
@@ -40,9 +43,9 @@ export class RegistroComponent implements OnInit {
   )
   }
 
+// Método para registrar un usuario
   public registrar() {
     const user = JSON.stringify(this.formGroup.value);
-    console.log(user)
     this.servicio.registrar(JSON.parse(user)).subscribe({
     next: (resp => {
       console.log("Usuario registrado correctamente")
@@ -53,8 +56,10 @@ export class RegistroComponent implements OnInit {
     console.log('Error inesperado')
   }
   })
+  // En un futuro los logs se modificarán para que se muestren en pantalla
 }
 
+//Método para mostrar los errores posibles de la validación del campo email
   get emailErrorMsg(): string {
     
     const errors = this.formGroup.get('correo')?.errors!;
@@ -69,14 +74,15 @@ export class RegistroComponent implements OnInit {
   }
 
   
-
+//Método para saber si el campo del formulario se ha rellenado correctamente según las validaciones
   campoNoValido( campo: string ) {
     return this.formGroup.get(campo)?.invalid
             && this.formGroup.get(campo)?.touched;
   }
 
 
-  
+  //Método para determinar si los campos de password y repite password (para una mayor garantía al
+  //usuario) son iguales
   camposIguales( campo1: string, campo2: string ) {
 
     return ( formGroup: AbstractControl ): ValidationErrors | null => {

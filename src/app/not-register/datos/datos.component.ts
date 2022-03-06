@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Juego } from 'src/app/web/interfaces/juego';
 import { DatatableService } from '../services/datatable.service';
 import {Subject} from 'rxjs';
-import { lenguaje } from '../lenguaje';
 
 
 
@@ -33,6 +32,8 @@ export class DatosComponent implements OnInit, OnDestroy {
 
   }
 
+  //Método para cargar los datos de nuestra base de datos y traspasárselos
+  //a la datatable
   datos(){
     this.servicio.datos().subscribe((resp) => {
       this.datosJuegos = resp;

@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
   }),
   error: resp=> {
          
-    Swal.fire('Error', resp.error.message, 'error')
+    Swal.fire('Error', resp.error.mensaje, 'error')
   }  });
 }
-
+//Si conseguimos una respuesta correcta de nuestro backend en la autenticación del login guardamos un token en nuestro local storage
+//si no lo conseguimos, se nos mostrará un error personalizado de nuestro backen vía Sweet Alert
 }

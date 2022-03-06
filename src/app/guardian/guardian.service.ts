@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 })
 export class GuardianService implements CanActivate, CanActivateChild{
 
+  // Guardián para controlar el acceso con token validado
   constructor(private router:Router, private servicio: LoginService) { }
 
 

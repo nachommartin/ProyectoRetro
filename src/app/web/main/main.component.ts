@@ -9,9 +9,16 @@ import { LoginService } from 'src/app/login/services/login.service';
 })
 export class MainComponent implements OnInit {
 
+  textoPadre!: string; 
+  val:any; 
+
   constructor(private servicio: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  recibirOpcion(mensaje:string){
+    this.textoPadre= mensaje;
   }
 
   checkToken(){
@@ -26,5 +33,10 @@ export class MainComponent implements OnInit {
     )
 
 }
+  
+itemSelected(e:any){
+  this.val = e;
+};
+
 
   }

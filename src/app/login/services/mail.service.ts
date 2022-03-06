@@ -10,6 +10,7 @@ export class MailService implements AsyncValidator {
 
   constructor(private http: HttpClient) { }
 
+//Método para comprobar si ya existe un usuario con ese correo en la base de datos de la aplicación
   validate( control: AbstractControl): Observable<ValidationErrors| null> {
 
     const email = control.value;

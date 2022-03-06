@@ -1,3 +1,27 @@
 <router-outlet></router-outlet>
-<button (click)="checkToken()">Validar token</button>
+<div class="row">
+    <div class="col-md-2 col-sm-3"></div>
+    <div class="col-md-8 col-sm-6 col-xs-12">
 
+        <div class="card align-items-center text-justify">
+            <div class="card-body">
+                <h2 class="card-title text-center font-weight-bold">
+                    Megadriver</h2>
+                <div>
+                <p *ngIf="val" class="card-text text-center font-weight-bold">Has elegido que {{ val }} te dé la bienvenida</p>
+                <div *ngIf="val=='Sonic'">
+                    <img class="card-img-top" src="https://c.tenor.com/eMIgxZec83UAAAAd/sonic-sega.gif" alt="Escena de Sonic The Hedgehog" width="20rem" height="250rem">
+                </div>
+                <div *ngIf="val=='Axel'">
+                    <img class="card-img-top" src="https://c.tenor.com/5kUSNkKndEcAAAAd/streets-of-rage-sor3.gif" alt="Escena de Streets of Rage" width="20rem" height="250rem">
+                </div>
+                <div *ngIf="val=='Gilius'">
+                    <img class="card-img-top" src="https://c.tenor.com/vHIUuUW1mjUAAAAd/golden-axe-dwarf.gif" alt="Escena de Golden Axe" width="20rem" height="250rem">
+                </div>
+                </div>
+               
+        </div>
+        </div>
+        </div>
+        </div>
+<app-child  (selected)="itemSelected($event)"></app-child>

@@ -7,6 +7,7 @@ import { WebRoutingModule } from './web-routing.module';
 import { ResultadosComponent } from './resultados/resultados.component';
 import { JuegoComponent } from './juego/juego.component';
 import { ReviewComponent } from './review/review.component';
+import { ChildComponent } from './child/child.component';
 
 
 
@@ -16,7 +17,8 @@ import { ReviewComponent } from './review/review.component';
     MainComponent,
     ResultadosComponent,
     JuegoComponent,
-    ReviewComponent
+    ReviewComponent,
+    ChildComponent
   ],
   imports: [
     CommonModule,

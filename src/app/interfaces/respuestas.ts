@@ -14,3 +14,5 @@ export interface RespuestaCorreo{
     // status?: number;
     // message?: string;     
 }
+
+//Interfaces del tipo de respouestas Http

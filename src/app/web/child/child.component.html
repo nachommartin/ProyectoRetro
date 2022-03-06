@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-2 col-sm-3"></div>
+    <div class="col-md-8 col-sm-6 col-xs-12">
+
+        <div class="card align-items-center text-justify">
+            <div class="card-body">
+                <span>Elige al protagonista para tu imagen de bienvenida:</span>
+            <div *ngFor="let o of opciones">
+                <span (click)="select(o)">
+                  {{o}} 
+                </span>
+              </div>
+               
+        </div>
+        </div>
+        </div>
+        </div>

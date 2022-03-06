@@ -59,7 +59,9 @@ export class ReviewComponent implements OnInit {
       }
 
       
-    
+      goBack() {
+        window.history.back();
+      }
 
 
 }

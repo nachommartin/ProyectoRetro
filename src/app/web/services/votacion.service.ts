@@ -25,8 +25,13 @@ export class VotacionService {
   }
 
   obtenerVotacionesUsuario(usuario:string){
-    let ruta:string= "http://localhost:8080/usuario/"+usuario+"/votacion"; 
-    return this.http.get<Votacion[]>(ruta);
+    let ruta:string= "http://localhost:8080/votacion"; 
+    
+    const peticion = {
+      'correoTarget': usuario 
+    }
+    
+    return this.http.post<Votacion[]>(ruta,peticion);
 
 
   }
