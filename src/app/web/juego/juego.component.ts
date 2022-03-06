@@ -76,7 +76,7 @@ export class JuegoComponent implements OnInit {
       this.opcionElegida=opcion;
     }
 
-//Método para votar, posteriormente los logs se mostrarán en pantalla y así no se utilizará el refresco de página
+//Método para votar
     votar(){
      this.servicioVoto.votarJuego(this.juegoCargado.referencia,this.opcionElegida,this.usuario).subscribe({
       next: (resp => {
@@ -88,9 +88,7 @@ export class JuegoComponent implements OnInit {
     })
   }
     
-  refresh(): void {
-    setTimeout(function(){window.location.reload()}, 2500)
-}
+  
 
 //Método para mostrar si el usuario ha votado ya el juego, si no lo está
 //el auxiliar booleano sigue falso y se muestra un mensaje correspondiente
@@ -124,7 +122,6 @@ export class JuegoComponent implements OnInit {
       Swal.fire('Error', resp.error.mensaje, 'error')
     }
     })
-    //this.refresh();
   }
 
   getReview(pk:any){
