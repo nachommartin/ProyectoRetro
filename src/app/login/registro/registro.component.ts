@@ -49,7 +49,7 @@ export class RegistroComponent implements OnInit {
     this.servicio.registrar(JSON.parse(user)).subscribe({
     next: (resp => {
       console.log("Usuario registrado correctamente")
-      this.router.navigateByUrl('./login');
+      this.router.navigateByUrl('/login');
   }),
   error: resp=> {
          
