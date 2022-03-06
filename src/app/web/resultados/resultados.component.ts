@@ -38,7 +38,7 @@ export class ResultadosComponent implements OnInit {
     buscarPorCategoria(x:any){
         this.cadena= x.target.value
         this.buscador.buscarAvanzado(this.opcionElegida, this.cadena); 
-        this.router.navigateByUrl('./resultados');
+        this.router.navigateByUrl('/resultados');
     
     
     }
