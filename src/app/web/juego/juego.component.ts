@@ -130,7 +130,7 @@ export class JuegoComponent implements OnInit {
 
   getReview(pk:any){
     
-    this.router.navigate(["/review/",pk]);
+    this.router.navigate(["./review/",pk]);
   }
 
 

@@ -11,7 +11,7 @@ export class DatatableService {
 
 //Método para recuperar los datos para la Datatable
   datos() {
-    return this.http.get<Juego[]>('http://localhost:8080/juego');
+    return this.http.get<Juego[]>('https://megadriver.herokuapp.com/juego');
   }
   
 }

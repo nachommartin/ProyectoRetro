@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
     this.cadena= x.target.value
 
     this.servicioBusqueda.buscarJuego(this.cadena); 
-    this.router.navigateByUrl('/resultados');
+    this.router.navigateByUrl('./resultados');
 
 
   }
