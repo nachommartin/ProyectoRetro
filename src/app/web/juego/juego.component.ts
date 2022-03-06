@@ -90,7 +90,7 @@ export class JuegoComponent implements OnInit {
   }
     
   refresh(): void {
-    setTimeout(function(){window.location.reload()}, 1500)
+    setTimeout(function(){window.location.reload()}, 2500)
 }
 
 //Método para mostrar si el usuario ha votado ya el juego, si no lo está
