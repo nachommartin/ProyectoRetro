@@ -86,7 +86,6 @@ export class JuegoComponent implements OnInit {
       console.log('Error inesperado')
     }
     })
-    this.refresh();
   }
     
   refresh(): void {
