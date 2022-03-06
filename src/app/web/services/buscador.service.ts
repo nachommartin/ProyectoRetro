@@ -14,13 +14,13 @@ export class BuscadorService {
 
   //Método para buscar un juego por una cadena de texto que coincida con una parte del título 
   buscarJuego(query:String){
-    this.url= "http://localhost:8080/juego?titulo="+query+"";
+    this.url= "https://megadriver.herokuapp.com/juego?titulo="+query+"";
     this.getJuegos();      
   }
 
   //Método para una búsqueda filtrada por los atributos de la entidad Juego
   buscarAvanzado(cat:String, query:String){
-    this.url= "http://localhost:8080/juego?"+cat+"="+query+"";
+    this.url= "https://megadriver.herokuapp.com/juego?"+cat+"="+query+"";
     this.getJuegos();      
   }
 
@@ -35,7 +35,7 @@ export class BuscadorService {
 
   //Método para obtener un juego por su título
   obtenerJuego(query:string){
-    let ruta:string= "http://localhost:8080/juego?titulo="; 
+    let ruta:string= "https://megadriver.herokuapp.com/juego?titulo="; 
 
     return this.http.get<Juego[]>(ruta+query+"")
 
