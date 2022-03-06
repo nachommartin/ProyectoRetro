@@ -9,7 +9,6 @@ import { LoginService } from 'src/app/login/services/login.service';
 })
 export class MainComponent implements OnInit {
 
-  textoPadre!: string; 
   val:any; 
 
   constructor(private servicio: LoginService, private router: Router) { }
@@ -17,23 +16,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  recibirOpcion(mensaje:string){
-    this.textoPadre= mensaje;
-  }
-
-  checkToken(){
-    this.servicio.validarToken()
-    .subscribe({
-      next: () => console.log('Token válido'),
-      error: resp => {
-        this.router.navigateByUrl('/login')
-        
-      } 
-    }
-    )
-
-}
-  
+//Captura del evento del elemento hijo y guardado de la información traspasada en una variable
 itemSelected(e:any){
   this.val = e;
 };

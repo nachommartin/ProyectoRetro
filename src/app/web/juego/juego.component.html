@@ -2,7 +2,9 @@
 <div class="row">
     <div class="col-md-2 col-sm-3"></div>
     <div class="col-md-8 col-sm-6 col-xs-12">
-
+        <!-- Para asegurarnos de que se carga el juego utilizamos un condicional, si no se carga no se muestra nada.
+        Además cuando el usuario coloca el ratón sobre la card, se carga si ha votado o no este juego para así cuando le 
+        dé a la opción de "Ver tu voto" ya esté cargada la información y así evitamos en cierta medida la asincronía-->
         <div *ngIf="carga==true" class="card align-items-center text-justify" (mouseover)="mostrarVotacionUsuario()">
             <img class="card-img-top" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
             <div class="card-body">
@@ -16,6 +18,7 @@
                     <li class="list-group-item">Desarrollador: {{juegoCargado.desarrollador}}</li>
                     <li class="list-group-item">Categoría:  {{juegoCargado.categoria}}</li>
                   </ul>
+                  <!--Más adelante se modificará en backend la entidad Juego para que incluya una sinopsis-->
                 <p class="card-text">
                     Aquí irá una breve sinopsis del juego
                 </p>
@@ -30,6 +33,8 @@
                 <h6 *ngIf="nota==false" class="card align-items-center text-justify">No has votado todavía</h6>
                 </div>
                 <div style="text-align: center">
+                    <!-- Desplegable de opciones para poder votar y controlar que sea tu voto del 1 al 10
+                    Más adelante se incorporará la opción de deshacer el voto del usuario-->
                     <select class="form-control" (ngModelChange)="selectOption($event)" [(ngModel)]="opcionElegida" name="buscador"> 
                         <optgroup label="Nota">
                         <option [ngValue]="o.id" *ngFor="let o of options">
@@ -39,6 +44,8 @@
                 </select>
                 <button type="button" class="btn btn-primary" (click)="votar()">Votar</button>
                 </div>
+                <!-- Formulario para reseñar el juego. Está separado al acto de votar porque son
+                funcionalidades distintas a pesar de que repercuta en una misma entidad: Votación-->
                 <form>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Escribe tu reseña</label>

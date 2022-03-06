@@ -2,6 +2,9 @@
 
 <div class="container-fluid">
     <h3>Resultados obtenidos</h3>
+    <!--El filtrado de búsqueda como es una herramienta opcional se muestra como desplegable
+    Más adelante se hará desde el backend y se incorporará en el front un mejor filtrado con el 
+    buscado por multiples atributos-->
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Filtrar búsqueda</button>
     <div id="demo" class="collapse">
         <form>
@@ -21,7 +24,7 @@
             </div>
         </form>
     </div>
-
+<!-- Cada resultado de la búsqueda se muestra en una card-->
 <div class="row">
     <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let juego of juegosObtenidos">
 

@@ -29,10 +29,12 @@ export class ResultadosComponent implements OnInit {
     this.opcionElegida=opcion;
   }
 
+//La carga de los datos se hace en el servicio y se recupera con este get
   get juegosObtenidos(){
     return this.buscador.datosJuegos
     }
 
+  //Método para filtrar por atributo
     buscarPorCategoria(x:any){
         this.cadena= x.target.value
         this.buscador.buscarAvanzado(this.opcionElegida, this.cadena); 

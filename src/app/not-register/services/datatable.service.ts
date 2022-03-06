@@ -9,7 +9,7 @@ export class DatatableService {
 
   constructor(private http: HttpClient) { }
 
-
+//Método para recuperar los datos para la Datatable
   datos() {
     return this.http.get<Juego[]>('http://localhost:8080/juego');
   }

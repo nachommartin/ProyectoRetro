@@ -8,6 +8,8 @@
                 <h2 class="card-title text-center font-weight-bold">
                     Megadriver</h2>
                 <div>
+                    <!--Aquí se carga la información traspasada por el elemento hijo mediante event emitter, según lo que se pase,
+                    se mostrará un gif animado u otro-->
                 <p *ngIf="val" class="card-text text-center font-weight-bold">Has elegido que {{ val }} te dé la bienvenida</p>
                 <div *ngIf="val=='Sonic'">
                     <img class="card-img-top" src="https://c.tenor.com/eMIgxZec83UAAAAd/sonic-sega.gif" alt="Escena de Sonic The Hedgehog" width="20rem" height="250rem">
@@ -24,4 +26,5 @@
         </div>
         </div>
         </div>
+        <!--Carga dele elemento hijo con la propagación del evento-->
 <app-child  (selected)="itemSelected($event)"></app-child>

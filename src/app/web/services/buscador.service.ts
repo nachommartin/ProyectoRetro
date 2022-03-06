@@ -12,16 +12,19 @@ export class BuscadorService {
 
   constructor(private http: HttpClient) { }
 
+  //Método para buscar un juego por una cadena de texto que coincida con una parte del título 
   buscarJuego(query:String){
     this.url= "http://localhost:8080/juego?titulo="+query+"";
     this.getJuegos();      
   }
 
+  //Método para una búsqueda filtrada por los atributos de la entidad Juego
   buscarAvanzado(cat:String, query:String){
     this.url= "http://localhost:8080/juego?"+cat+"="+query+"";
     this.getJuegos();      
   }
 
+  //Método para obtener los juegos y guardarlos en una variable del servidor
   getJuegos() {
     this.http.get<Juego[]>(this.url)
     .subscribe((resp)=>{
@@ -30,6 +33,7 @@ export class BuscadorService {
   );
   }
 
+  //Método para obtener un juego por su título
   obtenerJuego(query:string){
     let ruta:string= "http://localhost:8080/juego?titulo="; 
 

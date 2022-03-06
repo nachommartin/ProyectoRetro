@@ -1,4 +1,4 @@
-
+//Interfaces de juego, usuario y votación
 
 export interface Juego {
         referencia:    number;

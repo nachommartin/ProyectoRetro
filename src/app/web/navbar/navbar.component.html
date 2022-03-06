@@ -1,4 +1,7 @@
-<div id="flipkart-navbar">
+
+<!-- El navbar cuenta con el enlace para cerrar sesión, el resto de rutas y una mejora definició
+    del navbar cuando esté en pantallas pequeñas se harán en un futuro-->
+    <div id="flipkart-navbar">
     <div class="container">
         <div class="row row1">
             <ul class="largenav pull-right">
@@ -37,7 +40,7 @@
         </div>
         <div class="row row2">
             <div class="col-sm-2">
-                <h2 style="margin:0px;"><span class="smallnav menu" onclick="openNav()">☰ MegaDriver</span></h2>
+                <h2 style="margin:0px;"><span class="smallnav menu" (click)="openNav()">☰ MegaDriver</span></h2>
                 <h2 style="margin:0px;"><span class="largenav">MegaDriver</span></h2>
             </div>
             <div class="flipkart-navbar-search smallsearch col-sm-8 col-xs-11">
@@ -55,23 +58,12 @@
 </div>
 <div id="mySidenav" class="sidenav">
     <div class="container" style="background-color: #2874f0; padding-top: 10px;">
-        <span class="sidenav-heading">Home</span>
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <span class="sidenav-heading">MegaDriver</span>
+        <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
     </div>
-    <a href="http://clashhacks.in/">Link</a>
-    <a href="http://clashhacks.in/">Link</a>
-    <a href="http://clashhacks.in/">Link</a>
-    <a href="http://clashhacks.in/">Link</a>
+    <a href="http://clashhacks.in/">Base de datos</a>
+    <a href="http://clashhacks.in/">Más votados</a>
+    <a href="http://clashhacks.in/"><i class="fa fa-user"></i></a>
+    <a href="http://clashhacks.in/">Cerrar sesión</a>
+                    
 </div>
-<script>
-    function openNav() {
-    document.getElementById("mySidenav").style.width = "70%";
-    // document.getElementById("flipkart-navbar").style.width = "50%";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.body.style.backgroundColor = "rgba(0,0,0,0)";
-}
-</script>

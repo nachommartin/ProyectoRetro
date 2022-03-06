@@ -21,12 +21,12 @@ export class ReviewComponent implements OnInit {
 
   constructor(private buscador:BuscadorService, private ruta:ActivatedRoute, private servicioVoto:VotacionService) { }
 
+//De inicio cogemos el título del juego desde la ruta URL para así cargar el juego
   ngOnInit(): void {
 
     this.titulo=this.ruta.snapshot.params['titulo']
     
     this.cargarJuego()
-    console.log(this.sizeArray)
    
 
 
@@ -46,9 +46,9 @@ export class ReviewComponent implements OnInit {
 
 
     }
-
+//Método para cargar las reseñas
     cargarReview(ref:number){
-      this.servicioVoto.obtenerVotacionesJuego(ref).
+      this.servicioVoto.obtenerReviewsJuego(ref).
       subscribe((resp)=>{
         this.reviewsJuego=resp;
         this.sizeArray=resp.length
@@ -58,7 +58,7 @@ export class ReviewComponent implements OnInit {
 
       }
 
-      
+    //Método para volver hacia atrás al juego
       goBack() {
         window.history.back();
       }

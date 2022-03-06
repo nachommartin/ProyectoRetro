@@ -12,6 +12,7 @@ export class VotacionService {
 
   constructor(private http: HttpClient) { }
 
+  //Método para votar un juego
   votarJuego(ref:number, votacion:number, usuario:string){
     let ruta:string= "http://localhost:8080/juego/"+ref+"/votacion"; 
 
@@ -24,6 +25,7 @@ export class VotacionService {
 
   }
 
+  //Método para obteneres las votaciones de un usuario
   obtenerVotacionesUsuario(usuario:string){
     let ruta:string= "http://localhost:8080/votacion"; 
     
@@ -36,6 +38,7 @@ export class VotacionService {
 
   }
 
+  //Método para añadir una reseña
   incluirReview(ref:number,review:string, usuario:string){
     let ruta:string= "http://localhost:8080/juego/"+ref+"/votacion"; 
 
@@ -49,8 +52,17 @@ export class VotacionService {
 
   }
 
+//Método para obtener todas las votaciones de un juego
   obtenerVotacionesJuego(ref:number){
     let ruta:string= "http://localhost:8080/juego/"+ref+"/votacion"; 
+    return this.http.get<Votacion[]>(ruta);
+
+
+  }
+
+  //Método para obtener todas las reseñas de un juego
+  obtenerReviewsJuego(ref:number){
+    let ruta:string= "http://localhost:8080/juego/"+ref+"/votacion/review"; 
     return this.http.get<Votacion[]>(ruta);
 
 

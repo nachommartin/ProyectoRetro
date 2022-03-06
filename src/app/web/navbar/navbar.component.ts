@@ -11,12 +11,20 @@ import { BuscadorService } from '../services/buscador.service';
 export class NavbarComponent implements OnInit {
   cadena:string= ''; 
   usuario!:string; 
+  mySidenav:any; 
+ 
+
 
 
 
   constructor(private servicioLogin: LoginService, private servicioBusqueda: BuscadorService, private router: Router) { }
 
+  //Cargamos de inicio el usuario por token y un elemento de DOM para abrir y cerrar la hamburguesa cuando se muestre
+  // en pantallas prqueñas
   ngOnInit(): void {
+
+    this.mySidenav =window.document.getElementById("mySidenav")!;
+
 
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
@@ -29,6 +37,7 @@ export class NavbarComponent implements OnInit {
     this.servicioLogin.logout(); 
   }
 
+  //Método para buscar un juego
   buscar(x:any){
     this.cadena= x.target.value
 
@@ -36,6 +45,17 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/resultados');
 
 
+  }
+
+  //Métodos para abrir y cerrar la hamburguesa
+  openNav() {
+    this.mySidenav.style.width = "70%";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  }
+
+  closeNav() {
+  this.mySidenav.style.width = "0";
+    document.body.style.backgroundColor = "rgba(0,0,0,0)";
   }
 
 

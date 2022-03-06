@@ -42,7 +42,8 @@ export class JuegoComponent implements OnInit {
   review!:string; 
 
 
-
+//De inicio cogemos el título del juego desde la ruta URL para así cargar el juego
+//así como cargamos el usuario desde el token para que pueda votar/reseñar el juego
   ngOnInit() {
 
     this.titulo=this.ruta.snapshot.params['titulo']
@@ -58,6 +59,8 @@ export class JuegoComponent implements OnInit {
 
   }
 
+//Cuando se carga el juego ponemos el booleano carga en true para que se muestre
+// en el template
   cargarJuego(){
     this.buscador.obtenerJuego(this.titulo).
     subscribe((resp)=> {
@@ -73,6 +76,7 @@ export class JuegoComponent implements OnInit {
       this.opcionElegida=opcion;
     }
 
+//Método para votar, posteriormente los logs se mostrarán en pantalla y así no se utilizará el refresco de página
     votar(){
      this.servicioVoto.votarJuego(this.juegoCargado.referencia,this.opcionElegida,this.usuario).subscribe({
       next: (resp => {
@@ -89,6 +93,9 @@ export class JuegoComponent implements OnInit {
     setTimeout(function(){window.location.reload()}, 500)
 }
 
+//Método para mostrar si el usuario ha votado ya el juego, si no lo está
+//el auxiliar booleano sigue falso y se muestra un mensaje correspondiente
+//de que no se ha votado en el template
  mostrarVotacionUsuario(){
     let aux!:Votacion[]; 
     this.servicioVoto.obtenerVotacionesUsuario(this.usuario).subscribe((data)=>{
@@ -106,6 +113,8 @@ export class JuegoComponent implements OnInit {
 
   }
 
+//Método para añadir una reseña, si hay un error se muestra por Sweet Alert, más adelante
+//si el proceso es correcto en lugar de en un log se mostrará por pantalla
   addReview(){
     this.servicioVoto.incluirReview(this.juegoCargado.referencia, this.review,this.usuario).
     subscribe({

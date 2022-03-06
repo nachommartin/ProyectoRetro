@@ -10,7 +10,7 @@ export class ChildComponent implements OnInit {
  
   opciones:string[]=["Sonic","Axel","Gilius"];
 
-
+//Elemento que emite el evento
   @Output()
   selected: EventEmitter<string> = new EventEmitter<string>();
 
@@ -20,6 +20,8 @@ export class ChildComponent implements OnInit {
 
   ngOnInit(): void {}
 
+//Método que recoge el evento y el componente a traspasar para que se 
+//recupere en el elemento padre
   select(opcion:string) { 
     this.selected.emit(opcion);
 

@@ -2,13 +2,14 @@
 <div class="row">
     <div class="col-md-2 col-sm-3"></div>
     <div class="col-md-8 col-sm-6 col-xs-12">
-
+    <!-- Se controla por booleano que si el juego no se carga no se muestre el contenido-->
         <div *ngIf="carga==true" class="card align-items-center text-justify">
             <div class="card-body">
                 <h5 class="card-title text-center font-weight-bold">
                     {{juegoCargado.titulo}}
                 </h5>
                 <h5>Reseñas</h5>
+                <!--Si el listado de reseñas tiene como tamaño 0 se muestra que no hay reseñas-->
                 <div *ngIf="sizeArray==0">
                     <p>No hay reseñas aún</p>
                 </div>
