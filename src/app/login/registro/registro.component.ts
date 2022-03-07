@@ -3,6 +3,8 @@ import { AbstractControl, EmailValidator, FormBuilder, FormGroup, ValidationErro
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { MailService } from '../services/mail.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-registro',
@@ -48,12 +50,15 @@ export class RegistroComponent implements OnInit {
     const user = JSON.stringify(this.formGroup.value);
     this.servicio.registrar(JSON.parse(user)).subscribe({
     next: (resp => {
-      console.log("Usuario registrado correctamente")
+      Swal.fire(
+        '', 'Se ha registrad correctamente', 'success'
+      );
       this.router.navigateByUrl('/login');
   }),
   error: resp=> {
-         
-    console.log('Error inesperado')
+    Swal.fire(
+      '¡Error!', 'Hubo un error inesperado', 'error'
+    );
   }
   })
   // En un futuro los logs se modificarán para que se muestren en pantalla
