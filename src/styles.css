@@ -6,7 +6,9 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-position:center;
-	position:relative;
+	position:relative;  
+	max-width: 100% !important;
+    overflow-x: hidden !important;
 }
 
 
