@@ -61,7 +61,6 @@ export class RegistroComponent implements OnInit {
     );
   }
   })
-  // En un futuro los logs se modificarán para que se muestren en pantalla
 }
 
 //Método para mostrar los errores posibles de la validación del campo email
