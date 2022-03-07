@@ -15,7 +15,7 @@ padding-bottom: 20px;
 
 .profile-li:hover {background:#2874f0; color:white; cursor: pointer}
 
-#navlink{background:#2874f0; color:white; cursor: pointer}
+#navlink{cursor: pointer}
 
 
 .upper-links.dropdown:hover{
