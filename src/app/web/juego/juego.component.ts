@@ -80,10 +80,14 @@ export class JuegoComponent implements OnInit {
     votar(){
      this.servicioVoto.votarJuego(this.juegoCargado.referencia,this.opcionElegida,this.usuario).subscribe({
       next: (resp => {
-        console.log("Juego votado correctamente")
+        Swal.fire(
+          '', 'Has votado el juego', 'success'
+        );
     }),
     error: resp=> {
-      console.log('Error inesperado')
+      Swal.fire(
+        '¡Error!', 'Ha habido un error con el voto', 'error'
+      );
     }
     })
   }
@@ -110,13 +114,14 @@ export class JuegoComponent implements OnInit {
 
   }
 
-//Método para añadir una reseña, si hay un error se muestra por Sweet Alert, más adelante
-//si el proceso es correcto en lugar de en un log se mostrará por pantalla
+//Método para añadir una reseña, el resultado se muestra por Sweet Alert
   addReview(){
     this.servicioVoto.incluirReview(this.juegoCargado.referencia, this.review,this.usuario).
     subscribe({
       next: (resp => {
-        console.log("Juego reseñado correctamente")
+        Swal.fire(
+          '', 'Se ha incluido tu reseña', 'success'
+        );
     }),
     error: resp=> {
       Swal.fire('Error', resp.error.mensaje, 'error')

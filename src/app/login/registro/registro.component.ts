@@ -51,7 +51,7 @@ export class RegistroComponent implements OnInit {
     this.servicio.registrar(JSON.parse(user)).subscribe({
     next: (resp => {
       Swal.fire(
-        '', 'Se ha registrad correctamente', 'success'
+        '', 'Se ha registrado correctamente', 'success'
       );
       this.router.navigateByUrl('/login');
   }),
