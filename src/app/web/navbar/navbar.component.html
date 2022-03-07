@@ -61,9 +61,11 @@
         <span class="sidenav-heading">MegaDriver</span>
         <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
     </div>
-    <a href="http://clashhacks.in/">Base de datos</a>
-    <a href="http://clashhacks.in/">Más votados</a>
-    <a href="http://clashhacks.in/"><i class="fa fa-user"></i></a>
-    <a href="http://clashhacks.in/">Cerrar sesión</a>
+    <a routerLink="/datos">Base de datos</a>
+    <a href="#">Más votados</a>
+    <a href="#"><i class="fa fa-user"></i></a>
+    <a href="#"><i class="fas fa-envelope-open-text"></i></a>
+    <a href="#"><i class="fas fa-vote-yea"></i></a>
+    <a (click)="logout()">Cerrar sesión</a>
                     
 </div>
