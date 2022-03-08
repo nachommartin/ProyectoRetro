@@ -23,7 +23,7 @@
                 </p>
                 </div>
                 <div class="col-md-6">
-                <img class="card-img-top d-block" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
+                <img class="card-img-top center-block d-block mx-auto" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
                 <h5 class="card-title text-center">Media de votos: {{juegoCargado.votacionMedia}}</h5>
                 <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary"  data-toggle="collapse" data-target="#demo">Ver tu voto</button>
@@ -47,7 +47,7 @@
                 <!-- Formulario para reseñar el juego. Está separado al acto de votar porque son
                 funcionalidades distintas a pesar de que repercuta en una misma entidad: Votación-->
                 <form>
-                <div class="form-group mt1">
+                <div class="form-group mt-1">
                     <label for="exampleFormControlTextarea1">Escribe tu reseña</label>
                     <textarea class="form-control" [(ngModel)]="review" id="exampleFormControlTextarea1" name="review"rows="3"></textarea>
                 </div>
