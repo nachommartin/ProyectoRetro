@@ -42,7 +42,7 @@
                         </option>
                     </optgroup>
                 </select>
-                <button type="button" class="btn btn-primary" (click)="votar()">Votar</button>
+                <button type="button" id="botones" class="btn btn-primary" (click)="votar()">Votar</button>
                 </div>
                 <!-- Formulario para reseñar el juego. Está separado al acto de votar porque son
                 funcionalidades distintas a pesar de que repercuta en una misma entidad: Votación-->
@@ -52,7 +52,7 @@
                     <textarea class="form-control" [(ngModel)]="review" id="exampleFormControlTextarea1" name="review"rows="3"></textarea>
                 </div>
                 <div class="form-group d-flex justify-content-center">
-                    <input type="submit" value="Añadir" class="btn btn-primary" (click)="addReview()">
+                    <input type="submit" id="botones" value="Añadir" class="btn btn-primary" (click)="addReview()">
                 </div>
             </form>
                 </div>
