@@ -1,14 +1,13 @@
 <app-navbar></app-navbar>
 <div class="row">
-    <div class="col-md-2 col-sm-3"></div>
-    <div class="col-md-8 col-sm-6 col-xs-12">
+    <div class="container p-4 bg-white">
         <!-- Para asegurarnos de que se carga el juego utilizamos un condicional, si no se carga no se muestra nada.
         Además cuando el usuario coloca el ratón sobre la card, se carga si ha votado o no este juego para así cuando le 
         dé a la opción de "Ver tu voto" ya esté cargada la información y así evitamos en cierta medida la asincronía-->
         <div *ngIf="carga==true" class="card align-items-center text-justify" (mouseover)="mostrarVotacionUsuario()">
             <div class="card-body">
                 <div class="row"> 
-                <div class="col-md-6">
+                <div class="col-md-8">
                 <h5 class="card-title text-center font-weight-bold">
                     {{juegoCargado.titulo}}
                 </h5>
@@ -19,11 +18,24 @@
                   </ul>
                   <!--Más adelante se modificará en backend la entidad Juego para que incluya una sinopsis-->
                 <p class="card-text">
-                    Aquí irá una breve sinopsis del juego
+                    Ha vuelto Sonic y mejor que nunca. ¡Es un rayo! ¡Un demonio en acción! Con su nuevo superlanzamiento con giro. Y un nuevo y 
+                    fabuloso amigo, 'Tails' el Zorro. No lo creerá hasta que no lo vea. Y cuando comience a jugar, no podrá parar. 
                 </p>
+                <div class="form-wrapper bg-light">
+                    <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Escribe tu reseña</label>
+                        <textarea class="form-control" [(ngModel)]="review" id="exampleFormControlTextarea1" name="review" rows="3"></textarea>
+                    </div>
+                    <div class="form-group d-flex justify-content-end">
+                        <input type="submit" value="Añadir" class="btn btn-primary" (click)="addReview()">
+                    </div>
+                </form>
                 </div>
-                <div class="col-md-6">
+                </div>
+                <div class="col-md-4">
                 <img class="card-img-top center-block d-block mx-auto" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
+                <br>
                 <h5 class="card-title text-center">Media de votos: {{juegoCargado.votacionMedia}}</h5>
                 <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary"  data-toggle="collapse" data-target="#demo">Ver tu voto</button>
@@ -32,9 +44,11 @@
                 <h6 *ngIf="nota==true" class="card align-items-center text-justify">Lo calificaste con: {{notaUsuario}}</h6>
                 <h6 *ngIf="nota==false" class="card align-items-center text-justify">No has votado todavía</h6>
                 </div>
-                <div style="text-align: center">
+                <br>
+                <div style="text-align: center" class="bg-light" id="votobox">
                     <!-- Desplegable de opciones para poder votar y controlar que sea tu voto del 1 al 10
                     Más adelante se incorporará la opción de deshacer el voto del usuario-->
+                    <label for="exampleFormSelect">Califica el juego</label>
                     <select class="form-control" (ngModelChange)="selectOption($event)" [(ngModel)]="opcionElegida" name="buscador"> 
                         <optgroup label="Nota">
                         <option [ngValue]="o.id" *ngFor="let o of options">
@@ -46,15 +60,7 @@
                 </div>
                 <!-- Formulario para reseñar el juego. Está separado al acto de votar porque son
                 funcionalidades distintas a pesar de que repercuta en una misma entidad: Votación-->
-                <form>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Escribe tu reseña</label>
-                    <textarea class="form-control" [(ngModel)]="review" id="exampleFormControlTextarea1" name="review"rows="3"></textarea>
-                </div>
-                <div class="form-group d-flex justify-content-end">
-                    <input type="submit" value="Añadir" class="btn btn-primary" (click)="addReview()">
-                </div>
-            </form>
+               
                 </div>
             </div>
             <footer class="blockquote-footer" (click)="getReview(juegoCargado.titulo)">Ver todas las reseñas</footer>           

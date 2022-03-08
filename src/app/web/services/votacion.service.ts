@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Votacion } from '../interfaces/juego';
 
 @Injectable({
@@ -7,14 +8,14 @@ import { Votacion } from '../interfaces/juego';
 })
 export class VotacionService {
 
-  url : string= "";
+  private baseUrl: string = environment.baseUrl; 
 
 
   constructor(private http: HttpClient) { }
 
   //Método para votar un juego
   votarJuego(ref:number, votacion:number, usuario:string){
-    let ruta:string= "https://megadriver.herokuapp.com/juego/"+ref+"/votacion"; 
+    let ruta:string= this.baseUrl+"juego/"+ref+"/votacion"; 
 
     const peticion = {
       'voto': votacion,
@@ -27,7 +28,7 @@ export class VotacionService {
 
   //Método para obteneres las votaciones de un usuario
   obtenerVotacionesUsuario(usuario:string){
-    let ruta:string= "https://megadriver.herokuapp.com/votacion"; 
+    let ruta:string= this.baseUrl+"votacion"; 
     
     const peticion = {
       'correoTarget': usuario 
@@ -40,7 +41,7 @@ export class VotacionService {
 
   //Método para añadir una reseña
   incluirReview(ref:number,review:string, usuario:string){
-    let ruta:string= "https://megadriver.herokuapp.com/juego/"+ref+"/votacion"; 
+    let ruta:string= this.baseUrl+"juego/"+ref+"/votacion"; 
 
     const peticion = {
       'review': review,
@@ -54,7 +55,7 @@ export class VotacionService {
 
 //Método para obtener todas las votaciones de un juego
   obtenerVotacionesJuego(ref:number){
-    let ruta:string= "https://megadriver.herokuapp.com/juego/"+ref+"/votacion"; 
+    let ruta:string= this.baseUrl+"juego/"+ref+"/votacion"; 
     return this.http.get<Votacion[]>(ruta);
 
 
@@ -62,7 +63,7 @@ export class VotacionService {
 
   //Método para obtener todas las reseñas de un juego
   obtenerReviewsJuego(ref:number){
-    let ruta:string= "https://megadriver.herokuapp.com/juego/"+ref+"/votacion/review"; 
+    let ruta:string= this.baseUrl+"juego/"+ref+"/votacion/review"; 
     return this.http.get<Votacion[]>(ruta);
 
 

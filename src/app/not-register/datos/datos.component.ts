@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Juego } from 'src/app/web/interfaces/juego';
 import { DatatableService } from '../services/datatable.service';
 import {Subject} from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 
 
@@ -12,6 +13,9 @@ import {Subject} from 'rxjs';
 })
 export class DatosComponent implements OnInit, OnDestroy {
 
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement!: DataTableDirective;
+
   datosJuegos: Juego[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
@@ -21,6 +25,16 @@ export class DatosComponent implements OnInit, OnDestroy {
   constructor(private servicio : DatatableService) { }
 
   ngOnInit(): void {
+    
+    this.dtOptions = {
+    pagingType: 'full_numbers',
+    pageLength: 2,
+    responsive: true,
+    language: {
+      url: '/assets/es-ES.json'
+    }
+    }
+
     this.datos();
 
     
@@ -41,6 +55,11 @@ export class DatosComponent implements OnInit, OnDestroy {
     });
   }
   
+
+  goBack() {
+    window.history.back();
+  }
+
 
  
 }

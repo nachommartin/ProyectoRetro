@@ -18,7 +18,7 @@ export interface Juego {
     export interface Usuario {
         correo: string;
         nick:   string;
-    }
+        numVotos:    number;    }
     
 
     export interface Votacion {

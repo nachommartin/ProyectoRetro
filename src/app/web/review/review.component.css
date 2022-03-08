@@ -1,3 +1,28 @@
 .blockquote-footer{
     cursor: pointer
 }
+
+.container{
+    margin-top: 0.313rem;
+
+}
+
+#nota{
+    float: right;
+    font-size: x-large;
+}
+
+#fecha{
+    font-size: x-small;
+}
+
+.card{
+    margin-bottom: 0.313rem;
+    margin-top: 0.313rem;
+}
+
+h6{
+    display: inline-block;
+    vertical-align:baseline;
+  
+}

@@ -52,7 +52,6 @@ export class ReviewComponent implements OnInit {
       subscribe((resp)=>{
         this.reviewsJuego=resp;
         this.sizeArray=resp.length
-
       }
       );
 
