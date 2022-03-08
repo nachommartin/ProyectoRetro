@@ -11,10 +11,10 @@
     <div id="demo" class="collapse">
         <form>
             <div class="form-group row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="col-md-5 col-sm-6 col-xs-12">
                 <input (keyup.enter)="buscarPorCategoria($event)" type="text" class="form-control"  placeholder="">
                 </div>
-                <div class="col-md-2 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <select class="form-control" (ngModelChange)="selectOption($event)" [(ngModel)]="opcionElegida" name="buscador"> 
                         <optgroup label="Elige una opción">
                         <option [ngValue]="o.id" *ngFor="let o of options">
