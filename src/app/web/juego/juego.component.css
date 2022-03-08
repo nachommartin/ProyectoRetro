@@ -3,9 +3,7 @@
     margin-top: 0.313rem;
 }
 
-form{
-    margin-bottom: 0.313rem;
-}
+
 
 .blockquote-footer{
     cursor: pointer
@@ -17,7 +15,7 @@ form{
 
 
 
-@media (min-width: 576px) { .card-img-top{width: 100%; height:auto;} }
+@media (min-width: 576px) { .card-img-top{width: 80%; height:auto;} }
 
 @media (min-width: 768px) { .card-img-top{width: 65%; height:auto; } }
 
