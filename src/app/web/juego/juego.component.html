@@ -6,7 +6,6 @@
         Además cuando el usuario coloca el ratón sobre la card, se carga si ha votado o no este juego para así cuando le 
         dé a la opción de "Ver tu voto" ya esté cargada la información y así evitamos en cierta medida la asincronía-->
         <div *ngIf="carga==true" class="card align-items-center text-justify" (mouseover)="mostrarVotacionUsuario()">
-            <img class="card-img-top" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
             <div class="card-body">
                 <div class="row"> 
                 <div class="col-md-6">
@@ -24,6 +23,7 @@
                 </p>
                 </div>
                 <div class="col-md-6">
+                <img class="card-img-top" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
                 <h5 class="card-title text-center">Media de votos: {{juegoCargado.votacionMedia}}</h5>
                 <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary"  data-toggle="collapse" data-target="#demo">Ver tu voto</button>
