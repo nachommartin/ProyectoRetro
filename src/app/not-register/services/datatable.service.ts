@@ -14,9 +14,9 @@ export class DatatableService {
   constructor(private http: HttpClient) { }
 
 //Método para recuperar los datos para la Datatable
-async datos() {
+datos() {
     
-    return await this.http.get<Juego[]>(this.baseUrl+"juego");
+    return this.http.get<Juego[]>(this.baseUrl+"juego");
   }
   
 }
