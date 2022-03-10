@@ -10,6 +10,7 @@
 #nota{
     float: right;
     font-size: x-large;
+    padding: 0.313rem;
 }
 
 #fecha{
