@@ -63,7 +63,7 @@ export class VotacionService {
 
   //Método para obtener todas las reseñas de un juego
   obtenerReviewsJuego(ref:number){
-    let ruta:string= this.baseUrl+"juego/"+ref+"/votacion/review"; 
+    let ruta:string= this.baseUrl+"juego/"+ref+"/review"; 
     return this.http.get<Votacion[]>(ruta);
 
 
