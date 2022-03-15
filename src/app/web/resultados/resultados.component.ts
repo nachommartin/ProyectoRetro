@@ -11,6 +11,8 @@ import { BuscadorService } from '../services/buscador.service';
 export class ResultadosComponent implements OnInit {
   cadena:string= ''; 
   opcionElegida:string='';
+  sizeArray:number=0;
+
 
   options:any[] = [
     { name: "Año", id: "year" },
@@ -31,6 +33,7 @@ export class ResultadosComponent implements OnInit {
 
 //La carga de los datos se hace en el servicio y se recupera con este get
   get juegosObtenidos(){
+    this.sizeArray=this.buscador.datosJuegos.length;
     return this.buscador.datosJuegos
     }
 
