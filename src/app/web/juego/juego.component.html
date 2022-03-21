@@ -40,6 +40,8 @@
                 <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary"  data-toggle="collapse" data-target="#demo">Ver tu voto</button>
                 </div>
+                <h6 *ngIf="nota==true" class="card align-items-center text-justify">Lo calificaste con: {{notaUsuario}}</h6>
+                <h6 *ngIf="nota==false" class="card align-items-center text-justify">No has votado todavía</h6>
                 <div id="demo" class="collapse">
                 <h6 *ngIf="nota==true" class="card align-items-center text-justify">Lo calificaste con: {{notaUsuario}}</h6>
                 <h6 *ngIf="nota==false" class="card align-items-center text-justify">No has votado todavía</h6>

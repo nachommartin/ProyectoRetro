@@ -90,6 +90,7 @@ export class JuegoComponent implements OnInit {
       );
     }
     })
+    this.cargarJuego()
   }
     
   
