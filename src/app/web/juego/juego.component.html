@@ -37,15 +37,9 @@
                 <img class="card-img-top center-block d-block mx-auto" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
                 <br>
                 <h5 class="card-title text-center">Media de votos: {{juegoCargado.votacionMedia}}</h5>
-                <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary"  data-toggle="collapse" data-target="#demo">Ver tu voto</button>
-                </div>
+                <br>
                 <h6 *ngIf="nota==true" class="card align-items-center text-justify">Lo calificaste con: {{notaUsuario}}</h6>
                 <h6 *ngIf="nota==false" class="card align-items-center text-justify">No has votado todavía</h6>
-                <div id="demo" class="collapse">
-                <h6 *ngIf="nota==true" class="card align-items-center text-justify">Lo calificaste con: {{notaUsuario}}</h6>
-                <h6 *ngIf="nota==false" class="card align-items-center text-justify">No has votado todavía</h6>
-                </div>
                 <br>
                 <div style="text-align: center" class="bg-light" id="votobox">
                     <!-- Desplegable de opciones para poder votar y controlar que sea tu voto del 1 al 10

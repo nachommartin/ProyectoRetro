@@ -37,6 +37,10 @@ export class NavbarComponent implements OnInit {
     this.servicioLogin.logout(); 
   }
 
+  verUser(){
+    this.router.navigateByUrl('/usuario');
+  }
+
   //Método para buscar un juego
   buscar(x:any){
     this.cadena= x.target.value
