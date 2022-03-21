@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/login/services/login.service';
+import { Usuario} from '../interfaces/juego';
 
 @Component({
   selector: 'app-usuario',
@@ -8,7 +9,7 @@ import { LoginService } from 'src/app/login/services/login.service';
 })
 export class UsuarioComponent implements OnInit {
 
-  usuario!:string; 
+  usuario!: Usuario; 
 
 
   constructor(private servicioLogin: LoginService) { }
@@ -18,7 +19,7 @@ export class UsuarioComponent implements OnInit {
     
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
-      this.usuario=resp.nick; 
+      this.usuario=resp; 
     }
     )
   }
