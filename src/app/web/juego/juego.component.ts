@@ -52,7 +52,6 @@ export class JuegoComponent implements OnInit {
     this.servicio.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.usuario=resp.correo; 
-      this.mostrarVotacionUsuario()
     }
     )
 
@@ -67,6 +66,7 @@ export class JuegoComponent implements OnInit {
     subscribe((resp)=> {
       this.juegoCargado=resp[0];
       this.carga=true
+      this.mostrarVotacionUsuario()
 
     }
 );
