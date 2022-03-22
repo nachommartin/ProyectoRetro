@@ -4,7 +4,7 @@
         <!-- Para asegurarnos de que se carga el juego utilizamos un condicional, si no se carga no se muestra nada.
         Además cuando el usuario coloca el ratón sobre la card, se carga si ha votado o no este juego para así cuando le 
         dé a la opción de "Ver tu voto" ya esté cargada la información y así evitamos en cierta medida la asincronía-->
-        <div *ngIf="carga==true" class="card align-items-center text-justify">
+        <div *ngIf="carga==true" class="card align-items-center text-justify" (mouseover)="mostrarVotacionUsuario()">
             <div class="card-body">
                 <div class="row"> 
                 <div class="col-md-8">
