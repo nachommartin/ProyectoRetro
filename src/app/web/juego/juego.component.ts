@@ -52,6 +52,7 @@ export class JuegoComponent implements OnInit {
     this.servicio.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.usuario=resp.correo; 
+      this.mostrarVotacionUsuario()
     }
     )
 
