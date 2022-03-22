@@ -1,21 +1,29 @@
 <app-navbar></app-navbar>
 <div class="row">
-    <div class="container p-4 bg-light">
+    <div class="container p-4 bg-white">
         <div  class="card align-items-center text-justify">
             <div class="card-body">
                 <div class="row"> 
-                <div class="col-md-8">
+                <div class="col-md-4">
+                <i class="fas fa-user-ninja"></i>
                 <h5 class="card-title text-center font-weight-bold">
                     {{usuario.nick}}
                 </h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Correo: {{usuario.correo}}</li>
-                    <li class="list-group-item">Ciudad: </li>
+                    <li class="list-group-item">Ubicación: </li>
                     <li class="list-group-item">Juegos votados:  {{usuario.numVotos}}</li>
+                    <li class="list-group-item">Reseñas realizadas:  {{usuario.numReviews}}</li>
                   </ul>
-                  <!--Más adelante se modificará en backend la entidad Juego para que incluya una sinopsis-->
-                <p class="card-text">
-                    Ha vuelto Sonic y mejor que nunca. ¡Es un rayo! ¡Un demonio en acción! Con su nuevo superlanzamiento con giro. Y un nuevo y 
-                    fabuloso amigo, 'Tails' el Zorro. No lo creerá hasta que no lo vea. Y cuando comience a jugar, no podrá parar. 
-                </p>
                 </div>
+                <div class="col-md-8">
+                    <a href="#" id="navlink"><i class="fa fa-star"></i><span id="spanito">Editar mi perfil</span></a>
+                    <a href="#" id="navlink"><i class="fa fa-user"></i><span id="spanito">Mis votos</span></a>
+                    <a href="#" id="navlink"><i class="fas fa-envelope-open-text"></i><span id="spanito">Mis reseñas</span></a>
+                    <a href="#" id="navlink"><i class="fa fa-times"></i><span id="spanito">Mis seguidores</span></a>               
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>

@@ -18,7 +18,8 @@ export interface Juego {
     export interface Usuario {
         correo: string;
         nick:   string;
-        numVotos:    number;    }
+        numVotos:    number; 
+        numReviews: number;   }
     
 
     export interface Votacion {
