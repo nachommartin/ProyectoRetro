@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { MailService } from '../services/mail.service';
 import Swal from 'sweetalert2';
+import { NickService } from '../services/nick.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class RegistroComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private servicio: LoginService, 
-    private router:Router, private validadorMail: MailService) { }
+    private router:Router, private validadorMail: MailService, private validadorNick: NickService) { }
 
   ngOnInit(): void {
 
@@ -35,8 +36,8 @@ export class RegistroComponent implements OnInit {
   // Constructor del formulario reactivo con sus respectivos campos y sus validadores asignados
   private buildForm(){
     this.formGroup = this.formBuilder.group({
-      nick: ['', [Validators.required]],
-      correo: ['',[      Validators.required, Validators.pattern(this.emailPattern)], [this.validadorMail]],
+      nick: ['', [Validators.required], [this.validadorNick]],
+      correo: ['',[   Validators.required, Validators.pattern(this.emailPattern)], [this.validadorMail]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)] ],
       repitePass: ['', [Validators.required] ]
     },     
@@ -73,6 +74,24 @@ export class RegistroComponent implements OnInit {
     else if ( errors['emailTomado'] ) {
         return 'El correo electrónico ya está registrado';
         }
+
+    else if ( errors['required'] ) {
+        return 'Debe introducir su correo para registrarse';
+         }
+
+    return '';
+  }
+
+  //Método para mostrar los errores posibles de la validación del campo nick
+  get nickErrorMsg(): string {
+    
+    const errors = this.formGroup.get('nick')?.errors!;
+    if ( errors['nickTomado'] ) {
+        return 'Ese alias está siendo utilizando por otro usuario';
+        }
+    else if ( errors['required'] ) {
+        return 'Debe introducir su alias para registrarse';
+         }
 
     return '';
   }

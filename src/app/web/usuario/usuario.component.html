@@ -1,24 +1,25 @@
 <app-navbar></app-navbar>
-<div class="row">
+<div *ngIf="carga==true" class="row">
     <div class="container p-4 bg-white">
-        <div  class="card align-items-center text-justify">
+        <div class="card align-items-center text-justify">
             <div class="card-body">
                 <div class="row"> 
-                <div class="col-md-4 bg-light">
+                <div class="col-md-4 bg-light my-2">
                 <img class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario">
                 <h5 class="card-title text-center font-weight-bold">
                     {{usuario.nick}}
                 </h5>
                 <ul class="list-group list-group-mine">
                     <li class="list-group-item">Correo: {{usuario.correo}}</li>
-                    <li class="list-group-item">Ubicación: </li>
+                    <li *ngIf="usuario.ciudad" class="list-group-item">Ubicación: {{usuario.ciudad}}</li>
+                    <li *ngIf="!usuario.ciudad" class="list-group-item">Ubicación: No definida aún</li>
                     <li class="list-group-item">Juegos votados:  {{usuario.numVotos}}</li>
                     <li class="list-group-item">Reseñas realizadas:  {{usuario.numReviews}}</li>
-                    <li class="list-group-item">Seguidores:  </li>
+                    <li class="list-group-item">Seguidores:  {{usuario.numSeguidores}}  </li>
                   </ul>
                 </div>
                 <div class="col-md-8">
-                    <a href="#" id="navlink">Editar mi perfil</a><br>
+                    <a routerLink="/edit" id="navlink">Editar mi perfil</a><br>
                     <a href="#" id="navlink">Mis votos</a><br>
                     <a href="#" id="navlink">Mis reseñas</a><br>
                     <a href="#" id="navlink">Mis seguidores</a><br>

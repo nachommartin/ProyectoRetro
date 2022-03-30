@@ -9,7 +9,8 @@ import { Usuario} from '../interfaces/juego';
 })
 export class UsuarioComponent implements OnInit {
 
-  usuario!: Usuario; 
+  usuario!: Usuario;
+  carga:boolean=false;  
 
 
   constructor(private servicioLogin: LoginService) { }
@@ -20,6 +21,8 @@ export class UsuarioComponent implements OnInit {
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.usuario=resp; 
+            this.carga=true
+
     }
     )
   }

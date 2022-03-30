@@ -4,6 +4,7 @@ import { GuardianService } from "./guardian/guardian.service";
 import { RegistroComponent } from "./login/registro/registro.component";
 import { DatosComponent } from "./not-register/datos/datos.component";
 import { InicioComponent } from "./not-register/inicio/inicio.component";
+import { EditComponent } from "./web/edit/edit.component";
 import { JuegoComponent } from "./web/juego/juego.component";
 import { NavbarComponent } from "./web/navbar/navbar.component";
 import { ResultadosComponent } from "./web/resultados/resultados.component";
@@ -32,7 +33,13 @@ const appRoutes: Routes = [
     
   },
   {
-    path: 'usuario', component: UsuarioComponent 
+    path: 'usuario', component: UsuarioComponent, 
+    canActivate: [ GuardianService ]
+   },
+
+   {
+    path: 'edit', component: EditComponent,
+    canActivate: [ GuardianService ] 
    },
 
   {
