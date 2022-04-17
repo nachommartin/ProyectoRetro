@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="container p-4 bg-white">
+    <div class="row">
+    <div class="col-md-8 col-sm-6 col-xs-12">
+    <h5 class="text-dark">Número de usuarios: {{numUsuarios}}</h5>
+    <!--El filtrado de búsqueda como es una herramienta opcional se muestra como desplegable
+    Más adelante se hará desde el backend y se incorporará en el front un mejor filtrado con el 
+    buscado por multiples atributos-->
+    <input  (keyup.enter)="buscar($event)" class="col-sm-8 col-8" type="text" placeholder="Busca a otros usuarios">
+
+    </div>
+    </div>
+<!-- Cada resultado de la búsqueda se muestra en una card-->
+<div class="row" *ngIf="sizeArray>=0">
+    <div *ngIf="sizeArray==0">
+        <h5 class="text-center">No hay resultados para su búsqueda</h5>
+    </div>    
+    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let user of usuarios">
+        <div class="card align-items-center text-justify">
+            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Avatar de usuario">
+            <div class="card-body">
+                <h5 class="card-title text-center">
+                    {{user.user.nick}}
+                </h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Juegos votados: {{user.user.numVotos}}</li>
+                    <li class="list-group-item">Reseñas: {{user.user.numReviews}}</li>
+                    <li class="list-group-item">Número de seguidores:  {{user.user.numSeguidores}}</li>
+                  </ul>
+               <div  *ngIf="!user.esAmigo" style="text-align: center">
+                    <button class="btn btn-primary"   (click)="follow(user.user.correo)" >Seguir a este usuario</button>
+                </div>
+                <div  *ngIf="user.esAmigo"  style="text-align: center">
+                    <button class="btn btn-primary"   (click)="unfollow(user.user.correo)" >Dejar de seguir a este usuario</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+
+ 

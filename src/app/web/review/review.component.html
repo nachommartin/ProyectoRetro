@@ -15,10 +15,10 @@
                 </div>
                 <div class="col-md-12 bg-light border border-secondary p-5" *ngFor= "let votoReview of reviewsJuego">  
                 <div header>
-                <h6 class="card-text font-weight-bold"> {{votoReview.usuario.nick}}  </h6>
+                <h6 class="card-text font-weight-bold"> {{votoReview.votante}}  </h6>
                 <span class="card-text text-danger border border-danger" id="nota"> {{votoReview.voto}}  </span>
                 </div>
-                <span class="card-text text-muted" id="fecha"> {{votoReview.usuario.numVotos}} votaciones  </span>
+                <span class="card-text text-muted" id="fecha"> {{votoReview.numVotosVotante}} votaciones  </span>
 
                 <hr>
                 <span class="card-text text-muted" id="fecha"> Escrito el {{votoReview.fecha}}     </span>

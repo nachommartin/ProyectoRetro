@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div *ngIf="carga==true" class="row">
+    <div class="container p-4 bg-white">
+        <div class="card align-items-center text-justify">
+            <div class="card-body">
+                <div class="row"> 
+                <div class="col-md-4 bg-light my-2">
+                <img class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario">
+                <h5 class="card-title text-center font-weight-bold">
+                    {{usuario.nick}}
+                </h5>
+                <ul class="list-group list-group-mine">
+                    <li class="list-group-item">Correo: {{usuario.correo}}</li>
+                    <li *ngIf="usuario.ciudad" class="list-group-item">Ubicación: {{usuario.ciudad}}</li>
+                    <li *ngIf="!usuario.ciudad" class="list-group-item">Ubicación: No definida aún</li>
+                    <li class="list-group-item">Juegos votados:  {{usuario.numVotos}}</li>
+                    <li class="list-group-item">Reseñas realizadas:  {{usuario.numReviews}}</li>
+                    <li class="list-group-item">Seguidores:  {{usuario.numSeguidores}}  </li>
+                    <li class="list-group-item">Siguiendo:  {{usuario.numSiguiendo}}  </li>
+                  </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let follower of followers">
+                    <div class="card align-items-center text-justify">
+                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Avatar de usuario">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                {{follower.user.nick}}
+                            </h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Juegos votados: {{follower.user.numVotos}}</li>
+                                <li class="list-group-item">Reseñas: {{follower.user.numReviews}}</li>
+                                <li class="list-group-item">Número de seguidores:  {{follower.user.numSeguidores}}</li>
+                              </ul>
+                           <div  *ngIf="!follower.esAmigo" style="text-align: center">
+                                <button class="btn btn-primary"   (click)="follow(follower.user.correo)" >Seguir a este usuario</button>
+                            </div>
+                            <div  *ngIf="follower.esAmigo"  style="text-align: center">
+                                <button class="btn btn-primary"   (click)="unfollow(follower.user.correo)" >Dejar de seguir a este usuario</button>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>

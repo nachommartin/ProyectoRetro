@@ -1,14 +1,18 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { PanelComponent } from "./admin/panel/panel.component";
+import { AdminGService } from "./guardian/admin-g.service";
 import { GuardianService } from "./guardian/guardian.service";
 import { RegistroComponent } from "./login/registro/registro.component";
 import { DatosComponent } from "./not-register/datos/datos.component";
 import { InicioComponent } from "./not-register/inicio/inicio.component";
+import { ComunidadComponent } from "./web/comunidad/comunidad.component";
 import { EditComponent } from "./web/edit/edit.component";
 import { JuegoComponent } from "./web/juego/juego.component";
-import { NavbarComponent } from "./web/navbar/navbar.component";
+import { MySeguidoresComponent } from "./web/my-seguidores/my-seguidores.component";
 import { ResultadosComponent } from "./web/resultados/resultados.component";
 import { ReviewComponent } from "./web/review/review.component";
+import { SiguiendoComponent } from "./web/siguiendo/siguiendo.component";
 import { UsuarioComponent } from "./web/usuario/usuario.component";
 
 
@@ -33,7 +37,22 @@ const appRoutes: Routes = [
     
   },
   {
+    path: 'comunidad', component: ComunidadComponent, 
+    canActivate: [ GuardianService ]
+   },
+
+  {
     path: 'usuario', component: UsuarioComponent, 
+    canActivate: [ GuardianService ]
+   },
+
+   {
+    path: 'seguidores', component: MySeguidoresComponent, 
+    canActivate: [ GuardianService ]
+   },
+
+   {
+    path: 'siguiendo', component: SiguiendoComponent, 
     canActivate: [ GuardianService ]
    },
 
@@ -52,6 +71,10 @@ const appRoutes: Routes = [
   {
     path:'review/:titulo', component: ReviewComponent, 
     canActivate: [ GuardianService ]
+  },
+  {
+    path:'administracion', component: PanelComponent, 
+    canActivate: [ AdminGService ]
   },
   {
     path: 'datos', component: DatosComponent 

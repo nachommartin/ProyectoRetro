@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Juego } from '../interfaces/juego';
+import { FollowCredentials, Juego, Usuario } from '../interfaces/juego';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,16 @@ export class BuscadorService {
   buscarJuego(query:String){
     this.url= this.baseUrl+"juego?titulo="+query+"";
     this.getJuegos();      
+  }
+
+  buscarUsuario(query:String, user:String){
+    this.url= this.baseUrl+"amistad?nick="+query+"&correoTarget="+user;
+    return this.http.get<FollowCredentials[]>(this.url)  
+  }
+
+  getUsers(){
+    this.url= this.baseUrl+"usuario/";
+    return this.http.get<Usuario[]>(this.url)  
   }
 
   //Método para una búsqueda filtrada por los atributos de la entidad Juego

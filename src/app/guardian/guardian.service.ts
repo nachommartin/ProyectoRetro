@@ -20,7 +20,6 @@ export class GuardianService implements CanActivate, CanActivateChild{
     return this.servicio.validarToken()
     .pipe(
         map( resp => {
-          console.log(resp);
           
           return true
         }),
@@ -28,12 +27,11 @@ export class GuardianService implements CanActivate, CanActivateChild{
             console.log(err);
             Swal.fire('Error','No tienes acceso a esta página','error');
             
-            this.router.navigateByUrl('/auth/login');
+            this.router.navigateByUrl('/');
             return of(false)
         })
       )
-      this.router.navigateByUrl
-      return false
+      
 }
 
 canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | Promise<boolean> | boolean{

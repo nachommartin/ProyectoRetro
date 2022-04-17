@@ -18,10 +18,12 @@ export interface Juego {
     export interface Usuario {
         correo: string;
         nick:   string;
+        rol: string; 
         ciudad: string;
         numVotos:    number; 
         numReviews: number;
-        numSeguidores: number;   
+        numSeguidores: number;  
+        numSiguiendo: number;  
     }
     
 
@@ -29,9 +31,23 @@ export interface Juego {
         codigo:  number;
         juego:   Juego;
         usuario: Usuario;
+        votante: string;
         voto:    number;
+        numVotosVotante: number; 
         review:  string;
         fecha:   Date;
     }
+
+    export interface FollowCredentials {
+        user:  Usuario;
+        esAmigo:   boolean;
+    }
+
+    export interface Amistad {
+        usuarioSource:  Usuario;
+        follower:   Usuario;
+    }
+    
+    
     
     

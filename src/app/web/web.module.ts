@@ -10,6 +10,9 @@ import { ReviewComponent } from './review/review.component';
 import { ChildComponent } from './child/child.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { EditComponent } from './edit/edit.component';
+import { ComunidadComponent } from './comunidad/comunidad.component';
+import { MySeguidoresComponent } from './my-seguidores/my-seguidores.component';
+import { SiguiendoComponent } from './siguiendo/siguiendo.component';
 
 
 
@@ -22,13 +25,18 @@ import { EditComponent } from './edit/edit.component';
     ReviewComponent,
     ChildComponent,
     UsuarioComponent,
-    EditComponent
+    EditComponent,
+    ComunidadComponent,
+    MySeguidoresComponent,
+    SiguiendoComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     WebRoutingModule
-  ]
+  ],
+  exports:
+  [ NavbarComponent]
 })
 export class WebModule { }

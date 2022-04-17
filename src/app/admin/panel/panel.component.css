@@ -1,0 +1,20 @@
+.round {border-radius: 50%;}
+
+.button {
+    width: 8rem;
+    height: 8rem;
+    background-color: #2874f0; 
+    border: none;
+    color: white;
+    padding: 1.25rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 5rem 4rem;
+    cursor: pointer;
+  }
+
+  .row{
+      margin-left: 10rem;
+  }

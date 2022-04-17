@@ -9,6 +9,9 @@ import { GuardianService } from './guardian/guardian.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { NotRegisterModule } from './not-register/not-register.module';
+import { WebModule } from './web/web.module';
+import { AdminModule } from './admin/admin.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,13 @@ import { NotRegisterModule } from './not-register/not-register.module';
     HttpClientModule,
     ReactiveFormsModule,
     DataTablesModule, 
-    NotRegisterModule
+    NotRegisterModule,
+    WebModule,
+    AdminModule,
+    NotRegisterModule,
+    LoginModule
   ],
   providers: [],
-  bootstrap: [AppComponent, GuardianService]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

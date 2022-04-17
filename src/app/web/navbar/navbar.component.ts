@@ -11,6 +11,7 @@ import { BuscadorService } from '../services/buscador.service';
 export class NavbarComponent implements OnInit {
   cadena:string= ''; 
   usuario!:string; 
+  rol!:string; 
   mySidenav:any; 
  
 
@@ -29,6 +30,7 @@ export class NavbarComponent implements OnInit {
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.usuario=resp.nick; 
+      this.rol=resp.rol
     }
     )
   }

@@ -66,7 +66,7 @@ validarToken():Observable<Respuesta>{
 
 //Método para obtener nuestro usuario a través de la signature del token
 obtenerUsuarioPorToken(){
-  const url = `${ this.url }usuario`;
+  const url = `${ this.url }token`;
   const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
   return this.http.get<Usuario>(url, {headers});

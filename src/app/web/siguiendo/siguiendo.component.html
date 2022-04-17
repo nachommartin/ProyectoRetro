@@ -19,14 +19,26 @@
                     <li class="list-group-item">Siguiendo:  {{usuario.numSiguiendo}}  </li>
                   </ul>
                 </div>
-                <div class="col-md-8">
-                    <a routerLink="/edit" id="navlink">Editar mi perfil</a><br>
-                    <a href="#" id="navlink">Mis votos</a><br>
-                    <a href="#" id="navlink">Mis reseñas</a><br>
-                    <a routerLink="/seguidores" id="navlink">Mis seguidores</a><br>
-                    <a routerLink="/siguiendo" id="navlink">Siguiendo</a><br>
-                    <a href="#" id="navlink">Mis mensajes</a>                              
-                 </div>
+                <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let seguido of seguidos">
+                    <div class="card align-items-center text-justify">
+                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Avatar de usuario">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                {{seguido.usuarioSource.nick}}
+                            </h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Juegos votados: {{seguido.usuarioSource.numVotos}}</li>
+                                <li class="list-group-item">Reseñas: {{seguido.usuarioSource.numReviews}}</li>
+                                <li class="list-group-item">Número de seguidores:  {{seguido.usuarioSource.numSeguidores}}</li>
+                              </ul>
+                   
+                            <div  style="text-align: center">
+                                <button class="btn btn-primary"   (click)="unfollow(seguido.usuarioSource.correo)" >Dejar de seguir a este usuario</button>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
                  </div>
                  </div>
                  </div>

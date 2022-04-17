@@ -21,7 +21,7 @@ export class UsuarioComponent implements OnInit {
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.usuario=resp; 
-            this.carga=true
+      this.carga=true
 
     }
     )
