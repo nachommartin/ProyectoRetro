@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.1.0",
+    "@angular/cdk": "^13.3.5",
     "@angular/common": "~13.1.0",
     "@angular/compiler": "~13.1.0",
     "@angular/core": "~13.1.0",
@@ -23,6 +24,8 @@
     "datatables.net": "^1.11.3",
     "datatables.net-bs4": "^1.11.3",
     "jquery": "^3.6.0",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.3.3",
     "rxjs": "~7.4.0",
     "sweetalert2": "^11.4.0",
     "tslib": "^2.3.0",

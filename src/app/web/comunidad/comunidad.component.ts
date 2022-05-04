@@ -85,7 +85,23 @@ export class ComunidadComponent implements OnInit {
 
 }
 
+verVotos(usuario:string, nick:string){
+  this.servicioFollow.verVotos(this.userAsk, usuario).subscribe({
+    next: (resp => {
+      this.router.navigateByUrl('/votos/'+nick);
+  }),
+  error: resp=> {
+    Swal.fire(
+      '¡Error!', 'Para ver sus votos debes de seguir a este usuario', 'error'
+    );
+  }
+  })
+}
+
  
+mandarMensaje(nick:string){
+  this.router.navigateByUrl('/mensaje/'+nick);
+}
 
  
 

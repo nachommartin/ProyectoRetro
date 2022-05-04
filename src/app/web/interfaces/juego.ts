@@ -1,5 +1,7 @@
 //Interfaces de juego, usuario y votación
 
+import { Byte } from "@angular/compiler/src/util";
+
 export interface Juego {
         referencia:    number;
         titulo:        string;
@@ -9,6 +11,7 @@ export interface Juego {
         categoria:     string;
         votos:         Votacion[];
         votacionMedia: number; 
+        imagen:        Byte[];
     }
     
     export enum Plataforma {
@@ -48,6 +51,12 @@ export interface Juego {
         follower:   Usuario;
     }
     
-    
+    export interface Comentario {
+        codigoComentario: number;
+        texto:            string;
+        fecha:            Date;
+        usuarioReceptor:  Usuario;
+        usuarioEmisor:    Usuario;
+    }
     
     

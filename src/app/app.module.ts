@@ -12,6 +12,9 @@ import { NotRegisterModule } from './not-register/not-register.module';
 import { WebModule } from './web/web.module';
 import { AdminModule } from './admin/admin.module';
 import { LoginModule } from './login/login.module';
+import {AccordionModule} from 'primeng/accordion';  
+import {MenuItem} from 'primeng/api';                  
+
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { LoginModule } from './login/login.module';
     WebModule,
     AdminModule,
     NotRegisterModule,
-    LoginModule
+    LoginModule,
+    AccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

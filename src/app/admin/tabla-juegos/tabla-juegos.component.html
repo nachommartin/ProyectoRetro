@@ -1,0 +1,125 @@
+<app-navbar></app-navbar>
+<div class="container p-4 bg-white">
+    <div class="card">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p-table #dt [value]="juegos" responsiveLayout="stack" breakpoint="815px" [paginator]="true" [rows]="10" [showCurrentPageReport]="false" 
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" [globalFilterFields]="['titulo']">        
+
+            <ng-template pTemplate="caption">
+                <div style="text-align: right">
+                    <button  class="btn float-left edit_btn" id="guardar" (click)="guardar()">Añadir juego</button>
+                    <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains', dt)" placeholder="Buscar" size="30" style="width:auto" />
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                  <tr>
+                      <th></th>
+                      <th pSortableColumn="titulo">Título <p-sortIcon field="titulo"></p-sortIcon></th>
+                      <th pSortableColumn="categoria">Categoría <p-sortIcon field="categoria"></p-sortIcon></th>
+                      <th pSortableColumn="year">Año <p-sortIcon field="year"></p-sortIcon></th>
+                      <th pSortableColumn="desarrollador">Desarrollador <p-sortIcon field="desarrollador"></p-sortIcon></th>
+                      <th>Añadir imagen</th>
+                      <th>Editar</th>
+                      <th>Borrar</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-juego let-columns="juego">
+                  <tr>
+                    <td *ngIf="juego.imagen"> <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juego)}}  alt="Caratula del juego"   width="50" class="shadow-4" /></td>
+                    <td *ngIf="!juego.imagen"><span>Sin imagen aún</span></td>
+                      <td><span class="p-column-title" pSortableColumn="titulo"><strong>Título</strong></span>{{juego.titulo}}</td>
+                      <td><span class="p-column-title" pSortableColumn="categoria"><strong>Categoría</strong></span>{{juego.categoria}}</td>
+                      <td><span class="p-column-title" pSortableColumn="year"><strong>Año</strong></span>{{juego.year}}</td>
+                      <td><span class="p-column-title" pSortableColumn="desarrollador"><strong>Desarrollador</strong></span>{{juego.desarrollador}}</td>
+                      <td class="justify-content-evenly " (click)="seleccionarAddImagen(juego)"><span class="p-column-title" >Editar</span><a class="btn"><i class="pi pi-paperclip focusAdd"></i></a></td>
+                      <td class="justify-content-evenly " (click)="seleccionarJuegoEditar(juego)"><span class="p-column-title" >Editar</span><a class="btn"><i class="pi pi-pencil focusEditar"></i></a></td>
+                      <td class="justify-content-evenly " (click)="confirmar(juego.referencia)"><span class="p-column-title">Borrar</span><a class="btn"><i class="pi pi-trash focusBorrar"></i></a></td>
+                  </tr>
+    
+             
+    
+              </ng-template>
+              <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">
+                    En total hay {{juegos ? juegos.length : 0 }} juegos.
+                </div>
+            </ng-template>
+              
+            </p-table>
+    
+          </div>
+    
+        
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+
+<p-dialog [(visible)]="dialogo">
+    
+    <form class="custom-form" method="post"  [formGroup]="formGroup">	
+        <div class="input-group form-group">	
+            <input type="text"  name="titulo" class="form-control" formControlName="titulo" placeholder="Título"/>
+        </div>				
+        <div class="input-group form-group">
+            <input type="text"  name="year" class="form-control"  formControlName="year"	placeholder="Año"/>	
+        </div>
+        <div class="input-group form-group">
+            <input type="text"  name="desarrollador" class="form-control" formControlName="desarrollador" placeholder="Desarrollador" />  
+        </div>	
+        <div class="input-group form-group">
+            <input type="text"  name="categoria" class="form-control" formControlName="categoria" placeholder="Categoría" />  
+        </div>		
+        <div class="form-group">
+            <input type="submit" value="Editar"  (click)="editar()"  class="btn float-right edit_btn" id="edicion">
+        </div>
+    </form>
+</p-dialog>
+
+<p-dialog [(visible)]="dialogoImagen">
+    <div class="col-8">
+        <label class="btn btn-default p-0">
+          <input type="file" (change)="selectFile($event)" />
+        </label>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
+          Subir
+        </button>
+      </div>
+
+<div *ngIf="currentFile" class="progress my-3">
+    <div
+      class="progress-bar progress-bar-info progress-bar-striped"
+      role="progressbar"
+      attr.aria-valuenow="{{ progress }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [ngStyle]="{ width: progress + '%' }"
+    >
+      {{ progress }}%
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [(visible)]="dialogoGuardado">
+    
+    <form class="custom-form" method="post"  [formGroup]="formGroup">	
+        <div class="input-group form-group">	
+            <input type="text"  name="titulo" class="form-control" formControlName="titulo" placeholder="Título"/>
+        </div>				
+        <div class="input-group form-group">
+            <input type="text"  name="year" class="form-control"  formControlName="year"	placeholder="Año"/>	
+        </div>
+        <div class="input-group form-group">
+            <input type="text"  name="desarrollador" class="form-control" formControlName="desarrollador" placeholder="Desarrollador" />  
+        </div>	
+        <div class="input-group form-group">
+            <input type="text"  name="categoria" class="form-control" formControlName="categoria" placeholder="Categoría" />  
+        </div>		
+        <div class="form-group">
+            <input type="submit" value="Guardar"  (click)="addJuego()"  class="btn float-right edit_btn" id="edicion">
+        </div>
+    </form>
+</p-dialog>

@@ -13,6 +13,11 @@ import { EditComponent } from './edit/edit.component';
 import { ComunidadComponent } from './comunidad/comunidad.component';
 import { MySeguidoresComponent } from './my-seguidores/my-seguidores.component';
 import { SiguiendoComponent } from './siguiendo/siguiendo.component';
+import { VotosComponent } from './votos/votos.component';
+import { EnvioMensajeComponent } from './envio-mensaje/envio-mensaje.component';
+import { MensajeComponent } from './mensaje/mensaje.component';
+import { PruebaComponent } from './prueba/prueba.component';
+
 
 
 
@@ -28,8 +33,11 @@ import { SiguiendoComponent } from './siguiendo/siguiendo.component';
     EditComponent,
     ComunidadComponent,
     MySeguidoresComponent,
-    SiguiendoComponent
-  ],
+    SiguiendoComponent,
+    VotosComponent,
+    EnvioMensajeComponent,
+    MensajeComponent,
+    PruebaComponent  ],
   imports: [
     CommonModule,
     FormsModule,

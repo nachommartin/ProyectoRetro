@@ -33,6 +33,12 @@
                 <div  *ngIf="user.esAmigo"  style="text-align: center">
                     <button class="btn btn-primary"   (click)="unfollow(user.user.correo)" >Dejar de seguir a este usuario</button>
                 </div>
+                <div  style="text-align: center">
+                    <button class="btn btn-primary"   (click)="verVotos(user.user.correo, user.user.nick)" >Ver votos</button>
+                </div>
+                <div  style="text-align: center">
+                    <button class="btn btn-primary"   (click)="mandarMensaje(user.user.nick)" >Enviar un mensaje</button>
+                </div>
             </div>
         </div>
 

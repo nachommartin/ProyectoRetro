@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
+import { ServUserService } from '../services/serv-user.service';
 import { VotacionService } from '../services/votacion.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class ReviewComponent implements OnInit {
 
 
 
-  constructor(private buscador:BuscadorService, private ruta:ActivatedRoute, private servicioVoto:VotacionService) { }
+  constructor(private buscador:BuscadorService, private ruta:ActivatedRoute, private servicioVoto:VotacionService,
+    private servicioUsuario:ServUserService) { }
 
 //De inicio cogemos el título del juego desde la ruta URL para así cargar el juego
   ngOnInit(): void {
@@ -60,6 +63,22 @@ export class ReviewComponent implements OnInit {
     //Método para volver hacia atrás al juego
       goBack() {
         window.history.back();
+      }
+
+      reportar(id:number){
+        let mensaje:string="reseña"
+        this.servicioUsuario.reportar(id,mensaje).subscribe({
+          next: (resp => {
+            Swal.fire(
+              '', 'El administrador revisará tu reporte', 'success'
+            );
+        }),
+        error: resp=> {
+          Swal.fire(
+            '¡Error!', 'Ha habido un error inesperado', 'error'
+          );
+        }
+        })
       }
 
 

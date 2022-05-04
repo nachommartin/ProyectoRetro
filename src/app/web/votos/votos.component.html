@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div *ngIf="carga" class="row">
+    <div class="container p-4 bg-white">
+        <div *ngIf="sizeArray==0">
+            <h5 class="text-center">{{nickStalkeado}} no ha votado ningún juego aún</h5>
+        </div>
+        <div *ngIf="sizeArray>0">
+            <h5 class="text-center">Votos de {{nickStalkeado}}</h5>
+        </div>           
+        <div *ngFor="let voto of votos" class="card align-items-center text-justify">
+            <div class="card-body">
+                <div class="row"> 
+                <div class="col-md-12">
+                <h5 class="card-title text-center font-weight-bold">
+                    {{voto.juego.titulo}}
+                </h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Voto: {{voto.voto}}</li>
+                    <li class="list-group-item">Fecha: {{voto.fecha}}</li>
+                  </ul>
+                </div>
+            </div>         
+         </div>
+        </div>
+        </div>

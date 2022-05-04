@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://megadriver.herokuapp.com/'
+  baseUrl: 'http://localhost:8080/'
 };
 //https://megadriver.herokuapp.com/
 //http://localhost:8080/

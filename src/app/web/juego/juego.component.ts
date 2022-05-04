@@ -84,6 +84,8 @@ export class JuegoComponent implements OnInit {
         Swal.fire(
           '', 'Has votado el juego', 'success'
         );
+        this.cargarJuego()
+        console.log(this.juegoCargado)
     }),
     error: resp=> {
       Swal.fire(
@@ -91,7 +93,7 @@ export class JuegoComponent implements OnInit {
       );
     }
     })
-    this.cargarJuego()
+    
   }
     
   
@@ -134,6 +136,12 @@ export class JuegoComponent implements OnInit {
   getReview(pk:any){
     
     this.router.navigate(["./review/",pk]);
+  }
+
+  obtenerImagen(juego:Juego){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(juego.imagen)));
+    const source = `data:image/png;base64,${base64String}`+juego.imagen;
+    return source;
   }
 
 

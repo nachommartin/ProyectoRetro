@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="row">
+    <div class="container p-4 bg-white">
+        <div class="form-wrapper bg-light">
+            <h5 class="text-center">Vas a enviar un mensaje a <b>{{receptorNick}}</b></h5>
+            <form>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Escribe tu texto</label>
+                <textarea class="form-control" [(ngModel)]="texto" id="exampleFormControlTextarea1" name="review" rows="3"></textarea>
+            </div>
+            <div class="form-group d-flex justify-content-end">
+                <input type="submit" value="Enviar" class="btn btn-primary" (click)="mandarMensaje()">
+            </div>
+        </form>
+        </div>
+        </div>
+        </div>

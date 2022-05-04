@@ -1,0 +1,25 @@
+.focusBorrar:hover {
+    color: red;
+}
+.focusEditar:hover {
+    color: blue;
+}
+.focusAdd:hover {
+    color: orange;
+}
+
+
+
+#edicion{
+    color: black;
+    background-color: #f5b60a;
+    cursor: pointer;
+    margin: 0.25rem 0.125rem;
+  }
+
+   #guardar{
+    color: black;
+    background-color: #9bd169;
+    cursor: pointer;
+    margin: 0.25rem 0.125rem;
+  }

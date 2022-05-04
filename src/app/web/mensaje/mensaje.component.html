@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div *ngIf="carga" class="row">
+    <div class="container p-4 bg-white">
+        <div *ngIf="sizeArray==0">
+            <h5 class="text-center">No hay mensajes</h5>
+        </div>
+        <div *ngIf="sizeArray>0">
+            <h5 class="text-center">Mensajes de {{nick}}</h5>
+        </div>           
+        <div *ngFor="let mensaje of mensajes" class="card align-items-center text-justify">
+            <div class="card-body">
+                <div class="row"> 
+                <div class="col-md-12">
+                <h5 class="card-title text-center font-weight-bold">
+                    Mensaje {{numero+1}}
+                </h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{mensaje.texto}}</li>
+                    <li class="list-group-item"> <button type="button" id="botones" class="btn btn-primary" (click)="borrar(mensaje.codigoComentario)">Borrar</button>
+                     <button type="button" id="botones" class="btn btn-primary" (click)="reportar(mensaje.codigoComentario)">Reportar</button> </li>
+                  </ul>
+                </div>
+            </div>         
+         </div>
+        </div>
+        </div>

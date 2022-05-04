@@ -8,12 +8,17 @@ import { DatosComponent } from "./not-register/datos/datos.component";
 import { InicioComponent } from "./not-register/inicio/inicio.component";
 import { ComunidadComponent } from "./web/comunidad/comunidad.component";
 import { EditComponent } from "./web/edit/edit.component";
+import { EnvioMensajeComponent } from "./web/envio-mensaje/envio-mensaje.component";
 import { JuegoComponent } from "./web/juego/juego.component";
+import { MensajeComponent } from "./web/mensaje/mensaje.component";
 import { MySeguidoresComponent } from "./web/my-seguidores/my-seguidores.component";
+import { PruebaComponent } from "./web/prueba/prueba.component";
 import { ResultadosComponent } from "./web/resultados/resultados.component";
 import { ReviewComponent } from "./web/review/review.component";
 import { SiguiendoComponent } from "./web/siguiendo/siguiendo.component";
+import { TablaJuegosComponent } from "./admin/tabla-juegos/tabla-juegos.component";
 import { UsuarioComponent } from "./web/usuario/usuario.component";
+import { VotosComponent } from "./web/votos/votos.component";
 
 
 
@@ -69,13 +74,33 @@ const appRoutes: Routes = [
     canActivate: [ GuardianService ]
   },
   {
+    path:'mensaje/:receptor', component: EnvioMensajeComponent, 
+    canActivate: [ GuardianService ]
+  },
+  {
+    path:'votos/:stalkeado', component: VotosComponent, 
+    canActivate: [ GuardianService ]
+  },
+  {
     path:'review/:titulo', component: ReviewComponent, 
+    canActivate: [ GuardianService ]
+  },
+  {
+    path:'mensajes', component: MensajeComponent, 
     canActivate: [ GuardianService ]
   },
   {
     path:'administracion', component: PanelComponent, 
     canActivate: [ AdminGService ]
   },
+  {
+    path: 'admin_game', component: TablaJuegosComponent,
+    canActivate: [ AdminGService ]
+   },
+  
+  {
+    path: 'prueba', component: PruebaComponent
+   },
   {
     path: 'datos', component: DatosComponent 
    },

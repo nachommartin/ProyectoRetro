@@ -18,4 +18,15 @@ export class ServUserService {
     return this.http.put(path, peticion);
   
   }
+
+  reportar(ref:number, mensaje:string){
+    const path = `${this.url}enviar`;
+    const peticion= {
+      "subject":"revisa "+mensaje,
+      "text":mensaje+" con referencia "+ref
+    }
+    return this.http.post(path, peticion);
+
+
+  }
 }
