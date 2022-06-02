@@ -58,7 +58,7 @@ export class MensajeComponent implements OnInit {
 
   reportar(id:number){
     let mensaje:string="mensaje"
-    this.servicioUsuario.reportar(id,mensaje).subscribe({
+    this.servicioUsuario.reportar(id,mensaje,this.nick).subscribe({
       next: (resp => {
         Swal.fire(
           '', 'El administrador revisará tu reporte', 'success'

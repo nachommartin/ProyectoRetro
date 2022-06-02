@@ -24,7 +24,6 @@ export class GuardianService implements CanActivate, CanActivateChild{
           return true
         }),
         catchError( err => {
-            console.log(err);
             Swal.fire('Error','No tienes acceso a esta página','error');
             
             this.router.navigateByUrl('/');

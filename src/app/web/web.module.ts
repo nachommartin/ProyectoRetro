@@ -16,7 +16,14 @@ import { SiguiendoComponent } from './siguiendo/siguiendo.component';
 import { VotosComponent } from './votos/votos.component';
 import { EnvioMensajeComponent } from './envio-mensaje/envio-mensaje.component';
 import { MensajeComponent } from './mensaje/mensaje.component';
-import { PruebaComponent } from './prueba/prueba.component';
+import { MisListasComponent } from './mis-listas/mis-listas.component';
+import { CreacionListaComponent } from './creacion-lista/creacion-lista.component';
+import { ListaComponent } from './lista/lista.component';
+import { ListaUsuarioComponent } from './lista-usuario/lista-usuario.component';
+import { MasVotadosComponent } from './mas-votados/mas-votados.component';
+import {DataViewModule} from 'primeng/dataview';
+import { MejorMediaComponent } from './mejor-media/mejor-media.component';
+
 
 
 
@@ -37,12 +44,18 @@ import { PruebaComponent } from './prueba/prueba.component';
     VotosComponent,
     EnvioMensajeComponent,
     MensajeComponent,
-    PruebaComponent  ],
+    MisListasComponent,
+    CreacionListaComponent,
+    ListaComponent,
+    ListaUsuarioComponent,
+    MasVotadosComponent,
+    MejorMediaComponent  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    WebRoutingModule
+    WebRoutingModule,
+    DataViewModule
   ],
   exports:
   [ NavbarComponent]

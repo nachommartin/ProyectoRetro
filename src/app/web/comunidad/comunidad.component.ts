@@ -38,7 +38,6 @@ export class ComunidadComponent implements OnInit {
     this.servicioBusqueda.buscarUsuario(this.cadena,this.userAsk).subscribe((resp)=>{
       this.usuarios= resp;
       this.sizeArray=resp.length
-      console.log(resp)
     } );
     this.router.navigateByUrl('/comunidad');
     
@@ -58,7 +57,12 @@ export class ComunidadComponent implements OnInit {
        Swal.fire(
          '', 'Has seguido al usuario', 'success'
        );
-       this.router.navigateByUrl('/comunidad');
+       this.usuarios=[]
+       this.servicioBusqueda.buscarUsuario(this.cadena,this.userAsk).subscribe((resp)=>{
+        this.usuarios= resp;
+        this.sizeArray=resp.length
+      } );
+      this.router.navigateByUrl('/comunidad');
    }),
    error: resp=> {
      Swal.fire(
@@ -74,6 +78,11 @@ export class ComunidadComponent implements OnInit {
      Swal.fire(
        '', 'Has dejado de seguir al usuario', 'success'
      );
+     this.usuarios=[]
+     this.servicioBusqueda.buscarUsuario(this.cadena,this.userAsk).subscribe((resp)=>{
+      this.usuarios= resp;
+      this.sizeArray=resp.length
+    } );
      this.router.navigateByUrl('/comunidad');
  }),
  error: resp=> {
@@ -103,6 +112,8 @@ mandarMensaje(nick:string){
   this.router.navigateByUrl('/mensaje/'+nick);
 }
 
- 
+verListas(nick:string){
+  this.router.navigateByUrl('/listas/'+nick);
+}
 
 }

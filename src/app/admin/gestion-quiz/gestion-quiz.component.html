@@ -1,0 +1,23 @@
+<p>gestion-quiz works!</p>
+
+
+<p-dialog [(visible)]="dialogoGuardado" [style]="{'width':'350px'}" header="Añadir quiz">
+
+    <form class="custom-form" method="post" #quizForm="ngForm" novalidate>
+        <div class="input-group form-group d-block">
+            <div>
+
+                <input type="text" name="name" [(ngModel)]="nombreQuiz" #name="ngModel" class="form-control" placeholder="Título del quiz" required>
+            </div>
+            <div>
+                <span class="error" *ngIf="name.touched && name.errors?.['required'] ">Introduzca un título</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Crear" [disabled]="!quizForm.valid" (click)="addQuiz()" class="btn float-right module_btn" id="add">
+        </div>
+    </form>
+</p-dialog>

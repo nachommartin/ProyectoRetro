@@ -12,13 +12,23 @@ import { EnvioMensajeComponent } from "./web/envio-mensaje/envio-mensaje.compone
 import { JuegoComponent } from "./web/juego/juego.component";
 import { MensajeComponent } from "./web/mensaje/mensaje.component";
 import { MySeguidoresComponent } from "./web/my-seguidores/my-seguidores.component";
-import { PruebaComponent } from "./web/prueba/prueba.component";
 import { ResultadosComponent } from "./web/resultados/resultados.component";
 import { ReviewComponent } from "./web/review/review.component";
 import { SiguiendoComponent } from "./web/siguiendo/siguiendo.component";
 import { TablaJuegosComponent } from "./admin/tabla-juegos/tabla-juegos.component";
 import { UsuarioComponent } from "./web/usuario/usuario.component";
 import { VotosComponent } from "./web/votos/votos.component";
+import { MisListasComponent } from "./web/mis-listas/mis-listas.component";
+import { CreacionListaComponent } from "./web/creacion-lista/creacion-lista.component";
+import { ListaComponent } from "./web/lista/lista.component";
+import { ListaUsuarioComponent } from "./web/lista-usuario/lista-usuario.component";
+import { MasVotadosComponent } from "./web/mas-votados/mas-votados.component";
+import { MejorMediaComponent } from "./web/mejor-media/mejor-media.component";
+import { GestionMensajeComponent } from "./admin/gestion-mensaje/gestion-mensaje.component";
+import { GestionReviewComponent } from "./admin/gestion-review/gestion-review.component";
+import { GestionUsuariosComponent } from "./admin/gestion-usuarios/gestion-usuarios.component";
+import { NotbangService } from "./guardian/notbang.service";
+import { QuizComponent } from "./quiz/quiz/quiz.component";
 
 
 
@@ -31,39 +41,75 @@ const appRoutes: Routes = [
     loadChildren: () => import('./login/login.module')
     .then(m => m.LoginModule)
   },
+  {    
+    path: 'quiz',
+    loadChildren: () => import('./quiz/quiz.module')
+    .then(m => m.QuizModule),
+    canActivate: [ GuardianService, NotbangService ]
+  },
   {
     path: 'main',
     loadChildren: () => import('./web/web.module').then( m => m.WebModule),
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
   },
   {
     path: 'resultados', component: ResultadosComponent,
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
     
   },
   {
     path: 'comunidad', component: ComunidadComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
+   },
+
+   {
+    path: 'mas_votados', component: MasVotadosComponent, 
+    canActivate: [ GuardianService, NotbangService ]
+   },
+
+   {
+    path: 'mejor_valorados', component: MejorMediaComponent, 
+    canActivate: [ GuardianService, NotbangService ]
    },
 
   {
     path: 'usuario', component: UsuarioComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
    },
 
    {
     path: 'seguidores', component: MySeguidoresComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
    },
 
    {
     path: 'siguiendo', component: SiguiendoComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService,NotbangService ]
    },
 
    {
+    path: 'listas', component: MisListasComponent, 
+    canActivate: [ GuardianService, NotbangService ]
+   },
+
+   {
+    path: 'listas/:usuario', component: ListaUsuarioComponent, 
+    canActivate: [ GuardianService, NotbangService]
+   },
+
+   {
+    path: 'crear_lista', component: CreacionListaComponent, 
+    canActivate: [ GuardianService, NotbangService ]
+   },
+
+   {
+    path:'lista/:referencia', component: ListaComponent, 
+    canActivate: [ GuardianService, NotbangService ]
+  },
+
+   {
     path: 'edit', component: EditComponent,
-    canActivate: [ GuardianService ] 
+    canActivate: [ GuardianService, NotbangService ] 
    },
 
   {
@@ -71,23 +117,23 @@ const appRoutes: Routes = [
    },
   {
     path:'juego/:titulo', component: JuegoComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
   },
   {
     path:'mensaje/:receptor', component: EnvioMensajeComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
   },
   {
     path:'votos/:stalkeado', component: VotosComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
   },
   {
     path:'review/:titulo', component: ReviewComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService]
   },
   {
     path:'mensajes', component: MensajeComponent, 
-    canActivate: [ GuardianService ]
+    canActivate: [ GuardianService, NotbangService ]
   },
   {
     path:'administracion', component: PanelComponent, 
@@ -97,9 +143,17 @@ const appRoutes: Routes = [
     path: 'admin_game', component: TablaJuegosComponent,
     canActivate: [ AdminGService ]
    },
-  
   {
-    path: 'prueba', component: PruebaComponent
+   path: 'admin_comment', component: GestionMensajeComponent,
+   canActivate: [ AdminGService ]
+  },
+  {
+    path: 'admin_review', component: GestionReviewComponent,
+    canActivate: [ AdminGService ]
+   },
+   {
+    path: 'admin_users', component: GestionUsuariosComponent,
+    canActivate: [ AdminGService ]
    },
   {
     path: 'datos', component: DatosComponent 

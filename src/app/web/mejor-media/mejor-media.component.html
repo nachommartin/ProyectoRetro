@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<div class="container p-4 bg-white">
+<div *ngIf="carga" class="card">
+<p-dataView #dv [value]="mejorMedia"  [paginator]="true" [rows]="5" filterBy="titulo" layout="grid">
+    <ng-template pTemplate="header">Los más votados
+        <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+            <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                <i class="pi pi-search"></i>
+                <input type="search" pInputText placeholder="       Buscar por título" (input)="dv.filter($any($event.target).value)">
+            </span>
+        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+    </ng-template>
+    <ng-template let-juego pTemplate="listItem">
+        <div class="p-col-12">
+            <div class="juego-list-item">
+                <div *ngIf="juego.imagen"> <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juego)}}  alt="Caratula del juego"   width="50" class="shadow-4" /></div>
+                <div *ngIf="!juego.imagen"><span>Sin imagen aún</span></div>                <div class="juego-list-detail">
+                    <div class="juego-name">{{juego.titulo}}</div>
+                    <div class="juego-developer">{{juego.desarrollador}}</div>
+                    <i class="pi pi-calendar juego-calendar-icon"></i><span class="juego-year">{{juego.year}}</span>
+                </div>
+                <div class="juego-list-action">
+                    <span class="juego-votos">{{juego.votacionMedia}} de valoración</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template let-juego pTemplate="gridItem">
+        <div class="p-col-12 p-md-4">
+            <div class="juego-grid-item card">
+                <div class="juego-grid-item-top">
+                    <div>
+                        <i class="pi pi-calendar juego-calendar-icon"></i>
+                        <span class="juego-year">{{juego.year}}</span>
+                    </div>
+                    <span [class]="'juego-badge status-' + juego.categoria.toLowerCase()">{{juego.categoria}}</span>
+                </div>
+                <div class="juego-grid-item-content">
+                    <div *ngIf="juego.imagen"> <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juego)}}  alt="Caratula del juego"   width="50" class="shadow-4" /></div>
+                    <div *ngIf="!juego.imagen"><span>Sin imagen aún</span></div>
+                    <div class="juego-name">{{juego.titulo}}</div>
+                    <div class="juego-developer">{{juego.desarrollador}}</div>
+                </div>
+                <div class="juego-grid-item-bottom">
+                    <span class="juego-votos">{{juego.votacionMedia}} de valoración</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft" let-state>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    </ng-template>
+</p-dataView>
+</div>
+</div>

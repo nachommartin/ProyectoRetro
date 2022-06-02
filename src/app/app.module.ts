@@ -13,7 +13,8 @@ import { WebModule } from './web/web.module';
 import { AdminModule } from './admin/admin.module';
 import { LoginModule } from './login/login.module';
 import {AccordionModule} from 'primeng/accordion';  
-import {MenuItem} from 'primeng/api';                  
+import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';                  
+import { QuizModule } from './quiz/quiz.module';
 
 
 @NgModule({
@@ -33,9 +34,10 @@ import {MenuItem} from 'primeng/api';
     AdminModule,
     NotRegisterModule,
     LoginModule,
-    AccordionModule
+    AccordionModule,
+    QuizModule
   ],
-  providers: [],
+  providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

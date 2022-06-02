@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
 import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
@@ -18,11 +19,12 @@ export class ReviewComponent implements OnInit {
   juegoCargado!:Juego;
   reviewsJuego:Votacion[]=[];
   sizeArray:number=0;
+  reportador!:string
 
 
 
   constructor(private buscador:BuscadorService, private ruta:ActivatedRoute, private servicioVoto:VotacionService,
-    private servicioUsuario:ServUserService) { }
+    private servicioUsuario:ServUserService, private servicioLogin:LoginService) { }
 
 //De inicio cogemos el título del juego desde la ruta URL para así cargar el juego
   ngOnInit(): void {
@@ -30,6 +32,12 @@ export class ReviewComponent implements OnInit {
     this.titulo=this.ruta.snapshot.params['titulo']
     
     this.cargarJuego()
+
+    this.servicioLogin.obtenerUsuarioPorToken().
+    subscribe((resp)=>{
+      this.reportador=resp.nick; 
+      
+    })
    
 
 
@@ -67,7 +75,7 @@ export class ReviewComponent implements OnInit {
 
       reportar(id:number){
         let mensaje:string="reseña"
-        this.servicioUsuario.reportar(id,mensaje).subscribe({
+        this.servicioUsuario.reportar(id,mensaje, this.reportador).subscribe({
           next: (resp => {
             Swal.fire(
               '', 'El administrador revisará tu reporte', 'success'

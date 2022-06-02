@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+<div class="container p-4 bg-white">
+    <div class="card">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p-table #dt [value]="usuarios" responsiveLayout="stack" breakpoint="815px" [paginator]="true" [rows]="10" [showCurrentPageReport]="false" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]"
+                [globalFilterFields]="['correo', 'nick','ciudad','numVotos']">
+
+                <ng-template pTemplate="caption">
+                    <div style="text-align: right">
+                        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                        <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains', dt)" placeholder="Buscar" size="30" style="width:auto" />
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th pSortableColumn="correo">Correo
+                            <p-sortIcon field="correo"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="nick">Nick
+                            <p-sortIcon field="nick"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="ciudad">Ciudad
+                            <p-sortIcon field="ciudad"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="numVotos">Número de votos
+                            <p-sortIcon field="numVotos"></p-sortIcon>
+                        </th>
+                        <th>Baneo</th>
+                        <th>Tiempo de baneo</th>
+                        <th>Borrar</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-usuario let-columns="usuario">
+                    <tr>
+                        <td (click)="getStatusBaneo(usuario.fechaBaneo)" id="correo"><span class="p-column-title" pSortableColumn="correo"><strong>Título</strong></span>{{usuario.correo}}</td>
+                        <td><span class="p-column-title" pSortableColumn="nick"><strong>Nick</strong></span>{{usuario.nick}}</td>
+                        <td *ngIf="usuario.ciudad"><span class="p-column-title" pSortableColumn="endDate"><strong>Ciudad</strong></span>{{usuario.ciudad}}</td>
+                        <td *ngIf="!usuario.ciudad"><span class="p-column-title">Ciudad</span>No especificada</td>
+                        <td><span class="p-column-title" pSortableColumn="ciudad"><strong>Número de votos</strong></span>{{usuario.numVotos}}</td>
+                        <td class="justify-content-evenly " (click)="banear(usuario)">
+                          <a class="btn">
+                              <i *ngIf='usuario.baneado' class="pi pi-times-circle" style="color: red;"></i>
+                              <i *ngIf='!usuario.baneado' class="pi pi-check-circle" style="color: green;"></i>
+                          </a>
+                      </td>
+                      <td class="justify-content-evenly " >
+                        <a class="btn">
+                            <i *ngIf='usuario.baneado' class="pi pi-clock" (click)="verBaneo(usuario)"></i>
+                            <i *ngIf='!usuario.baneado' class="pi pi-ban" (click)="noReloj()"></i>
+                        </a>
+                    </td>
+                      <td class="justify-content-evenly " (click)="confirm(usuario.nick)"><span class="p-column-title">Borrar</span><a class="btn"><i class="pi pi-trash focusBorrar"></i></a></td>
+                      </tr>
+
+
+
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        En total hay {{usuarios ? usuarios.length : 0 }} usuarios.
+                    </div>
+                </ng-template>
+
+            </p-table>
+
+        </div>
+
+
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-toast key="noReloj"></p-toast>
+
+<p-dialog [(visible)]="dialog">
+    <h4>El baneo expira en: </h4>
+        <div class="coming-soon">
+            <div class="time-countdown">
+                <ul>
+                    <li class="count-bg-one radius"><span id="days">{{day}}</span>Dias</li>
+                    <li class="count-bg-two radius"><span id="hours">{{hours}}</span>Horas</li>
+                    <li class="count-bg-three radius"><span id="minutes">{{minutes}}</span>Minutos</li>
+                    <li class="count-bg-four radius"><span id="seconds">{{seconds}}</span>Segundos</li>
+                </ul>
+            </div>
+        </div>
+    
+</p-dialog>
+

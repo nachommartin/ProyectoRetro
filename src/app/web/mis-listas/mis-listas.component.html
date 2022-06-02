@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div *ngIf="carga==true" class="row">
+    <div class="container p-4 bg-white">
+        <div class="card align-items-center text-justify">
+            <div class="card-body">
+                <div class="row"> 
+                <div class="col-md-4 bg-light my-2">
+                <img class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario">
+                <h5 class="card-title text-center font-weight-bold">
+                    {{usuario.nick}}
+                </h5>
+                <ul class="list-group list-group-mine">
+                    <li class="list-group-item">Correo: {{usuario.correo}}</li>
+                    <li *ngIf="usuario.ciudad" class="list-group-item">Ubicación: {{usuario.ciudad}}</li>
+                    <li *ngIf="!usuario.ciudad" class="list-group-item">Ubicación: No definida aún</li>
+                    <li class="list-group-item">Juegos votados:  {{usuario.numVotos}}</li>
+                    <li class="list-group-item">Reseñas realizadas:  {{usuario.numReviews}}</li>
+                    <li class="list-group-item">Seguidores:  {{usuario.numSeguidores}}  </li>
+                    <li class="list-group-item">Siguiendo:  {{usuario.numSiguiendo}}  </li>
+                    <li class="list-group-item">Listas:  {{usuario.numListas}}  </li>
+                  </ul>
+                </div>
+                <div class="col-md-8">
+                    <div *ngIf="sizeArray>0">
+                        <h5 class="text-center">Tus listas</h5>
+                    </div>    
+                    <div *ngIf="sizeArray==0">
+                        <h5 class="text-center">Aún no has creado ninguna lista</h5>
+                    </div>    
+                    <ul *ngFor="let lista of listas" class="list-group list-group-flush">
+                        <li class="list-group-item"><strong  class="elemento" (click)="getLista(lista.referencia)">{{lista.nombre}}</strong>: Lista <span> {{ lista.publico ? 'pública' : 'privada' }}</span></li>
+                    </ul> 
+                    <br>
+                    <div style="text-align: center">
+                        <button class="btn btn-primary"  (click)="crear()">Crear una nueva lista</button>
+                    </div>                  
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>

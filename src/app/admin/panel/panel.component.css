@@ -15,6 +15,10 @@
     cursor: pointer;
   }
 
-  .row{
+  #row1{
       margin-left: 10rem;
   }
+
+  #row2{
+    margin-left: 15rem;
+}

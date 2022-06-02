@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div class="container p-4 bg-white">
+    <div class="row">
+        <input  (keyup.enter)="buscar($event)" class="col-sm-8 col-8" type="text" placeholder="Introduce la referencia del reseña">
+    </div>
+    <div *ngIf="carga" class="card">
+       
+        <p-card header="Reseña de {{review.votante}}" subheader="Referencia {{review.codigo}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+            <p>{{review.review}}</p>
+            <ng-template pTemplate="footer">
+                <p-button label="Borrar" icon="pi pi-trash" (click)="borrar(review.codigo)"></p-button>
+                <p-button label="Editar" icon="pi pi-pencil" (click)="seleccionarParaEditar(review)"></p-button>
+                <p-button label="Notificar" icon="pi pi-comment" styleClass="p-button-secondary" (click)="notificar()" [style]="{'margin-left': '.5em'}"></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
+
+<p-dialog [(visible)]="dialogo">
+    
+    <h5 class="text-center">Enviar un mensaje al reportador</h5>
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlInput">Destinatario</label>
+            <input type="text" class="form-control" [(ngModel)]="cadena" id="exampleFormControlInput" name="cadena"/>
+        </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Escribe tu texto</label>
+        <textarea class="form-control" [(ngModel)]="texto" id="exampleFormControlTextarea1" name="review" rows="3"></textarea>
+    </div>
+    <div class="form-group d-flex justify-content-end">
+        <input type="submit" value="Enviar" class="btn btn-primary" (click)="mandarMensaje()">
+    </div>
+</form>
+</p-dialog>
+
+<p-dialog [(visible)]="dialogoEdit">
+    
+    <h5 class="text-center">Editar la reseña</h5>
+    <form>
+    <div *ngIf=" seleccionado" class="form-group">
+        <label for="exampleFormControlTextarea1">{{seleccionado.review}}</label>
+        <textarea class="form-control" [(ngModel)]="textoEdicion" id="exampleFormControlTextarea1" placeholder="{{seleccionado.review}}" name="review" rows="3"></textarea>
+    </div>
+    <div class="form-group d-flex justify-content-end">
+        <input type="submit" value="Enviar" class="btn btn-primary" (click)="editarReview()">
+    </div>
+</form>
+</p-dialog>

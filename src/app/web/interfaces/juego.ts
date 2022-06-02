@@ -11,6 +11,7 @@ export interface Juego {
         categoria:     string;
         votos:         Votacion[];
         votacionMedia: number; 
+        numVotos: number; 
         imagen:        Byte[];
     }
     
@@ -26,7 +27,10 @@ export interface Juego {
         numVotos:    number; 
         numReviews: number;
         numSeguidores: number;  
-        numSiguiendo: number;  
+        numSiguiendo: number;
+        numListas: number;  
+        baneado:boolean;
+        fechaBaneo?:Date;
     }
     
 
@@ -59,4 +63,9 @@ export interface Juego {
         usuarioEmisor:    Usuario;
     }
     
-    
+    export interface Listado {
+        referencia: number;
+        publico:    boolean;
+        nombre:     string;
+        numJuego: number;
+    }  

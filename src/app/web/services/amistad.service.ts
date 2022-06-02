@@ -78,7 +78,7 @@ export class AmistadService {
   obtenerUsuario(query:string){
     let ruta:string= this.baseUrl+"token?nick="; 
 
-    return this.http.get<Usuario>(ruta+query+"")
+    return this.http.get<Usuario>(ruta+query)
 
   }
 
@@ -115,6 +115,13 @@ export class AmistadService {
     };
     
     return this.http.delete(ruta, options)
+  }
+
+getMensaje(id:number){
+    let ruta:string= this.baseUrl+"comentario/"+id; 
+    
+    
+    return this.http.get<Comentario>(ruta)
   }
 
 

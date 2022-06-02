@@ -53,4 +53,22 @@ export class BuscadorService {
 
   }
 
+  buscadorJuegos(query:String){
+    this.url= this.baseUrl+"juego?titulo="+query+"";
+    return this.http.get<Juego[]>(this.url)
+  }
+
+  obtenerMasVotados(){
+    let ruta:string= this.baseUrl+"juego?numvotos"; 
+
+    return this.http.get<Juego[]>(ruta)
+
+  }
+
+  obtenerMejorMedia(){
+    let ruta:string= this.baseUrl+"juego?media"; 
+
+    return this.http.get<Juego[]>(ruta)
+
+  }
 }

@@ -43,6 +43,18 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/usuario');
   }
 
+  verJuegos(){
+    this.router.navigateByUrl('/datos');
+  }
+
+  masVotados(){
+    this.router.navigateByUrl('/mas_votados');
+  }
+
+  mejorValorados(){
+    this.router.navigateByUrl('/mejor_valorados');
+  }
+
   //Método para buscar un juego
   buscar(x:any){
     this.cadena= x.target.value

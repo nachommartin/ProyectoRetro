@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+<div class="container p-4 bg-white" *ngIf="carga">
+    <p-tabView (onChange)="cargarRespuestas($event)">
+        <p-tabPanel header="{{nombreQuiz}}">
+            Este es el primer nivel. Cada respuesta correcta vale 5 puntos y las incorrectas restan 1 punto
+        </p-tabPanel>
+        <p-tabPanel header="1ª Pregunta">
+            <div *ngIf="preguntas[0].isValid">
+                Pregunta ya contestada
+            </div>
+            <p-card *ngIf="!preguntas[0].isValid">
+                <ng-template pTemplate="header">
+                    {{preguntas[0].texto}}
+                </ng-template>
+        <ul *ngFor="let resp of respuestas">
+            <li (click)="checkRespuesta(resp,preguntas[0])">{{resp.text}}</li>
+        </ul>
+            </p-card>
+        </p-tabPanel>
+        <p-tabPanel header="2ª Pregunta">
+            <div *ngIf="preguntas[1].isValid">
+                Pregunta ya contestada
+            </div>
+            <p-card *ngIf="!preguntas[1].isValid">
+                <ng-template pTemplate="header">
+                    {{preguntas[1].texto}}
+                </ng-template>
+        <ul *ngFor="let resp of respuestas">
+            <li (click)="checkRespuesta(resp,preguntas[1])">{{resp.text}}</li>
+        </ul>
+            </p-card>        
+        </p-tabPanel>
+        <p-tabPanel header="3ª Pregunta">
+            <div *ngIf="preguntas[2].isValid">
+                Pregunta ya contestada
+            </div>
+            <p-card *ngIf="!preguntas[2].isValid">
+                <ng-template pTemplate="header">
+                    {{preguntas[2].texto}}
+                </ng-template>
+        <ul *ngFor="let resp of respuestas">
+            <li (click)="checkRespuesta(resp,preguntas[2])">{{resp.text}}</li>
+            </ul>
+            </p-card>
+        </p-tabPanel>
+        <p-tabPanel header="4ª Pregunta">
+            <div *ngIf="preguntas[3].isValid">
+                Pregunta ya contestada
+            </div>
+            <p-card *ngIf="!preguntas[3].isValid">
+                <ng-template pTemplate="header">
+                    {{preguntas[3].texto}}
+                </ng-template>
+        <ul *ngFor="let resp of respuestas">
+            <li (click)="checkRespuesta(resp,preguntas[3])">{{resp.text}}</li>
+            </ul>
+            </p-card>        
+        </p-tabPanel>
+    </p-tabView>
+</div>
+<p-toast key="correcto"></p-toast>
+<p-toast key="error"></p-toast>
+
+<p-dialog [(visible)]="dialog">
+    <h3>Has ganado {{puntos}} puntos</h3>
+</p-dialog>
+
