@@ -24,7 +24,7 @@ export class ServUserService {
     const path = `${this.url}enviar`;
     const peticion= {
       "subject":"revisa "+mensaje,
-      "text":reportador + " quiere que revises la " + mensaje+" con referencia "+ref
+      "text":reportador + " quiere que revises el/la " + mensaje+" con referencia "+ref
     }
     return this.http.post(path, peticion);
 
