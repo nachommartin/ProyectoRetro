@@ -1,13 +1,15 @@
 <app-navbar></app-navbar>
-    <div class="container p-4 bg-white">
+    <div class="container p-4 bg-white" id="contenedor">
+        <h3>Panel de Administración</h3>
         <div class="row" id="row1">
          <a routerLink="/admin_game"><button class="button round">Juegos</button></a>
          <a routerLink="/admin_comment"><button class="button round">Mensajes</button></a>
          <a routerLink="/admin_users"><button class="button round">Usuarios</button></a>
     </div>
-    <div class="container p-4 bg-white">
         <div class="row" id="row2">
          <a routerLink="/admin_review"><button class="button round" id="reviews">Reseñas</button></a>
-         <a routerLink="/admin_comment"><button class="button round">Quiz</button></a>
+         <a routerLink="/admin_quizz"><button class="button round">Quiz</button></a>
     </div>
-     </div>
+    </div>
+     <app-footer></app-footer>
+

@@ -5,6 +5,7 @@ import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 import { VotacionService } from '../services/votacion.service';
 import Swal from 'sweetalert2';
+import { MenuItem } from 'primeng/api';
 
 
 @Component({
@@ -40,6 +41,8 @@ export class JuegoComponent implements OnInit {
   notaUsuario!:number
   nota!:boolean;
   review!:string; 
+  items:MenuItem[]=[]
+  home!: MenuItem;
 
 
 //De inicio cogemos el título del juego desde la ruta URL para así cargar el juego
@@ -47,26 +50,27 @@ export class JuegoComponent implements OnInit {
   ngOnInit() {
 
     this.titulo=this.ruta.snapshot.params['titulo']
-    this.cargarJuego()
-
-    this.servicio.obtenerUsuarioPorToken().
-    subscribe((resp)=>{
-      this.usuario=resp.correo; 
-    }
-    )
-
-   
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
+    this.cargarJuego()   
 
   }
 
 //Cuando se carga el juego ponemos el booleano carga en true para que se muestre
 // en el template
   cargarJuego(){
+    this.servicio.obtenerUsuarioPorToken().
+    subscribe((resp)=>{
+      this.usuario=resp.correo; 
+      this.mostrarVotacionUsuario()
+    }
+    )
     this.buscador.obtenerJuego(this.titulo).
     subscribe((resp)=> {
       this.juegoCargado=resp[0];
       this.carga=true
-      this.mostrarVotacionUsuario()
+      this.items = [
+        {label: resp[0].titulo, routerLink:'/juego/'+resp[0].titulo},
+      ]
 
     }
 );
@@ -85,7 +89,7 @@ export class JuegoComponent implements OnInit {
           '', 'Has votado el juego', 'success'
         );
         this.cargarJuego()
-        console.log(this.juegoCargado)
+        this.mostrarVotacionUsuario()
     }),
     error: resp=> {
       Swal.fire(

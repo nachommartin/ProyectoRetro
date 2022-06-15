@@ -1,20 +1,25 @@
 <app-navbar></app-navbar>
 <div class="container p-4 bg-white">
+    <h4>Gestión de reseñas</h4>
     <div class="row">
-        <input  (keyup.enter)="buscar($event)" class="col-sm-8 col-8" type="text" placeholder="Introduce la referencia del reseña">
+        <input  (keyup.enter)="buscar($event)" class="col-sm-4 col-4" type="text" placeholder="Introduce la referencia del reseña">
     </div>
-    <div *ngIf="carga" class="card">
-       
-        <p-card header="Reseña de {{review.votante}}" subheader="Referencia {{review.codigo}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <br>
+       <div id="tarjeta"> 
+        <p-card *ngIf="carga" header="Reseña de {{review.votante}}" subheader="Referencia {{review.codigo}}" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
             <p>{{review.review}}</p>
             <ng-template pTemplate="footer">
-                <p-button label="Borrar" icon="pi pi-trash" (click)="borrar(review.codigo)"></p-button>
-                <p-button label="Editar" icon="pi pi-pencil" (click)="seleccionarParaEditar(review)"></p-button>
-                <p-button label="Notificar" icon="pi pi-comment" styleClass="p-button-secondary" (click)="notificar()" [style]="{'margin-left': '.5em'}"></p-button>
+                <span class="p-buttonset">
+                <button pButton pRipple  label="Borrar" icon="pi pi-trash" (click)="borrar(review.codigo)"></button>
+                <button pButton pRipple  label="Editar" icon="pi pi-pencil" (click)="seleccionarParaEditar(review)"></button>
+                <button pButton pRipple  label="Avisar" icon="pi pi-comment" styleClass="p-button-secondary" (click)="notificar()"></button>
+                </span>
             </ng-template>
         </p-card>
     </div>
 </div>
+<app-footer></app-footer>
+
 
 <p-dialog [(visible)]="dialogo">
     
@@ -39,7 +44,6 @@
     <h5 class="text-center">Editar la reseña</h5>
     <form>
     <div *ngIf=" seleccionado" class="form-group">
-        <label for="exampleFormControlTextarea1">{{seleccionado.review}}</label>
         <textarea class="form-control" [(ngModel)]="textoEdicion" id="exampleFormControlTextarea1" placeholder="{{seleccionado.review}}" name="review" rows="3"></textarea>
     </div>
     <div class="form-group d-flex justify-content-end">

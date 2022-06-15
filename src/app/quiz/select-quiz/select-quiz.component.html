@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="container p-4 bg-white" *ngIf="carga">
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+    <h4>¡Demuestra que lo sabes todo de la Mega Drive!</h4>
+    <div class="row px-5">
+    <p>MegaDriver te da la oportunidad de poner a prueba tus conocimientos sobre la Mega Drive y todo lo que rodea a esta joya de SEGA. Elige un cuestionario y responde a las
+        preguntas que se plantean para conseguir puntos y desbloquear nuevas funcionalidades de MegaDriver ¿A qué esperas? ¡Participa y gana puntos!
+    </p>
+    </div>
+    <div id="boton"> 
+    <button *ngIf="usuario.rango=='MASTER_OF_THE_SYSTEM' || usuario.rango=='EXPERTO'" pButton pRipple label="Proponer pregunta"  class="p-button-outlined p-button-rounded" icon="pi pi-question" (click)="abrirPropuesta()"></button>
+    </div>
+    <br>
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12" *ngFor= "let quiz of quizzes  | paginate: { itemsPerPage: 6, currentPage: pages }">
+        <div class="card align-items-center text-justify">
+            <img alt="interrogación" src="https://i.ibb.co/4YkXZ1Q/question.jpg">
+        <div class="card-body">
+                <h5 class="card-title text-center">
+                    {{quiz.name}}
+                </h5>
+                <div style="text-align: center">
+                    <button class="btn btn-primary"  (click)="getQuiz(quiz.ref)">Juega</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br><br>
+    <div *ngIf="quizzes.length>0" id="paginador">
+        <pagination-controls   previousLabel="Anterior"
+        nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
+        </div>
+        
+    </div>
+    <app-footer></app-footer>
+
+
+    <p-dialog [(visible)]="dialogo" [style]="{'width':'350px'}" header="Propón tu pregunta">
+
+        <form class="custom-form" method="post" #propuestaForm="ngForm" novalidate>
+            <div class="input-group form-group d-block">
+                <div>
+    
+                    <textarea name="propose" [(ngModel)]="propuesta" #propose="ngModel" class="form-control" rows="5" required ></textarea>
+                </div>
+                <div>
+                    <span class="error" *ngIf="propose.touched && propose.errors?.['required'] ">Escriba su pregunta</span>
+                </div>
+            </div>
+    
+    
+    
+            <div class="form-group">
+                <input type="submit" value="Enviar" [disabled]="!propuestaForm.valid" (click)="proponer()" class="btn float-right module_btn" id="send">
+            </div>
+        </form>
+    </p-dialog>

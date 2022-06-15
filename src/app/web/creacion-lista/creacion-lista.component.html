@@ -1,18 +1,21 @@
 <app-navbar></app-navbar>
-<div *ngIf="carga==true" class="row">
-    <div class="container p-4 bg-white">
-        <div class="card align-items-center text-justify">
+<div *ngIf="carga==true" class="container p-4 bg-white">
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+        <div class="card text-justify">
             <div class="card-body">
                 <div class="row"> 
-                <div class="col-md-4 bg-light my-2">
-                <img class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario">
-                <h5 class="card-title text-center font-weight-bold">
+                <div class="col-md-5 bg-light py-5">
+                    <img *ngIf="!usuario.avatar" class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario" id="avatar">
+                    <img *ngIf="usuario.avatar" class="card-img-top center-block d-block mx-auto"src={{obtenerImagen(usuario)}}     alt="Icono de usuario" id="avatar">   
+                 <h5 class="card-title text-center font-weight-bold">
                     {{usuario.nick}}
                 </h5>
                 <ul class="list-group list-group-mine">
                     <li class="list-group-item">Correo: {{usuario.correo}}</li>
                     <li *ngIf="usuario.ciudad" class="list-group-item">Ubicación: {{usuario.ciudad}}</li>
                     <li *ngIf="!usuario.ciudad" class="list-group-item">Ubicación: No definida aún</li>
+                    <li *ngIf="usuario.rango=='MASTER_OF_THE_SYSTEM'"class="list-group-item">Rango: MASTER OF THE SYSTEM</li>
+                    <li *ngIf="usuario.rango!='MASTER_OF_THE_SYSTEM'"class="list-group-item">Rango: {{usuario.rango}}</li>
                     <li class="list-group-item">Juegos votados:  {{usuario.numVotos}}</li>
                     <li class="list-group-item">Reseñas realizadas:  {{usuario.numReviews}}</li>
                     <li class="list-group-item">Seguidores: {{usuario.numSeguidores}} </li>
@@ -20,32 +23,45 @@
                     <li class="list-group-item">Listas: {{usuario.numListas}} </li>
                   </ul>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <!--Formulario reactivo-->
                     <form class="custom-form" method="post"  [formGroup]="formGroup">	
                         <!--El correcto completado del campo de formulario se gestiona con un la función campoNoValido y en el template se especifica
                         el contenido textual del error a mostrar-->	
-                        <div class="input-group form-group">
+                        <div class="input-group form-group d-block">
+                            <diV> 
                             <input type="text"  name="nombre" class="form-control" formControlName="nombre" placeholder="Nombre" required="required"/>
-                            <span class="error" *ngIf="campoNoValido('nombre')">Campo requerido</span>					
+                        </diV>
+                        <div>
+                            <span class="error" *ngIf="campoNoValido('nombre')">Campo requerido</span>	
+                        </div>			
                         </div>				
                         <div class="input-group form-group">
+                            <label class="label">Pública
                                 <input type="radio" name="publico" value="true" formControlName="publico" > 
-                                <span>Pública</span>	
+                                <span class="checkmark"></span>
+                              </label>	
                         </div>
-                        <div class="input-group form-group">
+                        <div class="input-group form-group d-block">
+                            <label class="label">Privada
                             <input type="radio" name="publico" value="false" formControlName="publico" > 
-                            <span>Privada</span>	
+                            <span class="checkmark"></span>
+                          </label>	
                         </div>
+                        <div> 
                         <span class="error" *ngIf="campoNoValido('publico')">Campo requerido</span>					
                         <!--Hasta que no estén todos los campos correctamente rellenos no se activa el botón de crear-->				
+                        </div>
                         <div class="form-group">
                             <input type="submit" value="Crear"  (click)="crear()"  [disabled]="formGroup.invalid"  class="btn float-right">
                         </div>
-                    </form>                      
+                    </form>        
+                                  
                  </div>
                  </div>
                  </div>
                  </div>
                  </div>
-                 </div>
+                 <app-footer></app-footer>
+
+                 

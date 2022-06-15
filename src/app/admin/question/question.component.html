@@ -1,0 +1,94 @@
+<app-navbar></app-navbar>
+<div *ngIf="carga" class="container p-4 bg-white">
+    <h4>Pregunta: {{question.texto}}</h4>
+    <div class="card">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p-table #dt [value]="respuestas" responsiveLayout="stack" breakpoint="815px" [paginator]="true" [rows]="10" [showCurrentPageReport]="false" 
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" [globalFilterFields]="['titulo']">        
+
+            <ng-template pTemplate="caption">
+                <div style="text-align: right">
+                    <button  class="btn float-left edit_btn" id="save" (click)="guardar()">Añadir respuesta</button>
+                    <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains', dt)" placeholder="Buscar" size="30" style="width:auto" />
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                  <tr>
+                      <th pSortableColumn="titulo">Texto<p-sortIcon field="titulo"></p-sortIcon></th>
+                      <th>Editar</th>
+                      <th>Borrar</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-respuesta let-columns="respuesta">
+                  <tr>
+                      <td id="title"><span class="p-column-title" pSortableColumn="titulo"><strong>Título</strong></span>{{respuesta.text}}</td>
+                      <td class="justify-content-evenly " (click)="seleccionarRespuestaEditar(respuesta)"><span class="p-column-title" >Editar</span><a class="btn"><i class="pi pi-pencil focusEditar"></i></a></td>
+                      <td class="justify-content-evenly " (click)="confirmar(respuesta.referencia)"><span class="p-column-title">Borrar</span><a class="btn"><i class="pi pi-trash focusBorrar"></i></a></td>
+                  </tr>
+    
+             
+    
+              </ng-template>
+              <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">
+                    En total hay {{respuestas ? respuestas.length : 0 }} respuestas.
+                </div>
+            </ng-template>
+              
+            </p-table>
+    
+          </div>
+    
+        
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+
+<p-dialog [(visible)]="dialogoEdit" [style]="{'width':'350px'}" header="Editar respuesta">
+    
+    <form class="custom-form" method="post" #respEditForm="ngForm" novalidate>
+        <div class="input-group form-group d-block">
+            <div>
+
+                <input type="text" name="name" [(ngModel)]="editEnunciadoRespuesta" #name="ngModel" class="form-control" placeholder="Texto de la respuesta" required>
+            </div>
+            <div>
+                <span class="error" *ngIf="name.touched && name.errors?.['required'] ">Introduzca un texto</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Editar" [disabled]="!respEditForm.valid" (click)="editarRespuesta()" class="btn float-right module_btn" id="edit">
+        </div>
+    </form>
+</p-dialog>
+
+
+
+
+
+<p-dialog [(visible)]="dialogoGuardado" [style]="{'width':'350px'}" header="Añadir respuesta">
+
+    <form class="custom-form" method="post" #respForm="ngForm" novalidate>
+        <div class="input-group form-group d-block">
+            <div>
+
+                <input type="text" name="name" [(ngModel)]="enunciadoRespuesta" #name="ngModel" class="form-control" placeholder="Texto de la respuesta" required>
+            </div>
+            <div>
+                <span class="error" *ngIf="name.touched && name.errors?.['required'] ">Introduzca un texto</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Añadir" [disabled]="!respForm.valid" (click)="addRespuesta()" class="btn float-right module_btn" id="add">
+        </div>
+    </form>
+</p-dialog>
+

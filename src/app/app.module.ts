@@ -15,6 +15,7 @@ import { LoginModule } from './login/login.module';
 import {AccordionModule} from 'primeng/accordion';  
 import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';                  
 import { QuizModule } from './quiz/quiz.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { QuizModule } from './quiz/quiz.module';
     NotRegisterModule,
     LoginModule,
     AccordionModule,
-    QuizModule
+    QuizModule,
+    NgxPaginationModule
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]

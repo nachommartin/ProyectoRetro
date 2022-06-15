@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+import { MenuItem, MessageService } from 'primeng/api';
 import { Question, Respuesta } from '../interfaces/quiz';
 import { QuizService } from '../services/quiz.service';
 
@@ -16,20 +17,31 @@ export class QuizComponent implements OnInit {
   respuestas:Respuesta[]=[]
   puntos:number=0
   dialog!:boolean
+  ref!:number
+  items:MenuItem[]=[]
+  home!: MenuItem;
 
-  constructor(private servicio:QuizService, private messageService:MessageService) { }
+  constructor(private servicio:QuizService, private messageService:MessageService,
+    private ruta: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadQuiz()
+    this.ref=this.ruta.snapshot.params['ref']
 
+    this.loadQuiz() 
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
+   
   }
 
   loadQuiz(){
-    this.servicio.getQuiz(118).subscribe((resp)=>{
+    this.servicio.getQuiz(this.ref).subscribe((resp)=>{
       this.nombreQuiz= resp.name;
+      this.items = [
+        {label: 'Quiz MegaDriver', routerLink:'/quiz'},
+        {label: resp.name, routerLink:'/quiz/'+resp.name},
+    ];
     } );
 
-    this.servicio.getPreguntas(118).subscribe((resp)=>{
+    this.servicio.getPreguntas(this.ref).subscribe((resp)=>{
       this.preguntas= resp;
       this.carga=true;
       
@@ -41,7 +53,7 @@ export class QuizComponent implements OnInit {
   cargarRespuestas(e:any){
     let refP:number=this.preguntas[e.index-1].ref
     if(refP>-1){
-    this.servicio.getRespuestas(118,refP).subscribe((resp)=>{
+    this.servicio.getRespuestas(this.ref,refP).subscribe((resp)=>{
       this.respuestas= resp;
     
       

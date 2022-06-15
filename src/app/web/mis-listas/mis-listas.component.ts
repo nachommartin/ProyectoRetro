@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Listado, Usuario } from '../interfaces/juego';
 import { ServUserService } from '../services/serv-user.service';
@@ -15,6 +16,8 @@ export class MisListasComponent implements OnInit {
   sizeArray:number=0;
   usuario!:Usuario;
   carga:boolean=false;
+  home!:MenuItem
+  items:MenuItem[]=[]
 
   constructor(private servicio:ServUserService, private servicioLogin: LoginService, private router:Router) { }
 
@@ -25,6 +28,11 @@ export class MisListasComponent implements OnInit {
       this.usuario=resp; 
       this.cargarListado();
       this.carga=true;
+      this.items = [
+        {label: resp.nick, routerLink:'/usuario'},
+        {label: 'Mis listas', routerLink:'/listas'},
+      ]
+      this.home = {icon: 'pi pi-home', routerLink: '/main'};
     }
     )
   }
@@ -48,5 +56,10 @@ export class MisListasComponent implements OnInit {
     this.router.navigate(["./crear_lista"]);
   }
 
+  obtenerImagen(usuario:Usuario){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(usuario.avatar)));
+    const source = `data:image/png;base64,${base64String}`+usuario.avatar;
+    return source;
+  }
 
 }

@@ -31,6 +31,9 @@ export interface Juego {
         numListas: number;  
         baneado:boolean;
         fechaBaneo?:Date;
+        rango:string;
+        avatar:   Byte[];
+
     }
     
 

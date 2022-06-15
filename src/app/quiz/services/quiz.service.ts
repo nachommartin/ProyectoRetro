@@ -55,6 +55,46 @@ export class QuizService {
 
   }
 
+  getPregunta(ref:number, refP:number){
+    let path= this.url+"quiz/"+ref+"/preguntas/"+refP;
+    return this.http.get<Question>(path)
+
+  }
+
+  guardarPregunta(ref:number, enunciado:string, orden:number){
+    let path= this.url+"quiz/"+ref+"/preguntas";
+    const body={
+      "enunciadoPregunta":enunciado,
+      "ordenPregunta":orden
+
+    }
+    return this.http.post<Question>(path, body)
+
+  }
+
+  editarQuestion(ref:number,refP:number, enunciado:string){
+    let path= this.url+"quiz/"+ref+"/preguntas/"+refP;
+    const body={
+      "enunciadoPregunta":enunciado
+    }
+    return this.http.put(path,body)
+
+  }
+
+  setRespuestaCorrecta(ref:number,refP:number, resp:Respuesta){
+    let path= this.url+"quiz/"+ref+"/preguntas/"+refP;
+    const body={
+      "respuestaCorrecta":resp
+    }
+    return this.http.put(path,body)
+
+  }
+
+  borrarPregunta(ref:number, refP:number){
+    let path= this.url+"quiz/"+ref+"/preguntas/"+refP;
+    return this.http.delete(path)
+  }
+
   getRespuestas(ref:number, refP:number){
     let path= this.url+"quiz/"+ref+"/preguntas/"+refP+"/respuestas";
     return this.http.get<Respuesta[]>(path)
@@ -69,6 +109,43 @@ export class QuizService {
     const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
     return this.http.put(path,body, {headers})
+
+  }
+
+  guardarRespuesta(ref:number, refP:number, enunciado:string, orden:number){
+    let path= this.url+"quiz/"+ref+"/preguntas/"+refP+"/respuestas" ;
+    const body={
+      "textoRespuesta":enunciado,
+      "ordenRespuesta":orden
+
+    }
+    return this.http.post<Respuesta>(path, body)
+
+  }
+
+  editarRespuesta(ref:number,refP:number, refResp:number, texto:string){
+    let path= this.url+"quiz/"+ref+"/preguntas/"+refP+"/respuestas/"+refResp;
+    const body={
+      "textoRespuesta":texto
+    }
+    return this.http.put(path,body)
+
+  }
+
+  borrarRespuesta(ref:number, refP:number, refResp:number){
+    let path= this.url+"quiz/"+ref+"/preguntas/"+refP+"/respuestas/"+refResp;
+    return this.http.delete(path)
+  }
+
+  
+  proponer(mensaje:string, reportador:string){
+    const path = `${this.url}enviar`;
+    const peticion= {
+      "subject":"Propuesta de pregunta",
+      "text":reportador + " sugiere la siguiente pregunta " + mensaje
+    }
+    return this.http.post(path, peticion);
+
 
   }
 }

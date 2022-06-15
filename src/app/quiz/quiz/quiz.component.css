@@ -5,3 +5,7 @@ list-style-type: none;
 li{
     cursor: pointer
 }
+
+.container{
+    height: 100%;
+}

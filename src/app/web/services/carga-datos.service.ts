@@ -22,4 +22,14 @@ export class CargaDatosService {
     });
     return this.http.request(peticion);
   }
+
+  upAvatar(file: File, nick:string): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    const peticion = new HttpRequest('POST', `${this.baseUrl}avatar?nick=`+nick, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(peticion);
+  }
 }

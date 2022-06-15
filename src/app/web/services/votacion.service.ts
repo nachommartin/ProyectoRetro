@@ -26,7 +26,7 @@ export class VotacionService {
 
   }
 
-  //Método para obteneres las votaciones de un usuario
+  //Método para obtener las votaciones de un usuario
   obtenerVotacionesUsuario(usuario:string){
     let ruta:string= this.baseUrl+"votacion"; 
     
@@ -38,6 +38,17 @@ export class VotacionService {
 
 
   }
+
+    //Método para obtener las votaciones de un usuario pero que tengan reseñas
+    obtenerVotacionesConReseñas(nick:string){
+      let ruta:string= this.baseUrl+"usuario/"+nick+"/reviews"; 
+      
+    
+      
+      return this.http.get<Votacion[]>(ruta);
+  
+  
+    }
 
   //Método para añadir una reseña
   incluirReview(ref:number,review:string, usuario:string){
@@ -66,6 +77,21 @@ export class VotacionService {
     let ruta:string= this.baseUrl+"juego/"+ref+"/review"; 
     return this.http.get<Votacion[]>(ruta);
 
+
+  }
+
+  quitarReview(ref:number){
+    let path= this.baseUrl+"votacion/"+ref;
+    return this.http.delete(path)
+
+  }
+
+  editarReview(ref:number, review:string){
+    let path= this.baseUrl+"votacion/"+ref;
+    const peticion={
+      "review":review
+    }
+    return this.http.put(path,peticion)
 
   }
  

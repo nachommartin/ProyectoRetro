@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container p-4 bg-white" *ngIf="carga">
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
     <p-tabView (onChange)="cargarRespuestas($event)">
         <p-tabPanel header="{{nombreQuiz}}">
             Este es el primer nivel. Cada respuesta correcta vale 5 puntos y las incorrectas restan 1 punto
@@ -58,6 +59,8 @@
         </p-tabPanel>
     </p-tabView>
 </div>
+<app-footer></app-footer>
+
 <p-toast key="correcto"></p-toast>
 <p-toast key="error"></p-toast>
 

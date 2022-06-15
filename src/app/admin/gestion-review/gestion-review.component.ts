@@ -103,6 +103,7 @@ export class GestionReviewComponent implements OnInit {
 
   seleccionarParaEditar(voto:Votacion){
     this.seleccionado = voto;
+    this.textoEdicion=voto.review
     this.dialogoEdit=!this.dialogoEdit;
   }
 

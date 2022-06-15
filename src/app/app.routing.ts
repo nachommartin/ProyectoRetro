@@ -28,7 +28,11 @@ import { GestionMensajeComponent } from "./admin/gestion-mensaje/gestion-mensaje
 import { GestionReviewComponent } from "./admin/gestion-review/gestion-review.component";
 import { GestionUsuariosComponent } from "./admin/gestion-usuarios/gestion-usuarios.component";
 import { NotbangService } from "./guardian/notbang.service";
-import { QuizComponent } from "./quiz/quiz/quiz.component";
+import { GestionQuizComponent } from "./admin/gestion-quiz/gestion-quiz.component";
+import { QuizzComponent } from "./admin/quizz/quizz.component";
+import { QuestionComponent } from "./admin/question/question.component";
+import { MyVotosComponent } from "./web/my-votos/my-votos.component";
+import { MyReviewsComponent } from "./web/my-reviews/my-reviews.component";
 
 
 
@@ -76,6 +80,17 @@ const appRoutes: Routes = [
     path: 'usuario', component: UsuarioComponent, 
     canActivate: [ GuardianService, NotbangService ]
    },
+   
+   {
+    path: 'mis_votos', component: MyVotosComponent, 
+    canActivate: [ GuardianService, NotbangService ]
+   },
+
+   {
+    path: 'mis_reviews', component: MyReviewsComponent, 
+    canActivate: [ GuardianService, NotbangService ]
+   },
+
 
    {
     path: 'seguidores', component: MySeguidoresComponent, 
@@ -155,6 +170,19 @@ const appRoutes: Routes = [
     path: 'admin_users', component: GestionUsuariosComponent,
     canActivate: [ AdminGService ]
    },
+   {
+    path: 'admin_quizz', component: GestionQuizComponent,
+    canActivate: [ AdminGService ]
+   },
+
+   {
+    path:'quizzes/:ref', component: QuizzComponent, 
+    canActivate: [ AdminGService]
+  },
+  {
+    path:'quizzes/:ref/questions/:refQ', component: QuestionComponent, 
+    canActivate: [ AdminGService]
+  },
   {
     path: 'datos', component: DatosComponent 
    },

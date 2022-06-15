@@ -1,11 +1,12 @@
 <app-navbar></app-navbar>
-<div *ngIf="carga==true" class="row">
-    <div class="container p-4 bg-white">
-        <div class="card align-items-center text-justify">
+    <div *ngIf="carga==true" class="container p-4 bg-white" id="contenedor" >
+        <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+        <div class="card  text-justify">
             <div class="card-body">
                 <div class="row"> 
-                <div class="col-md-4 bg-light my-2">
-                <img class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario">
+                <div class="col-md-5 bg-light py-5">
+                <img *ngIf="!usuario.avatar" class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario" id="avatar">
+                <img *ngIf="usuario.avatar" class="card-img-top center-block d-block mx-auto"src={{obtenerImagen(usuario)}}     alt="Icono de usuario" id="avatar">
                 <h5 class="card-title text-center font-weight-bold">
                     {{usuario.nick}}
                 </h5>
@@ -13,12 +14,16 @@
                     <li class="list-group-item">Correo: {{usuario.correo}}</li>
                     <li *ngIf="usuario.ciudad" class="list-group-item">Ubicación: {{usuario.ciudad}}</li>
                     <li *ngIf="!usuario.ciudad" class="list-group-item">Ubicación: No definida aún</li>
+                    <li *ngIf="usuario.rango=='MASTER_OF_THE_SYSTEM'"class="list-group-item">Rango: MASTER OF THE SYSTEM</li>
+                    <li *ngIf="usuario.rango!='MASTER_OF_THE_SYSTEM'"class="list-group-item">Rango: {{usuario.rango}}</li>
                     <li class="list-group-item">Juegos votados:  {{usuario.numVotos}}</li>
                     <li class="list-group-item">Reseñas realizadas:  {{usuario.numReviews}}</li>
                     <li class="list-group-item">Seguidores: {{usuario.numSeguidores}} </li>
+                    <li class="list-group-item">Siguiendo:  {{usuario.numSiguiendo}}  </li>
+                    <li class="list-group-item">Listas:  {{usuario.numListas}}  </li>
                   </ul>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <!--Formulario reactivo-->
                     <form class="custom-form" method="post"  [formGroup]="formGroup">	
                         <!--El correcto completado del campo de formulario se gestiona con un la función campoNoValido y en el template se especifica
@@ -66,10 +71,48 @@
                         <div class="form-group">
                             <input type="submit" value="Actualizar"  (click)="actualizar()"  class="btn float-right login_btn">
                         </div>
-                    </form>                      
+                    </form>  
+                    <br><br>
+                    <div>
+                        <button *ngIf="usuario.rango!='ROOKIE'" pButton pRipple type="button" label="Añadir imagen de avatar" class="p-button-raised"  (click)="cargarAvatar()"></button>
+                    </div>   
+                    <br>
+                    <div>
+                        <button *ngIf="usuario.rango!='ROOKIE' && usuario.rango!='GAMER'" pButton pRipple type="button" label="Sugerir pregunta" class="p-button-raised"  (click)="cargarAvatar()"></button>
+                    </div>                 
                  </div>
                  </div>
                  </div>
                  </div>
                  </div>
-                 </div>
+                 <app-footer></app-footer>
+
+                
+              
+                
+
+                 <p-dialog [(visible)]="dialogoAvatar" [style]="{'width':'550px'}" header="Sube tu avatar">
+                    <div class="col-8">
+                        <label class="btn btn-default p-0">
+                          <input type="file" (change)="selectFile($event)" />
+                        </label>
+                      </div>
+                      <div class="col-4">
+                        <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
+                          Subir
+                        </button>
+                      </div>
+                
+                <div *ngIf="currentFile" class="progress my-3">
+                    <div
+                      class="progress-bar progress-bar-info progress-bar-striped"
+                      role="progressbar"
+                      attr.aria-valuenow="{{ progress }}"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      [ngStyle]="{ width: progress + '%' }"
+                    >
+                      {{ progress }}%
+                    </div>
+                  </div>
+                </p-dialog>

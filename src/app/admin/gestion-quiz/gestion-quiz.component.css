@@ -1,0 +1,47 @@
+#add {
+    color: black;
+    background-color: #9bd169;
+    cursor: pointer;
+    margin: 0.25rem 0.125rem;
+    float: left;
+    border:none
+}
+
+#save {
+    background-color: #9bd169;
+    cursor: pointer;
+    margin: 0.25rem 0.125rem;
+    float: right;
+}
+
+#edit {
+    background-color: #e4d00a;
+    cursor: pointer;
+    margin: 0.25rem 0.125rem;
+    float: right;
+}
+
+.error{
+    display: block;
+    color: red!important;
+}
+
+#title{
+    cursor: pointer
+  }
+
+.focusBorrar:hover {
+    color: red;
+}
+
+.focusEditar:hover {
+    color: blue;
+}
+  
+h4{
+    text-align: center;
+  }
+
+  .container{
+    height: 100%;
+  }

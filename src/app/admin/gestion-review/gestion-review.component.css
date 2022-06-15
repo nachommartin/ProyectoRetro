@@ -1,0 +1,14 @@
+.container{
+    height: 100%;
+    text-align: center;
+
+  }
+
+  #tarjeta{
+    display: flex;
+  justify-content: center;
+  }
+
+
+
+ 

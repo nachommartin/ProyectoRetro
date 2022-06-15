@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Juego, Listado, Usuario } from '../interfaces/juego';
 import { AmistadService } from '../services/amistad.service';
@@ -19,6 +20,11 @@ export class ListaUsuarioComponent implements OnInit {
   carga:boolean=false
   listaRef:number[]=[];
   arrayDeArrays:Array<Juego>[]=[]
+  pages: number = 1;
+  paginas:number =1
+  home!:MenuItem;
+  items:MenuItem[]=[]
+
 
   constructor(private ruta:ActivatedRoute, private servicioFollow: AmistadService, 
     private servicioUser:ServUserService) { }
@@ -27,6 +33,7 @@ export class ListaUsuarioComponent implements OnInit {
 
     this.nickStalkeado=this.ruta.snapshot.params['usuario']
     this.cargarStalkeado()
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
 
     
   }
@@ -36,6 +43,10 @@ export class ListaUsuarioComponent implements OnInit {
       this.stalkeado=resp
       this.cargarListado()
       this.carga=true;
+      this.items = [
+        {label: 'Comunidad', routerLink:'/comunidad'},
+        {label: 'Listas de '+ this.nickStalkeado, routerLink:'/listas/'+this.nickStalkeado},
+    ];
       })
     
   }

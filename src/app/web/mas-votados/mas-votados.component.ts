@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { Juego } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 
@@ -11,17 +12,23 @@ export class MasVotadosComponent implements OnInit {
 
   masVotado:Juego[]=[]
   carga:boolean=false
+  items:MenuItem[]=[]
+  home!: MenuItem;
 
   constructor(private servicio:BuscadorService) { }
 
   ngOnInit(): void {
     this.cargaDatos()
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
   }
 
   cargaDatos(){
     this.servicio.obtenerMasVotados().subscribe((resp) => {
       this.masVotado = resp;
       this.carga=true
+      this.items = [
+        {label: 'Más votados', routerLink:'/mas_votados'},
+      ]
     });
   }
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
-import { Comentario } from '../interfaces/juego';
+import { Comentario, Usuario } from '../interfaces/juego';
 import { AmistadService } from '../services/amistad.service';
 import { ServUserService } from '../services/serv-user.service';
 
@@ -17,6 +18,9 @@ export class MensajeComponent implements OnInit {
   sizeArray:number=0;
   numero:number=0;
   carga:boolean=false;
+  items:MenuItem[]=[]
+  pages: number = 1;
+  home!: MenuItem;
 
   constructor(private servicioFollow:AmistadService, private servicioLogin:LoginService, 
     private servicioUsuario:ServUserService) { }
@@ -27,6 +31,11 @@ export class MensajeComponent implements OnInit {
       this.nick=resp.nick; 
       this.receptor=resp.correo
       this.cargarMensajes()
+      this.items = [
+        {label: resp.nick, routerLink:'/usuario'},
+        {label: 'Mis mensajes', routerLink:'/mensajes'},
+      ]
+      this.home = {icon: 'pi pi-home', routerLink: '/main'};
 
       
     })
@@ -71,6 +80,15 @@ export class MensajeComponent implements OnInit {
     }
     })
   }
-  
+
+  styleCard = {'background-color': '#f7f7f5', 'width':'80%',  'margin-left': 'auto',
+'margin-right': 'auto', 'display': 'block', 'margin-top':'0.625rem', 'margin-bottom':'0.625rem'}
+
+
+obtenerAvatar(usuario:Usuario){
+  const base64String = btoa(String.fromCharCode(...new Uint8Array(usuario.avatar)));
+  const source = `data:image/png;base64,${base64String}`+usuario.avatar;
+  return source;
+}
 
 }

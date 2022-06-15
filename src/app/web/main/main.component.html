@@ -1,30 +1,26 @@
 <router-outlet></router-outlet>
-<div class="row">
-    <div class="col-md-2 col-sm-3"></div>
-    <div class="col-md-8 col-sm-6 col-xs-12">
-
-        <div class="card align-items-center text-justify">
-            <div class="card-body">
+<div class="container p-4 bg-white">
+   <br>
                 <h2 class="card-title text-center font-weight-bold">
                     Megadriver</h2>
-                <div>
-                    <!--Aquí se carga la información traspasada por el elemento hijo mediante event emitter, según lo que se pase,
-                    se mostrará un gif animado u otro-->
-                <p *ngIf="val" class="card-text text-center font-weight-bold">Has elegido que {{ val }} te dé la bienvenida</p>
-                <div *ngIf="val=='Sonic'">
-                    <img class="card-img-top" src="https://c.tenor.com/eMIgxZec83UAAAAd/sonic-sega.gif" alt="Escena de Sonic The Hedgehog" width="20rem" height="250rem">
-                </div>
-                <div *ngIf="val=='Axel'">
-                    <img class="card-img-top" src="https://c.tenor.com/5kUSNkKndEcAAAAd/streets-of-rage-sor3.gif" alt="Escena de Streets of Rage" width="20rem" height="250rem">
-                </div>
-                <div *ngIf="val=='Gilius'">
-                    <img class="card-img-top" src="https://c.tenor.com/vHIUuUW1mjUAAAAd/golden-axe-dwarf.gif" alt="Escena de Golden Axe" width="20rem" height="250rem">
-                </div>
-                </div>
-               
+                    <hr>
+                    <p>MegaDriver es la base de datos de juegos de Mega Drive lanzados en Europa más importante y completa en español de Internet, pretende ser 
+                        referencia en consulta de puntuaciones medias y críticas de usuarios de cada una de los míticos juegos de la 16 bits de SEGA. Además es
+                        también una web independiente de votación y recomendación de juego de forma personalizada. También es una red social donde puedes consultar
+                        lo que opinan tus amigos de cualquier juego. MegaDriver es, para muchos, un "diario" de su pasión por la Mega Drive: aquí te "guardamos y ordenamos"
+                        tus gustos y lo que has jugado (o quieres jugar) a través de votaciones, reseñas y listas. Además, como la parte lúdica es importante, cuenta
+                        con un juego de preguntas tipo quiz para poner a prueba tus conocimientos.</p>
+                
+                       <p>Te recomendamos que empieces a votar todos los juegos que hayas jugado. Así, tus amigos podrán consultarlas y podremos generar datos interesantes para la
+                        comunidad MegaDriver. No te demores más y empieza a buscar juegos en nuestro buscador.</p>
+
+                        <p>Bienvenid@ a tu casa, bienvenido a MegaDriver.  </p>
+              <hr>
+         
         </div>
-        </div>
-        </div>
-        </div>
+        <app-footer></app-footer>
+
+
         <!--Carga dele elemento hijo con la propagación del evento-->
-<app-child  (selected)="itemSelected($event)"></app-child>
+        <!--
+<app-child  (selected)="itemSelected($event)"></app-child>-->

@@ -7,13 +7,23 @@ import {CardModule} from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { QuizRoutingModule } from './quiz-routing';
+import { SelectQuizComponent } from './select-quiz/select-quiz.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import {MenuModule} from 'primeng/menu';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { FormsModule } from '@angular/forms';
+import {ButtonModule} from 'primeng/button';
+
+
+
 
 
 
 
 @NgModule({
   declarations: [
-    QuizComponent
+    QuizComponent,
+    SelectQuizComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +32,12 @@ import { QuizRoutingModule } from './quiz-routing';
     WebModule,
     CardModule,
     ToastModule,
-    DialogModule
+    DialogModule,
+    NgxPaginationModule,
+    MenuModule,
+    BreadcrumbModule,
+    FormsModule,
+    ButtonModule
     
     
   ]

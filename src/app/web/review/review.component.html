@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
-<div class="row">
-    <div class="container p-4 bg-white">
+<div class="container p-4 bg-white" *ngIf="carga==true">
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         <!-- Se controla por booleano que si el juego no se carga no se muestre el contenido-->
-        <div *ngIf="carga==true" class="card text-justify">
+        <div  class="card text-justify">
             <div class="card-body">
                 <h5 class="card-title text-center font-weight-bold">
                     {{juegoCargado.titulo}}
@@ -13,7 +13,7 @@
                 <div *ngIf="sizeArray==0">
                     <p class="text-center">No hay reseñas aún</p>
                 </div>
-                <div class="col-md-12 bg-light border border-secondary p-5" *ngFor= "let votoReview of reviewsJuego">  
+                <div class="col-md-12 bg-light border border-secondary p-5" *ngFor= "let votoReview of reviewsJuego  | paginate: { itemsPerPage: 2, currentPage: pages }" id="review">  
                 <div header>
                 <h6 class="card-text font-weight-bold"> {{votoReview.votante}}  </h6>
                 <span class="card-text text-danger border border-danger" id="nota"> {{votoReview.voto}}  </span>
@@ -26,9 +26,14 @@
                 <button type="button" id="botones" class="btn btn-primary" (click)="reportar(votoReview.codigo)">Reportar</button>
 
                 </div>
+                <div *ngIf="reviewsJuego.length>0" id="paginador">
+                    <pagination-controls   previousLabel="Anterior"
+                    nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
+                    </div>
 
             <footer class="blockquote-footer" (click)="goBack()">Volver al juego</footer>           
          </div>
         </div>
         </div>
-        </div>
+        <app-footer></app-footer>
+

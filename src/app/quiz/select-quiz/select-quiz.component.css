@@ -1,0 +1,25 @@
+
+#paginador, h4{
+    text-align: center;
+    display: block;
+  }
+
+  .container{
+    height:100%
+  }
+
+  #boton{
+    padding-bottom: 0.5rem;
+  }
+
+  #send {
+    background-color: #e4d00a;
+    cursor: pointer;
+    margin: 0.25rem 0.125rem;
+    float: right;
+    }
+
+    .error{
+        display: block;
+        color: red!important;
+    }

@@ -3,6 +3,9 @@ import { Juego } from 'src/app/web/interfaces/juego';
 import { DatatableService } from '../services/datatable.service';
 import {Subject} from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { MenuItem } from 'primeng/api';
+import { ViewEncapsulation } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 
 
@@ -11,53 +14,63 @@ import { DataTableDirective } from 'angular-datatables';
   templateUrl: './datos.component.html',
   styleUrls: ['./datos.component.css']
 })
-export class DatosComponent implements OnInit, OnDestroy {
+export class DatosComponent implements OnInit {
 
   @ViewChild(DataTableDirective, {static: false})
   dtElement!: DataTableDirective;
 
   datosJuegos: Juego[] = [];
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
+  items:MenuItem[]=[]
+  carga!:boolean
 
 
 
-  constructor(private servicio : DatatableService) { }
+
+  constructor(private servicio : DatatableService, private router: Router) { }
 
   ngOnInit(): void {
     
-    this.dtOptions = {
-    pagingType: 'full_numbers',
-    pageLength: 2,
-    responsive: true,
-    language: {
-      url: '/assets/es-ES.json'
-    }
-    }
-
+    
     this.datos();
+    this.items = [
+      {
+          items: [{
+              label: 'Volver al inicio',
+              icon: 'pi pi-step-backward',
+              command: () => {
+                  this.goBack();
+              }
+          }
+      ]}]
 
     
    
   }
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-
-  }
+  
 
   //Método para cargar los datos de nuestra base de datos y traspasárselos
   //a la datatable
   datos(){
     this.servicio.datos().subscribe((resp) => {
       this.datosJuegos = resp;
-      this.dtTrigger.next(this.datosJuegos);
+      this.carga=true;
     });
   }
   
 
   goBack() {
-    window.history.back();
+    this.router.navigateByUrl('/');
+  }
+
+  obtenerImagen(juego:Juego){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(juego.imagen)));
+    const source = `data:image/png;base64,${base64String}`+juego.imagen;
+    return source;
+  }
+
+  applyFilterGlobal($event: any, stringVal: any,  dt: any) {
+    dt!.filterGlobal(($event.target as HTMLInputElement).value, 'contains');
   }
 
 

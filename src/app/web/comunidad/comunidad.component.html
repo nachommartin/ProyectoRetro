@@ -1,5 +1,13 @@
 <app-navbar></app-navbar>
-<div class="container p-4 bg-white">
+<div class="container p-4 bg-white" id="contenedor">
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+    <h4>¡La comunidad seguera te está esperando!</h4>
+    <div class="row px-5">
+    <p>MegaDriver no sólo es una plataforma para poder rememorar los clásicos juegos de la Mega Drive que se lanzaron en el Viejo Continente y poder valorarlos y reseñarlos sino que 
+    también es una comunidad de usuarios con los que podrás conectar y compartir miles de anécdotas relacionadas con nuestra querida Mega Drive. !No lo dudes y haz nuevos amigos!
+    </p>
+    </div>
+    <br>
     <div class="row">
     <div class="col-md-8 col-sm-6 col-xs-12">
     <h5 class="text-dark">Número de usuarios: {{numUsuarios}}</h5>
@@ -10,15 +18,15 @@
 
     </div>
     </div>
-<!-- Cada resultado de la búsqueda se muestra en una card-->
-<div class="row" *ngIf="sizeArray>=0">
     <div *ngIf="sizeArray==0">
         <h5 class="text-center">No hay resultados para su búsqueda</h5>
-    </div>    
-    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let user of usuarios">
+    </div>
+<!-- Cada resultado de la búsqueda se muestra en una card-->
+<div class="row" *ngIf="sizeArray>=0">    
+    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let user of usuarios | paginate: { itemsPerPage: 3, currentPage: pages }">
         <div class="card align-items-center text-justify">
-            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Avatar de usuario">
-            <div class="card-body">
+            <img *ngIf="!user.user.avatar" class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario" id="avatar">
+            <img *ngIf="user.user.avatar" class="card-img-top center-block d-block mx-auto"src={{obtenerAvatar(user.user)}}     alt="Icono de usuario" id="avatar">            <div class="card-body">
                 <h5 class="card-title text-center">
                     {{user.user.nick}}
                 </h5>
@@ -27,27 +35,28 @@
                     <li class="list-group-item">Reseñas: {{user.user.numReviews}}</li>
                     <li class="list-group-item">Número de seguidores:  {{user.user.numSeguidores}}</li>
                   </ul>
-               <div  *ngIf="!user.esAmigo" style="text-align: center">
-                    <button class="btn btn-primary"   (click)="follow(user.user.correo)" >Seguir a este usuario</button>
+                  <span class="p-buttonset">
+                     
+                        <button  *ngIf="!user.esAmigo" pButton pRipple label="Seguir" (click)="follow(user.user.correo)"></button>
+                        <button  *ngIf="user.esAmigo" pButton pRipple label="Unfollow" (click)="unfollow(user.user.correo)"></button>
+                    <button pButton pRipple label="Votos"   (click)="verVotos(user.user.correo, user.user.nick)"></button>
+                    <button pButton pRipple label="Listas"   (click)="verListas(user.user.nick)"></button>
+                </span>
+                <div  style="text-align: center" id="mensaje">
+                <button pButton pRipple label="Enviar mensaje"  class="p-button-outlined p-button-rounded" icon="pi pi-envelope" (click)="mandarMensaje(user.user.nick)"></button>
                 </div>
-                <div  *ngIf="user.esAmigo"  style="text-align: center">
-                    <button class="btn btn-primary"   (click)="unfollow(user.user.correo)" >Dejar de seguir a este usuario</button>
-                </div>
-                <div  style="text-align: center">
-                    <button class="btn btn-primary"   (click)="verVotos(user.user.correo, user.user.nick)" >Ver votos</button>
-                </div>
-                <div  style="text-align: center">
-                    <button class="btn btn-primary"   (click)="verListas(user.user.nick)" >Ver listas</button>
-                </div>
-                <div  style="text-align: center">
-                    <button class="btn btn-primary"   (click)="mandarMensaje(user.user.nick)" >Enviar un mensaje</button>
-                </div>
+
             </div>
         </div>
 
     </div>
     </div>
+    <div id="paginacion" *ngIf="usuarios.length>1">
+        <pagination-controls    previousLabel="Anterior"
+              nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
+            </div>
     </div>
+    <app-footer></app-footer>
 
 
  

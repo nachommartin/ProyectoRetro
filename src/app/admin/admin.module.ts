@@ -21,6 +21,8 @@ import { GestionReviewComponent } from './gestion-review/gestion-review.componen
 import { GestionUsuariosComponent } from './gestion-usuarios/gestion-usuarios.component'; 
 import { MessageService } from 'primeng/api';
 import { GestionQuizComponent } from './gestion-quiz/gestion-quiz.component';
+import { QuizzComponent } from './quizz/quizz.component';
+import { QuestionComponent } from './question/question.component';
 
 
 
@@ -31,7 +33,9 @@ import { GestionQuizComponent } from './gestion-quiz/gestion-quiz.component';
     GestionMensajeComponent,
     GestionReviewComponent,
     GestionUsuariosComponent,
-    GestionQuizComponent
+    GestionQuizComponent,
+    QuizzComponent,
+    QuestionComponent
   ],
   imports: [
     CommonModule,

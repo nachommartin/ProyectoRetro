@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { Juego } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 
@@ -11,11 +12,15 @@ export class MejorMediaComponent implements OnInit {
 
   mejorMedia:Juego[]=[]
   carga:boolean=false
+  items:MenuItem[]=[]
+  home!: MenuItem;
+
 
   constructor(private servicio:BuscadorService) { }
 
   ngOnInit(): void {
     this.cargaDatos()
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
   }
 
   
@@ -23,6 +28,9 @@ export class MejorMediaComponent implements OnInit {
     this.servicio.obtenerMejorMedia().subscribe((resp) => {
       this.mejorMedia = resp;
       this.carga=true
+      this.items = [
+        {label: 'Mejor valorados', routerLink:'/mejor_valorados'},
+      ]
     });
   }
 

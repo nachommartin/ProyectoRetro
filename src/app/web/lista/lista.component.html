@@ -1,14 +1,15 @@
 <app-navbar></app-navbar>
-<div *ngIf="carga==true" class="row">
-    <div class="container p-4 bg-white">
+<div *ngIf="carga==true" class="container p-4 bg-white">
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         <div *ngIf="!lista" class="row justify-content-center">
             <h3 class="text-center">No tienes acceso a esta lista</h3>
         </div>
-        <div *ngIf="lista" class="card align-items-center text-justify">
+        <div *ngIf="lista" class="card text-justify">
             <div class="card-body">
                 <div class="row"> 
-                <div class="col-md-4 bg-light my-2">
-                <img class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario">
+                <div class="col-md-5 bg-light py-5">
+                    <img *ngIf="!usuario.avatar" class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario" id="avatar">
+                    <img *ngIf="usuario.avatar" class="card-img-top center-block d-block mx-auto"src={{obtenerAvatar(usuario)}}     alt="Icono de usuario" id="avatar">
                 <h5 class="card-title text-center font-weight-bold">
                     {{usuario.nick}}
                 </h5>
@@ -16,6 +17,8 @@
                     <li class="list-group-item">Correo: {{usuario.correo}}</li>
                     <li *ngIf="usuario.ciudad" class="list-group-item">Ubicación: {{usuario.ciudad}}</li>
                     <li *ngIf="!usuario.ciudad" class="list-group-item">Ubicación: No definida aún</li>
+                    <li *ngIf="usuario.rango=='MASTER_OF_THE_SYSTEM'"class="list-group-item">Rango: MASTER OF THE SYSTEM</li>
+                    <li *ngIf="usuario.rango!='MASTER_OF_THE_SYSTEM'"class="list-group-item">Rango: {{usuario.rango}}</li>
                     <li class="list-group-item">Juegos votados:  {{usuario.numVotos}}</li>
                     <li class="list-group-item">Reseñas realizadas:  {{usuario.numReviews}}</li>
                     <li class="list-group-item">Seguidores: {{usuario.numSeguidores}} </li>
@@ -23,8 +26,8 @@
                     <li class="list-group-item">Listas: {{usuario.numListas}} </li>
                   </ul>
                 </div>
-                <div class="col-md-8">
-                        <h3>{{lista.nombre}}</h3>  
+                <div class="col-md-7">
+                        <h3 id="tarjeta">{{lista.nombre}}</h3>  
                         <h5 *ngIf="sizeArray==0">Aún nos ha añadido juegos a tu lista</h5> 
                         <ul class="list-group list-group-mine" *ngFor="let juego of juegos">
                             <li class="list-group-item">{{juego.titulo}}</li>   
@@ -36,16 +39,20 @@
     <div *ngIf="juegoArray">
         <h5 class="text-center">No hay resultados para su búsqueda</h5>
     </div>    
-    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let juego of juegosObtenidos">
+    <div class="col-md-12 col-sm-12 col-xs-12" *ngFor= "let juego of juegosObtenidos | paginate: { itemsPerPage: 2, currentPage: pages }">
         <div class="card align-items-center text-justify">
-            <img class="card-img-top" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
+            <div  *ngIf="!juego.imagen" class="col-md-2">
+                <img  alt="caratula" src="https://i.ibb.co/sV1y6Sm/artoffighting.jpg" width="200%">
+            </div>  
+            <div  *ngIf="juego.imagen" class="col-md-2">
+                <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juego)}}  alt="Caratula del juego"  class="shadow-4" />
+            </div>      
             <div class="card-body">
                 <h5 class="card-title text-center">
                     {{juego.titulo}}
                 </h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Año: {{juego.year}}</li>
-                    <li class="list-group-item">Desarrollador: {{juego.desarrollador}}</li>
                     <li class="list-group-item">Categoría:  {{juego.categoria}}</li>
                   </ul>
                 <div *ngIf="listaRef.indexOf(juego.referencia) == -1"style="text-align: center">
@@ -56,11 +63,15 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <div id="paginacion" *ngIf="juegosObtenidos.length>1">
+    <pagination-controls    previousLabel="Anterior"
+          nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
+        </div>
                  </div>
                  </div>
                  </div>
                  </div>
                  </div>
-                 </div>
+                 <app-footer></app-footer>
+

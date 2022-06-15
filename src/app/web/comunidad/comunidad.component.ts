@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
 import { FollowCredentials, Usuario } from '../interfaces/juego';
@@ -18,16 +19,28 @@ export class ComunidadComponent implements OnInit {
   sizeArray:number=-1;
   numUsuarios:number=0;
   userAsk!:string; 
+  pages: number = 1;
+  home!:MenuItem; 
+  items:MenuItem[]=[]
 
 
 
   constructor(private servicioLogin: LoginService ,private servicioBusqueda: BuscadorService, private servicioFollow: AmistadService, private router: Router) { }
 
   ngOnInit(): void {
+    this.datos()
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
+
+  }
+
+  datos(){
     this.obtenerUsuarios();
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.userAsk=resp.correo; 
+      this.items = [
+        {label: 'Comunidad', routerLink:'/comunidad'},
+    ];
     }
     )
   }
@@ -62,7 +75,6 @@ export class ComunidadComponent implements OnInit {
         this.usuarios= resp;
         this.sizeArray=resp.length
       } );
-      this.router.navigateByUrl('/comunidad');
    }),
    error: resp=> {
      Swal.fire(
@@ -83,7 +95,6 @@ export class ComunidadComponent implements OnInit {
       this.usuarios= resp;
       this.sizeArray=resp.length
     } );
-     this.router.navigateByUrl('/comunidad');
  }),
  error: resp=> {
    Swal.fire(
@@ -115,5 +126,12 @@ mandarMensaje(nick:string){
 verListas(nick:string){
   this.router.navigateByUrl('/listas/'+nick);
 }
+
+obtenerAvatar(usuario:Usuario){
+  const base64String = btoa(String.fromCharCode(...new Uint8Array(usuario.avatar)));
+  const source = `data:image/png;base64,${base64String}`+usuario.avatar;
+  return source;
+}
+
 
 }

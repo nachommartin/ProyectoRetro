@@ -20,5 +20,11 @@
   }
 
   #row2{
-    margin-left: 15rem;
+    margin-left: 18rem;
+}
+
+#contenedor{
+  height: 100%;
+  text-align: center;
+
 }

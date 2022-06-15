@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div *ngIf="carga==true" class="container p-4 bg-white" id="contenedor" >
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+        <div *ngIf="votos.length==0">
+            <h3>No hay votos aún</h3>
+        </div>
+<br><br>
+<div *ngFor="  let voto of votos | paginate: { itemsPerPage: 3, currentPage: pages }">
+            <p-card [header]="voto.juego.titulo" [style]="styleCard">
+                <ng-template pTemplate="header">
+                    <button pButton class="p-button-rounded p-button-text" icon="pi pi-pencil" (click)="volverAVotar(voto)" id="focusEditar">
+                    </button>
+                </ng-template>
+                <div class="row"> 
+                    <div  *ngIf="!voto.juego.imagen" class="col-md-2">
+                        <img alt="caratula" src="https://i.ibb.co/sV1y6Sm/artoffighting.jpg">
+                    </div>
+                    <div  *ngIf="voto.juego.imagen" class="col-md-2">
+                    <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(voto.juego)}}  alt="Caratula del juego"  class="shadow-4" />
+                    </div>
+                    <div id="listado" class="col-md-7">
+                        <ul >
+                            <li >{{voto.juego.year}}</li>
+                            <li>{{voto.juego.categoria}}</li>
+                          </ul>
+                    </div>
+                    <div  *ngIf="!voto.juego.imagen" class="col-md-3">
+                <b><h5 id="voto" class="card-title">{{voto.voto}}</h5></b>
+                    <div *ngIf="voto.voto>7">
+                        <span class="pi pi-star-fill" style="color: #9bd169"></span>
+                        <span class="pi pi-star-fill" style="color: #9bd169"></span>
+                        <span class="pi pi-star-fill" style="color: #9bd169"></span>
+                    </div>
+                    <div *ngIf="nota(voto)=='REGULAR'">
+                        <span class="pi pi-star-fill" style="color: #e4d00a"></span>
+                        <span class="pi pi-star-fill" style="color: #e4d00a"></span>
+                    </div>
+                    <div *ngIf="nota(voto)=='MALA'">
+                        <span class="pi pi-star-fill" style="color: red"></span>
+                    </div>
+                    <i><label id="date">Votado el {{voto.fecha}}</label></i>
+                    </div>
+                    </div>
+            </p-card>
+</div>
+<div *ngIf="votos.length>0">
+<pagination-controls   previousLabel="Anterior"
+nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
+</div>
+<br>
+</div>
+<app-footer></app-footer>

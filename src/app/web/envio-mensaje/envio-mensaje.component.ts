@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
 import { AmistadService } from '../services/amistad.service';
@@ -15,6 +16,9 @@ export class EnvioMensajeComponent implements OnInit {
   receptorNick!:string;
   receptor!:string;
   emisor!:string;
+  home!:MenuItem;
+  items:MenuItem[]=[]
+
 
   constructor(private ruta:ActivatedRoute, private servicioFollow:AmistadService, 
     private servicioLogin:LoginService, private router: Router) { }
@@ -25,8 +29,14 @@ export class EnvioMensajeComponent implements OnInit {
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.emisor=resp.correo; 
+      this.items = [
+        {label: 'Comunidad', routerLink:'/comunidad'},
+        {label: 'Mensaje para '+ this.receptorNick, routerLink:'/mensaje/'+this.receptorNick},
+    ];
       
     })
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
+
 
   }
 

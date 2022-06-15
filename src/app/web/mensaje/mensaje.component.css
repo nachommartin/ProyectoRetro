@@ -1,3 +1,31 @@
 #botones{
-    margin-left: 7.5rem;
+    margin-left: 0.6rem;
+    margin-top: 2.5rem;
 }
+
+#contenedor{
+    
+    height: 100%;
+    text-align: center;
+    }
+
+    img{
+       width: 78%;
+        }
+    
+    ul {
+        list-style-type: none;
+        margin-top: 1.5rem;
+        padding: 0;
+   }
+    
+ #listado{
+   text-align: left;
+     }
+
+#mensaje{
+    margin-top: 1.5rem;
+
+     }
+
+     

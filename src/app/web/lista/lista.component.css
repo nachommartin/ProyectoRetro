@@ -1,0 +1,19 @@
+#avatar{
+    width: 100%;
+    max-width: 14rem;
+    height: auto;
+}
+
+
+#tarjeta{
+    text-align: center;
+
+  }
+
+  .card{
+    margin:0.5rem;
+  }
+
+  #paginacion{
+    text-align: center;
+  }

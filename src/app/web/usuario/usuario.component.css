@@ -3,3 +3,36 @@
     background-color: #f8f9fa;
   
   }
+
+  #avatar{
+    width: 100%;
+    max-width: 14rem;
+    height: auto;
+}
+
+#contenedor{
+    
+height: 82%;
+}
+
+
+#lista{
+  text-align: center;
+}
+
+.pill{
+  margin: 0.75rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: white;
+  background-color: #0275d8;
+  border-radius: 1.5rem;
+  color:white;
+  cursor:pointer
+
+}
+
+.pill:hover {
+  background-color: white;
+  color:#0275d8
+}

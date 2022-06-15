@@ -1,5 +1,6 @@
 .container{
     margin-top: 0.313rem;
+    
 
 }
 
@@ -8,6 +9,13 @@
     margin-bottom: 0.313rem;
     margin-top: 0.313rem;
 }
+
+
+
+#paginador{
+    text-align: center;
+    display: block;
+  }
 
 @media (min-width: 576px) { .card-img-top{width: 100%; height:auto;} }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
 import { Juego, Listado, Usuario } from '../interfaces/juego';
@@ -24,7 +25,9 @@ juegoArray:boolean=false;
 cadena:string= ''; 
 resultados:Juego[]=[];
 listaRef:number[]=[]
-
+pages: number = 1;
+home!:MenuItem;
+items:MenuItem[]=[]
 
 
   constructor(private servicioLogin:LoginService, private servicioUser:ServUserService, private servicioBuscador:BuscadorService,
@@ -40,6 +43,7 @@ listaRef:number[]=[]
       this.cargarLista();
       this.cargarJuegos();
       this.carga=true;
+      this.home = {icon: 'pi pi-home', routerLink: '/main'};
     }
     )
   }
@@ -47,6 +51,11 @@ listaRef:number[]=[]
   cargarLista(){
     this.servicioUser.getListado(this.usuario.nick,this.referencia).subscribe((resp)=>{
       this.lista=resp;
+      this.items = [
+        {label: this.usuario.nick, routerLink:'/usuario'},
+        {label: 'Mis listas', routerLink:'/listas'},
+        {label: this.lista.nombre, routerLink:'/lista/'+resp.referencia},
+      ]
     }
     )
 
@@ -133,5 +142,19 @@ listaRef:number[]=[]
       }
       })
     }
+
+
+    obtenerAvatar(usuario:Usuario){
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(usuario.avatar)));
+      const source = `data:image/png;base64,${base64String}`+usuario.avatar;
+      return source;
+    }
+
+    obtenerImagen(juego:Juego){
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(juego.imagen)));
+      const source = `data:image/png;base64,${base64String}`+juego.imagen;
+      return source;
+    }
+  
 
 }

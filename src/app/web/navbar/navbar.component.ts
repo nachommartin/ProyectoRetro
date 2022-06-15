@@ -43,6 +43,16 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/usuario');
   }
 
+  verVotos(){
+    this.router.navigateByUrl('/mis_votos');
+  }
+
+  verMensajes(){
+    this.router.navigateByUrl('/mensajes');
+  }
+
+
+
   verJuegos(){
     this.router.navigateByUrl('/datos');
   }

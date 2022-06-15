@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
 import { Juego, Votacion } from '../interfaces/juego';
@@ -20,6 +21,10 @@ export class ReviewComponent implements OnInit {
   reviewsJuego:Votacion[]=[];
   sizeArray:number=0;
   reportador!:string
+  pages: number = 1;
+  items:MenuItem[]=[]
+  home!: MenuItem;
+
 
 
 
@@ -32,6 +37,8 @@ export class ReviewComponent implements OnInit {
     this.titulo=this.ruta.snapshot.params['titulo']
     
     this.cargarJuego()
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
+
 
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
@@ -49,6 +56,10 @@ export class ReviewComponent implements OnInit {
       this.cargarReview(resp[0].referencia);
       this.juegoCargado=resp[0];
       this.carga=true;
+      this.items = [
+        {label: resp[0].titulo, routerLink:'/juego/'+resp[0].titulo},
+        {label: 'Reseñas de '+ resp[0].titulo, routerLink:'/review/'+resp[0].titulo}, 
+      ]
       
   
 

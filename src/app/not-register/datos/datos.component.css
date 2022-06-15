@@ -1,3 +1,13 @@
 .blockquote-footer{
     cursor: pointer
 }
+
+:host::ng-deep .customTitleBar .p-panel-header  {
+    background: #0275d8 !important;
+    color:white !important
+    }
+
+  :host::ng-deep .customTitleBar .p-panel-header  .p-panel-header-icon{
+    color:white !important
+
+  }

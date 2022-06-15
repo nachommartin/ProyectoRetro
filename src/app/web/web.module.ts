@@ -23,10 +23,17 @@ import { ListaUsuarioComponent } from './lista-usuario/lista-usuario.component';
 import { MasVotadosComponent } from './mas-votados/mas-votados.component';
 import {DataViewModule} from 'primeng/dataview';
 import { MejorMediaComponent } from './mejor-media/mejor-media.component';
-
-
-
-
+import { DialogModule } from 'primeng/dialog';
+import { FooterComponent } from './footer/footer.component';
+import {ButtonModule} from 'primeng/button';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {MenuModule} from 'primeng/menu';
+import { MyVotosComponent } from './my-votos/my-votos.component';
+import {TimelineModule} from 'primeng/timeline';
+import { CardModule } from 'primeng/card';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MyReviewsComponent } from './my-reviews/my-reviews.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -49,15 +56,28 @@ import { MejorMediaComponent } from './mejor-media/mejor-media.component';
     ListaComponent,
     ListaUsuarioComponent,
     MasVotadosComponent,
-    MejorMediaComponent  ],
+    MejorMediaComponent,
+    FooterComponent,
+    MyVotosComponent,
+    MyReviewsComponent  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     WebRoutingModule,
-    DataViewModule
+    DataViewModule,
+    DialogModule,
+    ButtonModule,
+    BreadcrumbModule,
+    MenuModule,
+    TimelineModule,
+    CardModule,
+    NgxPaginationModule,
+    ConfirmDialogModule,
+
+    
   ],
   exports:
-  [ NavbarComponent]
+  [ NavbarComponent, FooterComponent]
 })
 export class WebModule { }

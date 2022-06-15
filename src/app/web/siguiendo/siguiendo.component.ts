@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
 import { Amistad, Usuario } from '../interfaces/juego';
@@ -14,16 +15,29 @@ export class SiguiendoComponent implements OnInit {
   usuario!: Usuario;
   carga:boolean=false;  
   seguidos: Amistad[]=[];
+  items:MenuItem[]=[]
+  pages: number = 1;
+  home!: MenuItem;
+
 
   constructor(private servicioLogin:LoginService, private servicioFollow:AmistadService) { }
 
   ngOnInit(): void {
+    this.datos();
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
+    
+  }
 
+  datos(){
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.usuario=resp; 
       this.carga=true
       this.cargarSeguidos()
+      this.items = [
+        {label: resp.nick, routerLink:'/usuario'},
+        {label: 'Usuarios seguidos', routerLink:'/siguiendo'},
+    ];
 
     }
     )
@@ -32,6 +46,7 @@ export class SiguiendoComponent implements OnInit {
   unfollow(usuario:string){
     this.servicioFollow.unfollowUsuario(usuario, this.usuario.correo).subscribe({
      next: (resp => {
+      this.datos()
        Swal.fire(
          '', 'Has dejado de seguir al usuario', 'success'
        );
@@ -50,6 +65,13 @@ export class SiguiendoComponent implements OnInit {
     this.seguidos=resp)
 
   }
+
+  obtenerAvatar(usuario:Usuario){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(usuario.avatar)));
+    const source = `data:image/png;base64,${base64String}`+usuario.avatar;
+    return source;
+  }
+  
   
 
 }

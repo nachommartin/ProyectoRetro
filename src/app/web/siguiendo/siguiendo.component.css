@@ -1,0 +1,18 @@
+#avatar{
+    width: 100%;
+    max-width: 14rem;
+    height: auto;
+}
+
+.card{
+    margin:0.5rem;
+  }
+
+#tarjeta{
+    text-align: center;
+}
+
+#paginador{
+    text-align: center;
+    display: block;
+  }

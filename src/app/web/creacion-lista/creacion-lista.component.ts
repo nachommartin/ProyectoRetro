@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import Swal from 'sweetalert2';
 import { Usuario } from '../interfaces/juego';
@@ -16,6 +17,8 @@ export class CreacionListaComponent implements OnInit {
   usuario!:Usuario;
   carga:boolean=false;
   public formGroup!: FormGroup;
+  home!:MenuItem;
+  items:MenuItem[]=[]
 
 
 
@@ -28,8 +31,14 @@ export class CreacionListaComponent implements OnInit {
     subscribe((resp)=>{
       this.usuario=resp; 
       this.carga=true;
+      this.items = [
+        {label: resp.nick, routerLink:'/usuario'},
+        {label: 'Mis listas', routerLink:'/listas'},
+        {label: 'Creación de lista', routerLink:'/crear_lista'},
+    ];
     }
     )
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
     this.buildForm();
 
   }
@@ -71,6 +80,12 @@ crear(){
   }
   })
 
+}
+
+obtenerImagen(usuario:Usuario){
+  const base64String = btoa(String.fromCharCode(...new Uint8Array(usuario.avatar)));
+  const source = `data:image/png;base64,${base64String}`+usuario.avatar;
+  return source;
 }
 
 }

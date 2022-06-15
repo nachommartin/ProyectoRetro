@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-<div *ngIf="carga==true" class="row">
-    <div class="container p-4 bg-white">
+<div *ngIf="carga==true" class="container p-4 bg-white" id="contenedor">
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         <div class="card align-items-center text-justify">
             <div class="card-body">               
                 <div class="col-md-12">
@@ -10,16 +10,21 @@
                     <div *ngIf="sizeArray==0">
                         <h5 class="text-center">{{stalkeado.nick}} no tiene ninguna lista</h5>
                     </div>    
-                    <ul *ngFor="let lista of listas; let i =index"  class="list-group list-group-flush">
+                    <ul *ngFor="let lista of listas | paginate: { itemsPerPage: 3, currentPage: paginas }; let i =index "  class="list-group list-group-flush">
                         <li  class="list-group-item"><strong>{{lista.nombre}}</strong> con {{lista.numJuego}} juegos
-                            <ul *ngFor="let juego of arrayDeArrays[i]"  class="list-group list-group-flush">
+                            <ul *ngFor="let juego of arrayDeArrays[i] "  class="list-group list-group-flush">
                                 <li class="list-group-item"><span>{{juego.titulo}}</span></li>
                             </ul> 
                             </li>
+                            
                     </ul> 
                     <br>  
+                    
                  </div>
                  </div>
                  </div>
-                 </div>
+                 <div *ngIf="listas.length>0" style="margin-left: -3.3rem;">
+                    <pagination-controls   previousLabel="Listas anteriores"
+                    nextLabel="Listas siguientes" (pageChange)="paginas = $event"></pagination-controls>
+                    </div>
                  </div>

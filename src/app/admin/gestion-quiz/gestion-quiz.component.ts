@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Quiz } from 'src/app/quiz/interfaces/quiz';
 import { QuizService } from 'src/app/quiz/services/quiz.service';
@@ -18,7 +19,7 @@ export class GestionQuizComponent implements OnInit {
   editNombreQuiz!:string
   dialogoEdit!:boolean
 
-  constructor(private servicio:QuizService, private confirmationService:ConfirmationService ) { }
+  constructor(private servicio:QuizService, private confirmationService:ConfirmationService, private router: Router ) { }
 
   ngOnInit(): void {
     this.datos();
@@ -53,7 +54,7 @@ export class GestionQuizComponent implements OnInit {
 
 confirmar(idQuiz: number) {
   this.confirmationService.confirm({
-      message: '¿Estás seguro que quieres eliminar el juego?',
+      message: '¿Estás seguro que quieres eliminar el quizz?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Si',
@@ -69,12 +70,14 @@ confirmar(idQuiz: number) {
 seleccionarQuizEditar(quiz:Quiz){
   this.mostrarFormulario();
   this.seleccionado = quiz;
+  this.editNombreQuiz=this.seleccionado.name
 }
 
 addQuiz(){
 this.servicio.guardarQuiz(this.nombreQuiz).subscribe({
 next: (resp => {
   this.datos();
+  this.guardar()
   }),
 error: resp=> {
   Swal.fire(
@@ -93,6 +96,7 @@ editar(){
   this.servicio.editarQuiz(this.seleccionado.ref,this.editNombreQuiz).subscribe({
   next: (resp => {
     this.datos();
+    this.mostrarFormulario();
     }),
   error: resp=> {
     Swal.fire(
@@ -118,6 +122,11 @@ borrarQuiz(ref:number){
 
 mostrarFormulario() {
   this.dialogoEdit = !this.dialogoEdit;
+}
+
+getQuizz(ref:number){
+
+  this.router.navigate(["./quizzes/",ref]);
 }
 
 

@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GuardianService } from 'src/app/guardian/guardian.service';
 import { QuizComponent } from './quiz/quiz.component';
+import { SelectQuizComponent } from './select-quiz/select-quiz.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: QuizComponent,
-        canActivate:[GuardianService]
+        children: [
+            { path: "", component: SelectQuizComponent, pathMatch: "full" },
+            { path: ":ref", component: QuizComponent }
+          ]
     }
     
   ];

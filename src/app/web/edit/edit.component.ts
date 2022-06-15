@@ -1,10 +1,14 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
+import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login/services/login.service';
 import { NickService } from 'src/app/login/services/nick.service';
 import Swal from 'sweetalert2';
 import { Usuario } from '../interfaces/juego';
+import { CargaDatosService } from '../services/carga-datos.service';
 import { ServUserService } from '../services/serv-user.service';
 
 @Component({
@@ -19,7 +23,15 @@ export class EditComponent implements OnInit {
   public passwordPattern  : string= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$";
   opcionElegida:string='';
   carga: boolean= false; 
-
+  dialogoAvatar!:boolean;
+  selectedFiles?: FileList;
+  currentFile?: File;
+  progress = 0;
+  message = '';
+  fileInfos?: Observable<any>;
+  
+  items: MenuItem[]=[];
+  home!: MenuItem;
 
   
 
@@ -80,18 +92,26 @@ export class EditComponent implements OnInit {
   ]
 
   constructor(private servicioLogin: LoginService, private formBuilder: FormBuilder, private validadorNick: NickService,
-    private router: Router, private userService:ServUserService) { }
+    private router: Router, private userService:ServUserService, private cargador: CargaDatosService) { }
 
   ngOnInit(): void {
+    this.datos()
+    this.buildForm();
+    this.home = {icon: 'pi pi-home', routerLink: '/main'};
+
+  }
+
+  datos(){
     this.servicioLogin.obtenerUsuarioPorToken().
     subscribe((resp)=>{
       this.usuario=resp; 
       this.carga=true
+      this.items = [
+        {label: resp.nick, routerLink:'/usuario'},
+        {label: 'Edición', routerLink:'/edit'},
+    ];
     }
     )
-
-    this.buildForm();
-
   }
 
   private buildForm(){
@@ -171,6 +191,52 @@ export class EditComponent implements OnInit {
     
 
     return '';
+  }
+
+  cargarAvatar() {
+    this.dialogoAvatar = !this.dialogoAvatar;
+  }
+
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
+  }
+  
+
+  upload(): void {
+    this.progress = 0;
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+      if (file) {
+        this.currentFile = file;
+        this.cargador.upAvatar(this.currentFile,this.usuario.nick).subscribe({
+          next: (event: any) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              this.progress = Math.round(100 * event.loaded / event.total)   
+            } else if (event instanceof HttpResponse) {
+              this.message = event.body.message;
+            }
+            this.datos()
+            this.buildForm(); 
+          },
+          error: (err: any) => {
+            this.progress = 0;
+            if (err.error && err.error.message) {
+              this.message = err.error.message;
+            } else {
+              this.message = 'No se ha podido subir el archivo';
+            }
+            this.currentFile = undefined;
+          }
+        });
+      }
+      this.selectedFiles = undefined;
+    }
+  }
+
+  obtenerImagen(usuario:Usuario){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(usuario.avatar)));
+    const source = `data:image/png;base64,${base64String}`+usuario.avatar;
+    return source;
   }
 
 }

@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
-<div class="row">
-    <div class="container p-4 bg-white">
+    <div class="container p-4 bg-white" (mouseover)="mostrarVotacionUsuario()">
+        <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         <!-- Para asegurarnos de que se carga el juego utilizamos un condicional, si no se carga no se muestra nada.
         Además cuando el usuario coloca el ratón sobre la card, se carga si ha votado o no este juego para así cuando le 
         dé a la opción de "Ver tu voto" ya esté cargada la información y así evitamos en cierta medida la asincronía-->
-        <div *ngIf="carga==true" class="card align-items-center text-justify" (mouseover)="mostrarVotacionUsuario()">
+        <div *ngIf="carga==true" class="card align-items-center text-justify">
             <div class="card-body">
                 <div class="row"> 
                 <div class="col-md-8">
@@ -34,9 +34,8 @@
                 </div>
                 </div>
                 <div class="col-md-4">
-                <img class="card-img-top center-block d-block mx-auto" src="https://www.mega-drive.net/palcover/tn/artoffighting.jpg"  alt="Caratula del juego">
-                <br>
-                <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juegoCargado)}}  alt="Caratula del juego">
+                <img *ngIf="!juegoCargado.imagen" class="card-img-top center-block d-block mx-auto" src="https://i.ibb.co/sV1y6Sm/artoffighting.jpg"  alt="Caratula del juego">
+                <img *ngIf="juegoCargado.imagen" class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juegoCargado)}}  alt="Caratula del juego">
                 <h5 class="card-title text-center">Media de votos: {{juegoCargado.votacionMedia}}</h5>
                 <br>
                 <h6 *ngIf="nota==true" class="card align-items-center text-justify">Lo calificaste con: {{notaUsuario}}</h6>
@@ -64,3 +63,5 @@
          </div>
         </div>
         </div>
+        <app-footer></app-footer>
+
