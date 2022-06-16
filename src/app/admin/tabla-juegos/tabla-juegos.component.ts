@@ -55,7 +55,8 @@ export class TablaJuegosComponent implements OnInit {
   this.servicioAdmin.guardar(juego).subscribe({
   next: (resp => {
     this.datos();
-    this.buildForm();    
+    this.buildForm();  
+    this.guardar()  
     }),
   error: resp=> {
     Swal.fire(
@@ -144,7 +145,8 @@ editar(){
   this.servicioAdmin.editar(juego, this.seleccionado.referencia).subscribe({
   next: (resp => {
     this.datos();
-    this.buildForm();    
+    this.buildForm();   
+    this.mostrarFormulario(); 
     }),
   error: resp=> {
     Swal.fire(

@@ -65,6 +65,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/mejor_valorados');
   }
 
+  quiz(){
+    this.router.navigateByUrl('/quiz');
+  }
+
   //Método para buscar un juego
   buscar(x:any){
     this.cadena= x.target.value

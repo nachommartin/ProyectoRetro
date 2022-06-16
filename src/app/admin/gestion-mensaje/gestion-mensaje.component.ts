@@ -68,6 +68,7 @@ export class GestionMensajeComponent implements OnInit {
   mandarMensaje(){
     this.servicioMensaje.mandarMensaje(this.emisor,this.mensaje.usuarioReceptor.correo,this.texto).subscribe({
       next: (resp => {
+        this.notificar()
         Swal.fire(
           '', 'Se ha mandado tu mensaje', 'success'
         );

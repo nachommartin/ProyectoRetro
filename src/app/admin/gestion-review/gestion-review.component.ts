@@ -110,6 +110,7 @@ export class GestionReviewComponent implements OnInit {
   editarReview(){
     this.servicioAdmin.editarReview(this.seleccionado.codigo, this.textoEdicion).subscribe({
       next: (resp => {
+        this.dialogoEdit=!this.dialogoEdit;
         Swal.fire(
           '', 'Has editado la reseña', 'success'
         );

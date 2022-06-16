@@ -53,6 +53,7 @@ export class MensajeComponent implements OnInit {
   borrar(id:number){
     this.servicioFollow.borrarMensaje(id, this.receptor).subscribe({
       next: (resp => {
+        this.cargarMensajes()
         Swal.fire(
           '', 'Has borrado el comentario', 'success'
         );

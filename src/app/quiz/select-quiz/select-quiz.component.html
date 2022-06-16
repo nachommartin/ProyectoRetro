@@ -12,8 +12,8 @@
     </div>
     <br>
 <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12" *ngFor= "let quiz of quizzes  | paginate: { itemsPerPage: 6, currentPage: pages }">
-        <div class="card align-items-center text-justify">
+    <div class="col-md-3 col-sm-6 col-xs-12" *ngFor= "let quiz of quizzes  | paginate: { itemsPerPage: 4, currentPage: pages }">
+        <div *ngIf="quiz.numPreguntas==4" class="card align-items-center text-justify">
             <img alt="interrogación" src="https://i.ibb.co/4YkXZ1Q/question.jpg">
         <div class="card-body">
                 <h5 class="card-title text-center">

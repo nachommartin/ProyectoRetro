@@ -27,8 +27,8 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let seguido of seguidos  | paginate: { itemsPerPage: 2, currentPage: pages}">
                     <div class="card align-items-center text-justify">
-                        <img *ngIf="!usuario.avatar" class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario" id="avatar">
-                        <img *ngIf="usuario.avatar" class="card-img-top center-block d-block mx-auto"src={{obtenerAvatar(seguido.usuarioSource)}}     alt="Icono de usuario" id="avatar">                           <div class="card-body">
+                        <img *ngIf="!seguido.usuarioSource.avatar" class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario" id="avatar">
+                        <img *ngIf="seguido.usuarioSource" class="card-img-top center-block d-block mx-auto"src={{obtenerAvatar(seguido.usuarioSource)}}     alt="Icono de usuario" id="avatar">                           <div class="card-body">
                             <h5 class="card-title text-center">
                                 {{seguido.usuarioSource.nick}}
                             </h5>
