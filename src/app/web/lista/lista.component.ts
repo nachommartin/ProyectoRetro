@@ -80,6 +80,7 @@ items:MenuItem[]=[]
   
 
   cargarJuegos(){
+    this.listaRef=[]
     this.servicioUser.getJuegosListado(this.usuario.nick,this.referencia).subscribe((resp)=>{
       this.juegos=resp;
       this.sizeArray=resp.length
@@ -134,6 +135,7 @@ items:MenuItem[]=[]
         this.cargarLista();
         this.cargarJuegos();
         this.juegosObtenidos=[]
+        
       }),
       error: resp=> {
         Swal.fire(

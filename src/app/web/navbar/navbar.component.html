@@ -44,7 +44,7 @@
                         <li class="profile-li"><a class="profile-links" (click)="logout()">Cerrar sesión</a></li>
                     </ul>
                 </li>
-                <li *ngIf="rol=='ADMIN'" class="upper-links"><a class="links" href="/administracion">Panel de administración</a></li>
+                <li *ngIf="rol=='ADMIN'" class="upper-links"><a class="links" routerLink="/administracion">Panel de administración</a></li>
             </ul>
         </div>
         <div class="row row2">
