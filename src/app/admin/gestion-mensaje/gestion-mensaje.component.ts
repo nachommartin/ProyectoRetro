@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Comentario } from 'src/app/web/interfaces/juego';
 import { AmistadService } from 'src/app/web/services/amistad.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-gestion-mensaje',
@@ -19,7 +19,8 @@ export class GestionMensajeComponent implements OnInit {
   texto!:string;
   dialogo!:boolean;
 
-  constructor(private servicioMensaje:AmistadService, private router:Router, private servicioLogin:LoginService) { }
+  constructor(private servicioMensaje:AmistadService, private router:Router, private servicioLogin:LoginService, 
+    private messageService:MessageService) { }
 
   ngOnInit(): void {
 
@@ -39,9 +40,7 @@ export class GestionMensajeComponent implements OnInit {
         this.carga=true
           }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje , 'error'
-      );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
     this.router.navigateByUrl('/admin_comment');
@@ -52,15 +51,12 @@ export class GestionMensajeComponent implements OnInit {
   borrar(id:number){
     this.servicioMensaje.borrarMensaje(id, this.mensaje.usuarioReceptor.correo).subscribe({
       next: (resp => {
-        Swal.fire(
-          '', 'Has borrado el comentario', 'success'
-        );
+        this.messageService.add({key: 'delete', severity:'success', detail:'Has borrado la reseña'});
+
         this.carga=false 
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-      );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
   }
@@ -69,12 +65,10 @@ export class GestionMensajeComponent implements OnInit {
     this.servicioMensaje.mandarMensaje(this.emisor,this.mensaje.usuarioReceptor.correo,this.texto).subscribe({
       next: (resp => {
         this.notificar()
-        Swal.fire(
-          '', 'Se ha mandado tu mensaje', 'success'
-        );
+        this.messageService.add({key: 'send', severity:'success', detail:'Se ha mandado tu mensaje'});
     }),
     error: resp=> {
-      Swal.fire('Error', resp.error.mensaje, 'error')
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
   }

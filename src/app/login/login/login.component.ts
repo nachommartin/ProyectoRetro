@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { LoginService } from '../services/login.service';
-import Swal from 'sweetalert2';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  constructor(private servicio: LoginService, private router: Router) { }
+  constructor(private servicio: LoginService, private router: Router, private messageService:MessageService) { }
 
   ngOnInit(): void {
   }
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
       console.log(resp)
   }),
   error: resp=> {
-         
-    Swal.fire('Error', resp.error.mensaje, 'error')
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
   }  });
 }
 //Si conseguimos una respuesta correcta de nuestro backend en la autenticación del login guardamos un token en nuestro local storage

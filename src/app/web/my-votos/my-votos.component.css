@@ -1,6 +1,6 @@
-#contenedor{
+.container{
     
-    height: 100%;
+    height: 110%;
     text-align: center;
     }
 
@@ -21,3 +21,17 @@
       #listado{
         text-align: left;
       }
+      
+
+      @media (max-width: 576px) { .container {height: 300% !important;}; }
+
+      @media (max-width: 768px) { .container {height: 150%;}}
+      
+      @media (max-width: 992px) { .container {height: 130%;}  }
+      
+      @media (max-width: 1200px) {  .container {height: 130%;}  }
+
+      @media (max-width: 2000px) {  .container {height: 130%;}  }
+
+    
+    

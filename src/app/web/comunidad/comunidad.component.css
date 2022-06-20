@@ -3,9 +3,9 @@ h4{display: flex; justify-content:center; align-items: center;}
 .text-center{display: flex; justify-content:center; align-items: center; margin-top: 0.5rem;}
 
 
-#contenedor{
+.container{
     
-    height: 100%;
+    height: 112%;
     }
 
     #avatar{
@@ -28,3 +28,17 @@ margin-top: 0.6rem;
     text-align: center;
     display: block;
   }
+
+  @media (max-width: 500px) { .container {height: 270% !important} #avatar {width: 30% !important;}  }
+
+  @media (max-width: 768px) { .container {height: 275% !important;} #avatar {width: 30% !important;}}
+  
+  @media (min-width: 769px) { .container {height: 220% !important;}  }
+
+  @media (min-width: 995px) { .container {height: 140% !important;} .card{width: 105%;} }
+  
+  @media (min-width: 1200px) {  .container {height: 130% !important;} .card{width: 100%;} }
+
+  @media (min-width: 2000px) {  .container {height: 100% !important;}  }
+
+

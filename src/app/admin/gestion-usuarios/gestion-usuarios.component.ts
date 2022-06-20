@@ -3,7 +3,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 import { Usuario } from 'src/app/web/interfaces/juego';
 import { BuscadorService } from 'src/app/web/services/buscador.service';
-import Swal from 'sweetalert2';
 import { AdminJuegoService } from '../services/admin-juego.service';
 
 @Component({
@@ -76,9 +75,8 @@ export class GestionUsuariosComponent implements OnInit {
         }),
       error: resp=> {
   
-         Swal.fire(
-           '¡Error!', resp.error.mensaje, 'error'
-           );
+        this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
       }
       })
   
@@ -92,9 +90,8 @@ export class GestionUsuariosComponent implements OnInit {
         usuario.fechaBaneo=resp.fechaBaneo
       }),
       error:(resp=>{
-        Swal.fire(
-          '¡Error!', resp.error.mensaje, 'error'
-          );      
+        this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+    
         })
     })
   }

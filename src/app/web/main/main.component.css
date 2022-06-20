@@ -7,3 +7,9 @@ p{
 .container{
     height: 100%;
 }
+
+@media (max-width: 768px) { .container {height: 130% !important;} }
+
+@media (min-width: 769px) { .container {height: 100% !important;}  }
+
+

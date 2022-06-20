@@ -3,7 +3,7 @@
     margin-top: 2.5rem;
 }
 
-#contenedor{
+.container{
     
     height: 100%;
     text-align: center;
@@ -28,4 +28,15 @@
 
      }
 
+     @media (max-width: 500px) { .container {height: 220% !important}  #listado{  text-align: center !important;  }  img{width: 30%;}}
+
+     @media (max-width: 768px) { .container {height: 225% !important;}  #listado{  text-align: center !important;  }  img{width: 30%;}}
      
+     @media (min-width: 769px) { .container {height: 160% !important;}  }
+     
+     @media (min-width: 1200px) {  .container {height: 130% !important;}  }
+
+     @media (min-width: 2000px) {  .container {height: 100% !important;}  }
+
+
+    

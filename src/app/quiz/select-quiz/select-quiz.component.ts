@@ -1,10 +1,9 @@
 import { registerLocaleData } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Usuario } from 'src/app/web/interfaces/juego';
-import Swal from 'sweetalert2';
 import { Quiz } from '../interfaces/quiz';
 import { QuizService } from '../services/quiz.service';
 
@@ -24,7 +23,8 @@ export class SelectQuizComponent implements OnInit {
   usuario!:Usuario; 
   dialogo!:boolean;
 
-  constructor(private servicio:QuizService, private router: Router, private servicioLogin:LoginService) { }
+  constructor(private servicio:QuizService, private router: Router, private servicioLogin:LoginService,
+    private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.datos()
@@ -56,14 +56,11 @@ export class SelectQuizComponent implements OnInit {
     this.servicio.proponer(this.propuesta, this.usuario.nick).subscribe({
       next: (resp => {
         this.abrirPropuesta()
-        Swal.fire(
-          '', 'El administrador revisará tu propuesta', 'success'
-        );
+        this.messageService.add({key: 'send', severity:'success', detail:'El administrador revisará tu propuesta'});
+
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', 'Ha habido un error inesperado', 'error'
-      );
+      this.messageService.add({key: 'errorSend', severity:'error', summary:'Error', detail:'Ha habido un error inesperado'});
     }
     })
   }

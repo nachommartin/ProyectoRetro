@@ -46,3 +46,11 @@ h4{
   .container{
     height: 100%;
   }
+
+  @media (max-width: 548px) { .container {height: 160% !important;} }
+
+  @media (min-width: 549px) { .container {height: 157% !important;} }
+
+  @media (min-width: 709px) { .container {height: 150% !important;} }
+
+  @media (min-width: 809px) { .container {height: 100% !important;} }

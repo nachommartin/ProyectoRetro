@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Votacion } from 'src/app/web/interfaces/juego';
 import { AmistadService } from 'src/app/web/services/amistad.service';
-import Swal from 'sweetalert2';
 import { AdminJuegoService } from '../services/admin-juego.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class GestionReviewComponent implements OnInit {
 
 
   constructor(private servicioAdmin:AdminJuegoService, private router:Router, private servicioMensaje:AmistadService,
-    private servicioLogin:LoginService) { }
+    private servicioLogin:LoginService, private messageService:MessageService) { }
 
   ngOnInit(): void {
 
@@ -43,9 +43,7 @@ export class GestionReviewComponent implements OnInit {
     this.servicioAdmin.getVoto(this.busqueda).subscribe({
       next: (resp => {
         if(resp.review==null){
-          Swal.fire(
-            '¡Error!', "No existe esa reseña", 'error'
-          );
+          this.messageService.add({key: 'errorExist', severity:'error', summary:'Error', detail:'No existe esa reseña'});
         }
         else{
         this.review=resp
@@ -53,9 +51,8 @@ export class GestionReviewComponent implements OnInit {
         }
           }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', "No existe esa reseña", 'error'
-      );
+      this.messageService.add({key: 'errorExist', severity:'error', summary:'Error', detail:'No existe esa reseña'});
+
     }
     })
     this.router.navigateByUrl('/admin_review');
@@ -69,12 +66,10 @@ export class GestionReviewComponent implements OnInit {
       this.servicioMensaje.mandarMensaje(this.emisor,this.receptor,this.texto).subscribe({
         next: (resp => {
           this.notificar()
-          Swal.fire(
-            '', 'Se ha mandado tu mensaje', 'success'
-          );
+          this.messageService.add({key: 'send', severity:'success', detail:'Se ha mandado tu mensaje'});
       }),
       error: resp=> {
-        Swal.fire('Error', resp.error.mensaje, 'error')
+        this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
       }
       })
     })
@@ -88,15 +83,12 @@ export class GestionReviewComponent implements OnInit {
   borrar(id:number){
     this.servicioAdmin.quitarReview(id).subscribe({
       next: (resp => {
-        Swal.fire(
-          '', 'Has borrado la reseña', 'success'
-        );
+        this.messageService.add({key: 'delete', severity:'success', detail:'Has borrado la reseña'});
         this.carga=false 
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-      );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
     }
     })
   }
@@ -111,15 +103,12 @@ export class GestionReviewComponent implements OnInit {
     this.servicioAdmin.editarReview(this.seleccionado.codigo, this.textoEdicion).subscribe({
       next: (resp => {
         this.dialogoEdit=!this.dialogoEdit;
-        Swal.fire(
-          '', 'Has editado la reseña', 'success'
-        );
+        this.messageService.add({key: 'edit', severity:'success', detail:'Has editado la reseña'});
         this.carga=false 
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-      );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
     }
     })
   }

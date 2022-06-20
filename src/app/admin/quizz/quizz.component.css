@@ -54,3 +54,13 @@ h4{
   .container{
     height: 100%;
   }
+
+  @media (max-width: 548px) { .container {height: 190% !important;} }
+
+  @media (min-width: 549px) { .container {height: 177% !important;} }
+
+  @media (min-width: 709px) { .container {height: 180% !important;} }
+
+  @media (min-width: 809px) { .container {height: 100% !important;} }
+
+

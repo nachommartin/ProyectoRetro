@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
-import Swal from 'sweetalert2';
 import { Juego, Listado, Usuario } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 import { ServUserService } from '../services/serv-user.service';
@@ -31,7 +30,7 @@ items:MenuItem[]=[]
 
 
   constructor(private servicioLogin:LoginService, private servicioUser:ServUserService, private servicioBuscador:BuscadorService,
-    private ruta:ActivatedRoute,  private router: Router) { }
+    private ruta:ActivatedRoute,  private router: Router, private messageService:MessageService) { }
 
   ngOnInit(): void {
 
@@ -64,16 +63,14 @@ items:MenuItem[]=[]
   borrarLista(){
     this.servicioUser.borrarListado(this.usuario.nick,this.referencia).subscribe({
       next: (resp => {
-        Swal.fire(
-          '', 'Has borrado la lista', 'success'
-        );
+        this.messageService.add({key: 'listaBorrada', severity:'success', detail:'Has borrado la lista'});
+
         this.router.navigateByUrl('/listas');
 
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-      );
+
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail: resp.error.mensaje});
     }
     })
   }
@@ -111,17 +108,13 @@ items:MenuItem[]=[]
     addList(refJuego:number){
       this.servicioUser.addJuegoLista(this.usuario.correo,refJuego,this.referencia).subscribe({
         next: (resp => {
-          Swal.fire(
-            '', 'Has añadido el juego', 'success'
-          );
+          this.messageService.add({key: 'addJuego', severity:'success', detail:'Has añadido el juego'});
         this.cargarLista();
         this.cargarJuegos();
         this.juegosObtenidos=[]
       }),
       error: resp=> {
-        Swal.fire(
-          '¡Error!', resp.error.mensaje, 'error'
-        );
+        this.messageService.add({key: 'error', severity:'error', summary:'Error', detail: resp.error.mensaje});
       }
       })
     }
@@ -129,18 +122,15 @@ items:MenuItem[]=[]
     quitarList(refJuego:number){
       this.servicioUser.addJuegoLista(this.usuario.correo,refJuego,this.referencia).subscribe({
         next: (resp => {
-          Swal.fire(
-            '', 'Has quitado el juego', 'success'
-          );
+          this.messageService.add({key: 'quitJuego', severity:'success', detail:'Has quitado el juego'});
         this.cargarLista();
         this.cargarJuegos();
         this.juegosObtenidos=[]
         
       }),
       error: resp=> {
-        Swal.fire(
-          '¡Error!', resp.error.mensaje, 'error'
-        );
+        this.messageService.add({key: 'error', severity:'error', summary:'Error', detail: resp.error.mensaje});
+
       }
       })
     }

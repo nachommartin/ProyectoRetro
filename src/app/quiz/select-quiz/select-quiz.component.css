@@ -23,3 +23,14 @@
         display: block;
         color: red!important;
     }
+
+
+@media (max-width: 768px) { .container {height: 120% !important;} }
+
+@media (min-width: 769px) { .container {height: 110% !important;}  }
+
+@media (min-width: 995px) { .container {height: 105% !important;}  }
+
+@media (min-width: 1200px) {  .container {height: 100% !important;} }
+
+

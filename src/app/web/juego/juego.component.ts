@@ -4,8 +4,7 @@ import { LoginService } from 'src/app/login/services/login.service';
 import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 import { VotacionService } from '../services/votacion.service';
-import Swal from 'sweetalert2';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 
 @Component({
@@ -17,12 +16,13 @@ export class JuegoComponent implements OnInit {
 
   constructor(private ruta: ActivatedRoute, private buscador: BuscadorService, 
     private servicioVoto: VotacionService, private servicio:LoginService, 
-    private router: Router) { }
+    private router: Router, private messageService: MessageService) { }
 
   titulo!:string;
   carga:boolean= false; 
   juegoCargado!:Juego;
   options:any[] = [
+    { name: "No jugado", id: 0 },
     { name: 1, id: 1 },
     { name: 2, id: 2 },
     { name: 3, id: 3 },
@@ -85,16 +85,20 @@ export class JuegoComponent implements OnInit {
     votar(){
      this.servicioVoto.votarJuego(this.juegoCargado.referencia,this.opcionElegida,this.usuario).subscribe({
       next: (resp => {
-        Swal.fire(
-          '', 'Has votado el juego', 'success'
-        );
+        if(resp.voto==0){
+          this.messageService.add({key: 'voto0', severity:'info', detail:'Has indicado que no has jugado el juego'});
+          this.cargarJuego()
+          this.mostrarVotacionUsuario()
+
+        }
+        else{ 
+          this.messageService.add({key: 'votoCorrecto', severity:'success', detail:'Has votado el juego'});
         this.cargarJuego()
         this.mostrarVotacionUsuario()
+        }
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', 'Ha habido un error con el voto', 'error'
-      );
+      this.messageService.add({key: 'errorVoto', severity:'error', detail:'Ha habido un error con el voto'});
     }
     })
     
@@ -127,12 +131,11 @@ export class JuegoComponent implements OnInit {
     this.servicioVoto.incluirReview(this.juegoCargado.referencia, this.review,this.usuario).
     subscribe({
       next: (resp => {
-        Swal.fire(
-          '', 'Se ha incluido tu reseña', 'success'
-        );
+        this.messageService.add({key: 'reviewOk', severity:'success', detail:'Se ha incluido tu reseña'});
+        this.getReview(this.juegoCargado.titulo)
     }),
     error: resp=> {
-      Swal.fire('Error', resp.error.mensaje, 'error')
+      this.messageService.add({key: 'reviewFail', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
   }

@@ -23,11 +23,11 @@
                         <th pSortableColumn="ciudad">Ciudad
                             <p-sortIcon field="ciudad"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="numVotos">Número de votos
+                        <th pSortableColumn="numVotos">Votos
                             <p-sortIcon field="numVotos"></p-sortIcon>
                         </th>
                         <th>Baneo</th>
-                        <th>Tiempo de baneo</th>
+                        <th>Tiempo</th>
                         <th>Borrar</th>
 
                     </tr>
@@ -37,7 +37,7 @@
                         <td (click)="getStatusBaneo(usuario.fechaBaneo)" id="correo"><span class="p-column-title" pSortableColumn="correo"><strong>Título</strong></span>{{usuario.correo}}</td>
                         <td><span class="p-column-title" pSortableColumn="nick"><strong>Nick</strong></span>{{usuario.nick}}</td>
                         <td *ngIf="usuario.ciudad"><span class="p-column-title" pSortableColumn="endDate"><strong>Ciudad</strong></span>{{usuario.ciudad}}</td>
-                        <td *ngIf="!usuario.ciudad"><span class="p-column-title">Ciudad</span>No especificada</td>
+                        <td *ngIf="!usuario.ciudad"><span class="p-column-title">Ciudad</span>-</td>
                         <td><span class="p-column-title" pSortableColumn="ciudad"><strong>Número de votos</strong></span>{{usuario.numVotos}}</td>
                         <td class="justify-content-evenly " (click)="banear(usuario)">
                           <a class="btn">
@@ -71,6 +71,8 @@
     </div>
 </div>
 <app-footer></app-footer>
+<p-toast key="error"></p-toast>
+
 
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <p-toast key="noReloj"></p-toast>

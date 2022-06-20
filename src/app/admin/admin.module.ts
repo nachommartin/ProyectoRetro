@@ -15,7 +15,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GestionMensajeComponent } from './gestion-mensaje/gestion-mensaje.component';
 import { GestionReviewComponent } from './gestion-review/gestion-review.component';
 import { GestionUsuariosComponent } from './gestion-usuarios/gestion-usuarios.component'; 
@@ -23,6 +22,7 @@ import { MessageService } from 'primeng/api';
 import { GestionQuizComponent } from './gestion-quiz/gestion-quiz.component';
 import { QuizzComponent } from './quizz/quizz.component';
 import { QuestionComponent } from './question/question.component';
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 
@@ -52,8 +52,8 @@ import { QuestionComponent } from './question/question.component';
     CardModule,
     PaginatorModule,
     RouterModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminRoutingModule
   ],
   providers: [MessageService]
 

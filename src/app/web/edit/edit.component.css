@@ -12,3 +12,8 @@ height: auto;
 .card{
     height:auto;
 }
+
+.error{
+    display: block;
+    color: red!important;
+}

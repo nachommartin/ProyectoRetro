@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { PanelComponent } from "./admin/panel/panel.component";
 import { AdminGService } from "./guardian/admin-g.service";
 import { GuardianService } from "./guardian/guardian.service";
 import { RegistroComponent } from "./login/registro/registro.component";
@@ -15,7 +14,6 @@ import { MySeguidoresComponent } from "./web/my-seguidores/my-seguidores.compone
 import { ResultadosComponent } from "./web/resultados/resultados.component";
 import { ReviewComponent } from "./web/review/review.component";
 import { SiguiendoComponent } from "./web/siguiendo/siguiendo.component";
-import { TablaJuegosComponent } from "./admin/tabla-juegos/tabla-juegos.component";
 import { UsuarioComponent } from "./web/usuario/usuario.component";
 import { VotosComponent } from "./web/votos/votos.component";
 import { MisListasComponent } from "./web/mis-listas/mis-listas.component";
@@ -24,21 +22,29 @@ import { ListaComponent } from "./web/lista/lista.component";
 import { ListaUsuarioComponent } from "./web/lista-usuario/lista-usuario.component";
 import { MasVotadosComponent } from "./web/mas-votados/mas-votados.component";
 import { MejorMediaComponent } from "./web/mejor-media/mejor-media.component";
-import { GestionMensajeComponent } from "./admin/gestion-mensaje/gestion-mensaje.component";
-import { GestionReviewComponent } from "./admin/gestion-review/gestion-review.component";
-import { GestionUsuariosComponent } from "./admin/gestion-usuarios/gestion-usuarios.component";
 import { NotbangService } from "./guardian/notbang.service";
-import { GestionQuizComponent } from "./admin/gestion-quiz/gestion-quiz.component";
-import { QuizzComponent } from "./admin/quizz/quizz.component";
-import { QuestionComponent } from "./admin/question/question.component";
 import { MyVotosComponent } from "./web/my-votos/my-votos.component";
 import { MyReviewsComponent } from "./web/my-reviews/my-reviews.component";
+import { QuestionComponent } from "./admin/question/question.component";
+import { QuizzComponent } from "./admin/quizz/quizz.component";
+import { GestionQuizComponent } from "./admin/gestion-quiz/gestion-quiz.component";
+import { GestionUsuariosComponent } from "./admin/gestion-usuarios/gestion-usuarios.component";
+import { GestionReviewComponent } from "./admin/gestion-review/gestion-review.component";
+import { GestionMensajeComponent } from "./admin/gestion-mensaje/gestion-mensaje.component";
+import { TablaJuegosComponent } from "./admin/tabla-juegos/tabla-juegos.component";
+import { PanelComponent } from "./admin/panel/panel.component";
 
 
 
 const appRoutes: Routes = [
   {    
     path: '',component: InicioComponent
+  },
+  {    
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module')
+    .then(m => m.AdminModule),
+    canActivate: [ AdminGService ]
   },
   {    
     path: 'login',

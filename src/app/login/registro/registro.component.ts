@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, EmailValidator, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { LoginService } from '../services/login.service';
 import { MailService } from '../services/mail.service';
-import Swal from 'sweetalert2';
 import { NickService } from '../services/nick.service';
 
 
@@ -24,7 +24,7 @@ export class RegistroComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private servicio: LoginService, 
-    private router:Router, private validadorMail: MailService, private validadorNick: NickService) { }
+    private router:Router, private validadorMail: MailService, private validadorNick: NickService, private messageService:MessageService) { }
 
   ngOnInit(): void {
 
@@ -51,15 +51,13 @@ export class RegistroComponent implements OnInit {
     const user = JSON.stringify(this.formGroup.value);
     this.servicio.registrar(JSON.parse(user)).subscribe({
     next: (resp => {
-      Swal.fire(
-        '', 'Se ha registrado correctamente', 'success'
-      );
-      this.router.navigateByUrl('/login');
+      this.messageService.add({key: 'ok', severity:'success', detail:'Se ha registrado correctamente'});
+
+    
+      this.goLogin()
   }),
   error: resp=> {
-    Swal.fire(
-      '¡Error!', 'Hubo un error inesperado', 'error'
-    );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Ha habido un error inesperado'});
   }
   })
 }
@@ -126,6 +124,14 @@ export class RegistroComponent implements OnInit {
     }
 
   }
+
+
+  goLogin(){
+    setTimeout(() => {
+        this.router.navigate(['/login'], {queryParams: {'part':  1}})
+      }
+      , 1500);
+}
 
  
 }

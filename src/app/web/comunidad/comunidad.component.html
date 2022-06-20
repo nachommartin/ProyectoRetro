@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container p-4 bg-white" id="contenedor">
+<div class="container p-4 bg-white">
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
     <h4>¡La comunidad seguera te está esperando!</h4>
     <div class="row px-5">
@@ -23,7 +23,7 @@
     </div>
 <!-- Cada resultado de la búsqueda se muestra en una card-->
 <div class="row" *ngIf="sizeArray>=0">    
-    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor= "let user of usuarios | paginate: { itemsPerPage: 3, currentPage: pages }">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor= "let user of usuarios | paginate: { itemsPerPage: 3, currentPage: pages }">
         <div class="card align-items-center text-justify">
             <img *ngIf="!user.user.avatar" class="card-img-top center-block d-block mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Font_Awesome_5_solid_user-ninja.svg/896px-Font_Awesome_5_solid_user-ninja.svg.png"  alt="Icono de usuario" id="avatar">
             <img *ngIf="user.user.avatar" class="card-img-top center-block d-block mx-auto"src={{obtenerAvatar(user.user)}}     alt="Icono de usuario" id="avatar">            <div class="card-body">
@@ -57,6 +57,12 @@
             </div>
     </div>
     <app-footer></app-footer>
+    <p-toast key="error"></p-toast>
+    <p-toast key="noVotos"></p-toast>
+    <p-toast key="follow"></p-toast>
+    <p-toast key="unfollow"></p-toast>
+
+
 
 
  

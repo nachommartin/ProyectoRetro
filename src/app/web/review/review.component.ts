@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
-import Swal from 'sweetalert2';
 import { Juego, Votacion } from '../interfaces/juego';
 import { BuscadorService } from '../services/buscador.service';
 import { ServUserService } from '../services/serv-user.service';
@@ -29,7 +28,7 @@ export class ReviewComponent implements OnInit {
 
 
   constructor(private buscador:BuscadorService, private ruta:ActivatedRoute, private servicioVoto:VotacionService,
-    private servicioUsuario:ServUserService, private servicioLogin:LoginService) { }
+    private servicioUsuario:ServUserService, private servicioLogin:LoginService, private messageService:MessageService) { }
 
 //De inicio cogemos el título del juego desde la ruta URL para así cargar el juego
   ngOnInit(): void {
@@ -88,14 +87,13 @@ export class ReviewComponent implements OnInit {
         let mensaje:string="reseña"
         this.servicioUsuario.reportar(id,mensaje, this.reportador).subscribe({
           next: (resp => {
-            Swal.fire(
-              '', 'El administrador revisará tu reporte', 'success'
-            );
+            this.messageService.add({key: 'sendReport', severity:'success', detail:'El administrador revisará tu reporte'});
+
         }),
         error: resp=> {
-          Swal.fire(
-            '¡Error!', 'Ha habido un error inesperado', 'error'
-          );
+          this.messageService.add({key: 'error', severity:'error', summary:'Error', detail: 'Ha habido un error inesperado'});
+
+
         }
         })
       }

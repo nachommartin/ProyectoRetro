@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
-import Swal from 'sweetalert2';
 import { Comentario, Usuario } from '../interfaces/juego';
 import { AmistadService } from '../services/amistad.service';
 import { ServUserService } from '../services/serv-user.service';
@@ -23,7 +22,7 @@ export class MensajeComponent implements OnInit {
   home!: MenuItem;
 
   constructor(private servicioFollow:AmistadService, private servicioLogin:LoginService, 
-    private servicioUsuario:ServUserService) { }
+    private servicioUsuario:ServUserService, private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.servicioLogin.obtenerUsuarioPorToken().
@@ -54,14 +53,10 @@ export class MensajeComponent implements OnInit {
     this.servicioFollow.borrarMensaje(id, this.receptor).subscribe({
       next: (resp => {
         this.cargarMensajes()
-        Swal.fire(
-          '', 'Has borrado el comentario', 'success'
-        );
+        this.messageService.add({key: 'borrado', severity:'success', detail:'Has borrado el comentario'});
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', 'Ha habido un error inesperado', 'error'
-      );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Ha habido un error inesperado'});
     }
     })
   }
@@ -70,14 +65,10 @@ export class MensajeComponent implements OnInit {
     let mensaje:string="mensaje"
     this.servicioUsuario.reportar(id,mensaje,this.nick).subscribe({
       next: (resp => {
-        Swal.fire(
-          '', 'El administrador revisará tu reporte', 'success'
-        );
+        this.messageService.add({key: 'sendReport', severity:'success', detail:'El administrador revisará tu reporte'});
     }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', 'Ha habido un error inesperado', 'error'
-      );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Ha habido un error inesperado'});
     }
     })
   }

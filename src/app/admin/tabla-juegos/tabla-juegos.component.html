@@ -20,7 +20,7 @@
                       <th pSortableColumn="categoria">Categoría <p-sortIcon field="categoria"></p-sortIcon></th>
                       <th pSortableColumn="year">Año <p-sortIcon field="year"></p-sortIcon></th>
                       <th pSortableColumn="desarrollador">Desarrollador <p-sortIcon field="desarrollador"></p-sortIcon></th>
-                      <th>Añadir imagen</th>
+                      <th>Imagen</th>
                       <th>Editar</th>
                       <th>Borrar</th>
                   </tr>
@@ -28,7 +28,7 @@
               <ng-template pTemplate="body" let-juego let-columns="juego">
                   <tr>
                     <td *ngIf="juego.imagen"> <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juego)}}  alt="Caratula del juego"   width="50" class="shadow-4" /></td>
-                    <td *ngIf="!juego.imagen"><span>Sin imagen aún</span></td>
+                    <td *ngIf="!juego.imagen"><span>Sin imagen</span></td>
                       <td><span class="p-column-title" pSortableColumn="titulo"><strong>Título</strong></span>{{juego.titulo}}</td>
                       <td><span class="p-column-title" pSortableColumn="categoria"><strong>Categoría</strong></span>{{juego.categoria}}</td>
                       <td><span class="p-column-title" pSortableColumn="year"><strong>Año</strong></span>{{juego.year}}</td>
@@ -55,6 +55,7 @@
     </div>
 </div>
 <app-footer></app-footer>
+<p-toast key="error"></p-toast>
 
 
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>

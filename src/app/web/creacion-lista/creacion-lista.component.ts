@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
-import Swal from 'sweetalert2';
 import { Usuario } from '../interfaces/juego';
 import { ServUserService } from '../services/serv-user.service';
 
@@ -23,7 +22,7 @@ export class CreacionListaComponent implements OnInit {
 
 
   constructor(private servicioLogin:LoginService, private formBuilder: FormBuilder,
-    private servicioUser:ServUserService, private router: Router) { }
+    private servicioUser:ServUserService, private router: Router, private messageService:MessageService) { }
 
   ngOnInit(): void {
 
@@ -63,9 +62,9 @@ crear(){
 
   this.servicioUser.crearLista(this.usuario.correo, auxLista.publico, auxLista.nombre).subscribe({
     next: (resp => {
-      Swal.fire(
-        '', 'Ahora añade tus juegos', 'success'
-      );
+      this.messageService.add({key: 'irAnadir', severity:'success', detail:'Ahora añade tus juegos'});
+
+      
       this.servicioUser.cargarListas(this.usuario.nick).subscribe((resp)=>{
         const size=resp.length;
         const referencia=resp[size-1].referencia 
@@ -74,9 +73,7 @@ crear(){
       )
   }),
   error: resp=> {
-    Swal.fire(
-      '¡Error!', 'Hubo un error inesperado', 'error'
-    );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Hubo un error inesperado'});
   }
   })
 

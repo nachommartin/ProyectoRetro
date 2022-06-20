@@ -22,7 +22,7 @@ export class VotacionService {
       'correo': usuario 
     }
 
-    return this.http.post(ruta,peticion)
+    return this.http.post<Votacion>(ruta,peticion)
 
   }
 

@@ -74,3 +74,5 @@
     border-radius: 50%;
     background: white;
   }
+
+  @media (max-width: 765px) { input {margin-top: 0.5rem !important} }

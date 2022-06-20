@@ -10,12 +10,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { NotRegisterModule } from './not-register/not-register.module';
 import { WebModule } from './web/web.module';
-import { AdminModule } from './admin/admin.module';
 import { LoginModule } from './login/login.module';
 import {AccordionModule} from 'primeng/accordion';  
 import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';                  
 import { QuizModule } from './quiz/quiz.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from './admin/admin.module';
+
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginModule,
     AccordionModule,
     QuizModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]

@@ -34,6 +34,8 @@ import { CardModule } from 'primeng/card';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MyReviewsComponent } from './my-reviews/my-reviews.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CardModule,
     NgxPaginationModule,
     ConfirmDialogModule,
+    ToastModule
 
     
   ],

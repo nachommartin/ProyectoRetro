@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Quiz } from 'src/app/quiz/interfaces/quiz';
 import { QuizService } from 'src/app/quiz/services/quiz.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-gestion-quiz',
@@ -19,7 +18,8 @@ export class GestionQuizComponent implements OnInit {
   editNombreQuiz!:string
   dialogoEdit!:boolean
 
-  constructor(private servicio:QuizService, private confirmationService:ConfirmationService, private router: Router ) { }
+  constructor(private servicio:QuizService, private confirmationService:ConfirmationService, private router: Router, 
+    private messageService:MessageService ) { }
 
   ngOnInit(): void {
     this.datos();
@@ -80,9 +80,8 @@ next: (resp => {
   this.guardar()
   }),
 error: resp=> {
-  Swal.fire(
-    '¡Error!', resp.error.mensaje, 'error'
-    );
+  this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
 }
 })
 }
@@ -99,9 +98,8 @@ editar(){
     this.mostrarFormulario();
     }),
   error: resp=> {
-    Swal.fire(
-      '¡Error!', resp.error.mensaje, 'error'
-      );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
   }
   })
 }
@@ -112,9 +110,7 @@ borrarQuiz(ref:number){
       this.datos();
       }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-        );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
   

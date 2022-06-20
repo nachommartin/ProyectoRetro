@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
-import Swal from 'sweetalert2';
 import { Amistad, Usuario } from '../interfaces/juego';
 import { AmistadService } from '../services/amistad.service';
 
@@ -20,7 +19,7 @@ export class SiguiendoComponent implements OnInit {
   home!: MenuItem;
 
 
-  constructor(private servicioLogin:LoginService, private servicioFollow:AmistadService) { }
+  constructor(private servicioLogin:LoginService, private servicioFollow:AmistadService, private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.datos();
@@ -47,18 +46,17 @@ export class SiguiendoComponent implements OnInit {
     this.servicioFollow.unfollowUsuario(usuario, this.usuario.correo).subscribe({
      next: (resp => {
       this.datos()
-       Swal.fire(
-         '', 'Has dejado de seguir al usuario', 'success'
-       );
+      this.messageService.add({key: 'unfollow', severity:'success', detail:'Has dejado de seguir al usuario'});
+       
    }),
    error: resp=> {
-     Swal.fire(
-       '¡Error!', 'Ha habido un error inesperado', 'error'
-     );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Ha habido un error inesperado'});
+
    }
    })
   
   }
+
 
   cargarSeguidos(){
     this.servicioFollow.getSeguidos(this.usuario.correo).subscribe((resp)=>

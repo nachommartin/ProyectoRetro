@@ -4,7 +4,7 @@
 
 .container{
     margin-top: 0.313rem;
-    height: 100%;
+    height: 104%;
 
 }
 
@@ -40,3 +40,14 @@ h6{
     display: block;
   }
 
+  @media (max-width: 576px) { .container {height: 104%;} }
+
+  @media (max-width: 768px) { .container {height: 104%;}}
+  
+  @media (max-width: 992px) { .container {height: 104%;}  }
+  
+  @media (max-width: 1200px) {  .container {height: 120%;}  }
+
+  @media (max-width: 2000px) {  .container {height: 120%;}  }
+
+  

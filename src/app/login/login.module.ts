@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 
 
 
@@ -19,7 +22,10 @@ import { RegistroComponent } from './registro/registro.component';
     CommonModule,
     FormsModule,
     LoginRoutingModule,
-    ReactiveFormsModule 
-  ]
+    ReactiveFormsModule, 
+    ToastModule
+  ],
+  providers: [MessageService]
+
 })
 export class LoginModule { }

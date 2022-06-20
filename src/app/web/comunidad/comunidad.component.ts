@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
-import Swal from 'sweetalert2';
 import { FollowCredentials, Usuario } from '../interfaces/juego';
 import { AmistadService } from '../services/amistad.service';
 import { BuscadorService } from '../services/buscador.service';
@@ -25,7 +24,8 @@ export class ComunidadComponent implements OnInit {
 
 
 
-  constructor(private servicioLogin: LoginService ,private servicioBusqueda: BuscadorService, private servicioFollow: AmistadService, private router: Router) { }
+  constructor(private servicioLogin: LoginService ,private servicioBusqueda: BuscadorService, private servicioFollow: AmistadService, private router: Router,
+    private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.datos()
@@ -67,9 +67,7 @@ export class ComunidadComponent implements OnInit {
   follow(usuario:string){
     this.servicioFollow.followUsuario(usuario, this.userAsk).subscribe({
      next: (resp => {
-       Swal.fire(
-         '', 'Has seguido al usuario', 'success'
-       );
+      this.messageService.add({key: 'follow', severity:'success', detail:'Has seguido al usuario'});
        this.usuarios=[]
        this.servicioBusqueda.buscarUsuario(this.cadena,this.userAsk).subscribe((resp)=>{
         this.usuarios= resp;
@@ -77,9 +75,7 @@ export class ComunidadComponent implements OnInit {
       } );
    }),
    error: resp=> {
-     Swal.fire(
-       '¡Error!', 'Ha habido un error inesperado', 'error'
-     );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Hubo un error inesperado'});
    }
    })
  }
@@ -87,9 +83,7 @@ export class ComunidadComponent implements OnInit {
  unfollow(usuario:string){
   this.servicioFollow.unfollowUsuario(usuario, this.userAsk).subscribe({
    next: (resp => {
-     Swal.fire(
-       '', 'Has dejado de seguir al usuario', 'success'
-     );
+    this.messageService.add({key: 'unfollow', severity:'success', detail:'Has dejado de seguir al usuario'});
      this.usuarios=[]
      this.servicioBusqueda.buscarUsuario(this.cadena,this.userAsk).subscribe((resp)=>{
       this.usuarios= resp;
@@ -97,9 +91,8 @@ export class ComunidadComponent implements OnInit {
     } );
  }),
  error: resp=> {
-   Swal.fire(
-     '¡Error!', 'Ha habido un error inesperado', 'error'
-   );
+  this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Hubo un error inesperado'});
+  
  }
  })
 
@@ -111,9 +104,7 @@ verVotos(usuario:string, nick:string){
       this.router.navigateByUrl('/votos/'+nick);
   }),
   error: resp=> {
-    Swal.fire(
-      '¡Error!', 'Para ver sus votos debes de seguir a este usuario', 'error'
-    );
+    this.messageService.add({key: 'noVotos', severity:'error', summary:'Error', detail:'Para ver sus votos debes de seguir a este usuario'});
   }
   })
 }

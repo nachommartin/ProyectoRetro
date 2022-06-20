@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/login/services/login.service';
-import Swal from 'sweetalert2';
 import { FollowCredentials, Usuario } from '../interfaces/juego';
 import { AmistadService } from '../services/amistad.service';
 
@@ -22,7 +21,8 @@ export class MySeguidoresComponent implements OnInit {
 
 
 
-  constructor(private servicioLogin: LoginService, private servicioAmistad: AmistadService, private router: Router) { }
+  constructor(private servicioLogin: LoginService, private servicioAmistad: AmistadService, private router: Router,
+    private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.datos()
@@ -56,14 +56,12 @@ export class MySeguidoresComponent implements OnInit {
     this.servicioAmistad.followUsuario(usuario, this.usuario.correo).subscribe({
      next: (resp => {
         this.datos()
-       Swal.fire(
-         '', 'Has seguido al usuario', 'success'
-       );
+        this.messageService.add({key: 'follow', severity:'success', detail:'Has seguido al usuario'});
    }),
    error: resp=> {
-     Swal.fire(
-       '¡Error!', 'Ha habido un error inesperado', 'error'
-     );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Ha habido un error inesperado'});
+
+    
    }
    })
  }
@@ -72,14 +70,12 @@ export class MySeguidoresComponent implements OnInit {
   this.servicioAmistad.unfollowUsuario(usuario, this.usuario.correo).subscribe({
    next: (resp => {
     this.datos()
-     Swal.fire(
-       '', 'Has dejado de seguir al usuario', 'success'
-     );
+    this.messageService.add({key: 'unfollow', severity:'success', detail:'Has dejado de seguir al usuario'});
+
  }),
  error: resp=> {
-   Swal.fire(
-     '¡Error!', 'Ha habido un error inesperado', 'error'
-   );
+  this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:'Ha habido un error inesperado'});
+
  }
  })
 

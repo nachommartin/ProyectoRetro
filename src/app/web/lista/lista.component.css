@@ -17,3 +17,9 @@
   #paginacion{
     text-align: center;
   }
+
+  @media (max-width: 500px) {  img{width: 60%; margin-left: 3.2rem !important;}}
+
+  @media (max-width: 768px) {  img{width: 60%; margin-left: 3.6rem !important;}}
+
+  @media (min-width: 992px) {   img{margin-left: -2rem ; }}

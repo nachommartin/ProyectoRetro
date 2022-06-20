@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Question, Quiz, Respuesta,  } from 'src/app/quiz/interfaces/quiz';
 import { QuizService } from 'src/app/quiz/services/quiz.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-question',
@@ -24,7 +23,8 @@ export class QuestionComponent implements OnInit {
   carga!:boolean;
 
 
-  constructor(private servicio:QuizService, private confirmationService:ConfirmationService, private route: ActivatedRoute) { }
+  constructor(private servicio:QuizService, private confirmationService:ConfirmationService, private route: ActivatedRoute,
+    private messageService:MessageService) { }
 
   ngOnInit(): void {
 
@@ -109,9 +109,8 @@ borrarRespuesta(refResp:number){
       this.loadQuiz();
       }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-        );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
     }
     })
   
@@ -131,9 +130,8 @@ editarRespuesta(){
   }),
   error: resp=> {
     this.dialogoEdit = !this.dialogoEdit;
-    Swal.fire(
-      '¡Error!', resp.error.mensaje, 'error'
-      );
+
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
   }
   })
 }
@@ -147,17 +145,13 @@ addRespuesta(){
     }),
   error: resp=> {
     this.guardar()
-    Swal.fire(
-      '¡Error!', resp.error.mensaje, 'error'
-      );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
   }
   })
   }
   else{
     this.guardar()
-    Swal.fire(
-      '¡Error!', "Una pregunta no debe tener más de cuatro respuestas", 'error'
-      );
+    this.messageService.add({key: 'errorSize', severity:'error', summary:'Error', detail:'Una pregunta no debe tener más de cuatro respuestas'});
   }
   }
 

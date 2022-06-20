@@ -38,9 +38,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user-ninja"></i></span>
                             </div>
+                            <div> 
                             <input type="text"  name="nick" class="form-control" formControlName="nick" placeholder="Alias" required="required"/>
-                            <span class="error" *ngIf="campoNoValido('nick')">{{ nickErrorMsg}}</span>					
-                        </div>				
+                            </div>		
+                        </div>		
+                        <div> 
+                            <span class="error" *ngIf="campoNoValido('nick')">{{ nickErrorMsg}}</span>			
+                        </div> 		
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <select class="form-control" name="ciudad" formControlName="ciudad" > 
@@ -56,7 +60,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password"  name="password" class="form-control" formControlName="password" placeholder="Contraseña"  required="required"/>  
+                            <input type="password"  name="password" class="form-control" formControlName="password" placeholder="Contraseña"  required="required"/> 
                             <span class="error"	*ngIf="campoNoValido('password')">  La contraseña debe de ser mayor de 6 caracteres y tener una mayúscula y un número
                          </span>
                         </div>
@@ -65,6 +69,8 @@
                                 <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
                             </div>
                             <input type="password"  name="repitePass" class="form-control" formControlName="repitePass" placeholder="Repite la contraseña"  required="required"/> 						
+                        </div>
+                        <div>
                             <span class="error"	*ngIf="campoNoValido('repitePass')">  Las contraseñas deben de ser iguales </span>											
                         </div>
                         <!--Hasta que no estén todos los campos correctamente rellenos no se activa el botón de login-->				
@@ -83,6 +89,13 @@
                  </div>
                  </div>
                  <app-footer></app-footer>
+                 <p-toast key="nickError"></p-toast>
+                 <p-toast key="faltaCampo"></p-toast>
+                 <p-toast key="debeCoincidir"></p-toast>
+                 <p-toast key="editCorrect"></p-toast>
+                 <p-toast key="errorEdit"></p-toast>
+
+
 
                 
               

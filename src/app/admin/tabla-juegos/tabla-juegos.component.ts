@@ -5,7 +5,6 @@ import { ConfirmationService, Message, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { DatatableService } from 'src/app/not-register/services/datatable.service';
 import { CargaDatosService } from 'src/app/web/services/carga-datos.service';
-import Swal from 'sweetalert2';
 import { Juego } from '../../web/interfaces/juego';
 import { AdminJuegoService } from '../services/admin-juego.service';
 
@@ -36,7 +35,8 @@ export class TablaJuegosComponent implements OnInit {
 
 
   constructor(private servicio:DatatableService, private confirmationService: ConfirmationService,
-    private cargador:CargaDatosService, private formBuilder: FormBuilder, private servicioAdmin:AdminJuegoService) { }
+    private cargador:CargaDatosService, private formBuilder: FormBuilder, private servicioAdmin:AdminJuegoService,
+    private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.datos();
@@ -59,9 +59,8 @@ export class TablaJuegosComponent implements OnInit {
     this.guardar()  
     }),
   error: resp=> {
-    Swal.fire(
-      '¡Error!', resp.error.mensaje, 'error'
-      );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
+
   }
   })
   }
@@ -149,9 +148,7 @@ editar(){
     this.mostrarFormulario(); 
     }),
   error: resp=> {
-    Swal.fire(
-      '¡Error!', resp.error.mensaje, 'error'
-      );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
   }
   })
 }
@@ -163,9 +160,7 @@ borrarJuego(id:number){
       this.buildForm();    
       }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-        );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
   

@@ -40,9 +40,9 @@ margin-right: auto;
 
 
 
-@media (min-width: 576px) { .card-img-top{width: 80%; height:auto;} }
+@media (max-width: 576px) { .card-img-top{width: 80%; height:auto;} .container {height: auto;} }
 
-@media (min-width: 768px) { .card-img-top{width: 65%; height:auto; } }
+@media (max-width: 768px) { .card-img-top{width: 65%; height:auto; } .container {height: auto;}}
 
 @media (min-width: 992px) { .card-img-top{width: 55%;  height: auto; } }
 

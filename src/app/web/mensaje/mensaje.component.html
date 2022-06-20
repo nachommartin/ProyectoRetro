@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-        <div *ngIf="carga==true" class="container p-4 bg-white" id="contenedor" >
+        <div *ngIf="carga==true" class="container p-4 bg-white" >
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         <div *ngIf="mensajes.length==0">
             <h3>No hay mensajes</h3>
@@ -34,3 +34,7 @@ nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
 <br>
 </div>
 <app-footer></app-footer>
+<p-toast key="borrado"></p-toast>
+<p-toast key="error"></p-toast>
+<p-toast key="sendReport"></p-toast>
+

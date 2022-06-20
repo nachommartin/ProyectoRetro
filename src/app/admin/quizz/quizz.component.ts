@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Question, Quiz, Respuesta } from 'src/app/quiz/interfaces/quiz';
 import { QuizService } from 'src/app/quiz/services/quiz.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-quizz',
@@ -92,9 +91,7 @@ borrarPregunta(refQ:number){
       this.loadQuiz();
       }),
     error: resp=> {
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-        );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
   
@@ -115,17 +112,13 @@ addQuestion(){
     }),
   error: resp=> {
     this.guardar()
-    Swal.fire(
-      '¡Error!', resp.error.mensaje, 'error'
-      );
+    this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
   }
   })
   }
   else{
     this.guardar()
-    Swal.fire(
-      '¡Error!', "Un quiz no debe tener más de cuatro preguntas", 'error'
-      );
+    this.messageService.add({key: 'errorSize', severity:'error', summary:'Error', detail:'Un quiz no debe tener más de cuatro preguntas'});
   }
   }
 
@@ -141,9 +134,7 @@ addQuestion(){
     }),
     error: resp=> {
       this.dialogoEdit = !this.dialogoEdit;
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-        );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
   }
@@ -174,9 +165,7 @@ setRespuestaCorrecta(){
     }),
     error: resp=> {
       this.dialogoRespCorrecta=!this.dialogoRespCorrecta
-      Swal.fire(
-        '¡Error!', resp.error.mensaje, 'error'
-        );
+      this.messageService.add({key: 'error', severity:'error', summary:'Error', detail:resp.error.mensaje});
     }
     })
 

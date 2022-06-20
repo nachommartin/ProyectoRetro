@@ -2,11 +2,10 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login/services/login.service';
 import { NickService } from 'src/app/login/services/nick.service';
-import Swal from 'sweetalert2';
 import { Usuario } from '../interfaces/juego';
 import { CargaDatosService } from '../services/carga-datos.service';
 import { ServUserService } from '../services/serv-user.service';
@@ -92,7 +91,8 @@ export class EditComponent implements OnInit {
   ]
 
   constructor(private servicioLogin: LoginService, private formBuilder: FormBuilder, private validadorNick: NickService,
-    private router: Router, private userService:ServUserService, private cargador: CargaDatosService) { }
+    private router: Router, private userService:ServUserService, private cargador: CargaDatosService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.datos()
@@ -117,7 +117,7 @@ export class EditComponent implements OnInit {
   private buildForm(){
     this.formGroup = this.formBuilder.group({
       correoSource:[],
-      nick: [, [Validators.required], [this.validadorNick]],
+      nick: [,  [Validators.required], [this.validadorNick]],
       ciudad: [],
       password: [, [Validators.minLength(6), Validators.pattern(this.passwordPattern)] ],
       repitePass: [ ]
@@ -135,25 +135,45 @@ export class EditComponent implements OnInit {
 
   public actualizar() {
 
+    const errors = this.formGroup.get('nick')?.errors!;
+    if (this.formGroup.controls['nick'].errors!=null && errors['nickTomado']) {
+      this.messageService.add({key: 'nickError', severity:'error', summary:'Error', detail:'No insistas, ese nick está en uso'});
+      
+    }
+
+    else if(this.formGroup.controls['password'].value!=null && this.formGroup.controls['repitePass'].value==null){
+          this.messageService.add({key: 'faltaCampo', severity:'error', summary:'Error', detail:'Para cambiar la contraseña, rellena los dos campos'});
+      
+    }
+
+    else if(this.formGroup.controls['password'].value==null && this.formGroup.controls['repitePass'].value!=null){
+      this.messageService.add({key: 'faltaCampo', severity:'error', summary:'Error', detail:'Para cambiar la contraseña, rellena los dos campos'});
+      
+    }
+
+    else if(this.formGroup.controls['repitePass'].errors!=null){
+      this.messageService.add({key: 'debeCoincidir', severity:'error', summary:'Error', detail:'Fíjate bien, las contraseñas deben ser iguales'});
+      
+    }
+
+
+    else{
+
     this.formGroup.patchValue({
       correoSource:this.usuario.correo
     })
     
     const user = JSON.stringify(this.formGroup.value);
-    console.log(user)
     this.userService.actualizar(JSON.parse(user)).subscribe({
     next: (resp => {
-      Swal.fire(
-        '', 'Ha actualizado su perfil', 'success'
-      );
+      this.messageService.add({key: 'editCorrect', severity:'success', detail:'Se ha editado tu perfil'});
       this.router.navigateByUrl('/usuario');
   }),
   error: resp=> {
-    Swal.fire(
-      '¡Error!', 'Hubo un error inesperado', 'error'
-    );
+    this.messageService.add({key: 'errorEdit', severity:'error', summary:'Error', detail:resp.error.mensaje});
   }
   })
+}
 }
 
   camposIguales( campo1: string, campo2: string ) {

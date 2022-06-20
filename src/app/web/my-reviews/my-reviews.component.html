@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
-<div *ngIf="carga==true" class="container p-4 bg-white" id="contenedor" >
+<div *ngIf="carga==true" class="container p-4 bg-white" >
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         <div *ngIf="votos.length==0">
             <h3>No hay reseñas aún</h3>
         </div>
-<br><br>
+<br>
 <div *ngFor="  let voto of votos | paginate: { itemsPerPage: 3, currentPage: pages }">
             <p-card [header]="voto.juego.titulo" [style]="styleCard">
                 <ng-template pTemplate="header">

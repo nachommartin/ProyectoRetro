@@ -1,4 +1,4 @@
-#contenedor{
+.container{
     
     height: 100%;
     text-align: center;
@@ -21,3 +21,14 @@
       #listado{
         text-align: left;
       }
+
+      
+      @media (max-width: 500px) { .container {height: 250% !important}  #listado{  text-align: center !important;  }  img{width: 60%;}}
+
+      @media (max-width: 768px) { .container {height: 262% !important;}  #listado{  text-align: center !important;  }  img{width: 60%;}}
+      
+      @media (max-width: 992px) { .container {height: 132%;}  }
+      
+      @media (max-width: 1200px) {  .container {height: 132%;}  }
+
+      @media (max-width: 2000px) {  .container {height: 132%;}  }
