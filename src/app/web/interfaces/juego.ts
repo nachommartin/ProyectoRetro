@@ -12,6 +12,7 @@ export interface Juego {
         votos:         Votacion[];
         votacionMedia: number; 
         numVotos: number; 
+        sinopsis: string;
         imagen:        Byte[];
     }
     

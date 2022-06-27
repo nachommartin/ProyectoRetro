@@ -33,6 +33,7 @@ import { GestionReviewComponent } from "./admin/gestion-review/gestion-review.co
 import { GestionMensajeComponent } from "./admin/gestion-mensaje/gestion-mensaje.component";
 import { TablaJuegosComponent } from "./admin/tabla-juegos/tabla-juegos.component";
 import { PanelComponent } from "./admin/panel/panel.component";
+import { ListaJuegosComponent } from "./web/lista-juegos/lista-juegos.component";
 
 
 
@@ -69,6 +70,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'comunidad', component: ComunidadComponent, 
+    canActivate: [ GuardianService, NotbangService ]
+   },
+
+   {
+    path: 'lista_juegos', component: ListaJuegosComponent, 
     canActivate: [ GuardianService, NotbangService ]
    },
 

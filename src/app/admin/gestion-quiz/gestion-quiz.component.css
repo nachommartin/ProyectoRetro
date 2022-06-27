@@ -46,9 +46,11 @@ h4{
     height: 100%;
   }
 
-  @media (max-width: 768px) { .container {height: 215% !important;} }
+  @media (max-width: 388px) { .container {height: 280% !important;} }
 
-  @media (min-width: 769px) { .container {height: 212% !important;}  }
+  @media (min-width: 389px) { .container {height: 215% ;} }
 
-  @media (min-width: 819px) { .container {height: 100% !important;}  }
+  @media (min-width: 769px) { .container {height: 212% ;}  }
+
+  @media (min-width: 819px) { .container {height: 100% ;}  }
 

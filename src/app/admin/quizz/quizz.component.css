@@ -55,7 +55,9 @@ h4{
     height: 100%;
   }
 
-  @media (max-width: 548px) { .container {height: 190% !important;} }
+  @media (max-width: 388px) { .container {height: 250% !important;} }
+
+  @media (min-width: 389px) { .container {height: 190% !important;} }
 
   @media (min-width: 549px) { .container {height: 177% !important;} }
 

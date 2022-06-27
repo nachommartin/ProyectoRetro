@@ -26,5 +26,6 @@
   h1{
       color: white ;
   }
-
+  @media (max-width: 499px) { .card {margin-top: 8rem;} } 
+  @media (min-width: 500px) { .container-fluid {padding-top: 8rem;} } 
   @media (min-width: 1200px) { .container-fluid {padding-top: 16rem;} } 

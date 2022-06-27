@@ -35,6 +35,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MyReviewsComponent } from './my-reviews/my-reviews.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import {BadgeModule} from 'primeng/badge';
+import { ListaJuegosComponent } from './lista-juegos/lista-juegos.component';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -61,7 +64,8 @@ import { ToastModule } from 'primeng/toast';
     MejorMediaComponent,
     FooterComponent,
     MyVotosComponent,
-    MyReviewsComponent  ],
+    MyReviewsComponent,
+    ListaJuegosComponent  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -76,7 +80,9 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     NgxPaginationModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    BadgeModule,
+    TableModule
 
     
   ],

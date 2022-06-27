@@ -64,4 +64,34 @@ export class ResultadosComponent implements OnInit {
       return source;
     }
 
+    formateador(cadena:string){
+      let result:string='';
+      let cont:number=0;
+      if(cadena.length<=29){
+        result=cadena;
+      }else{
+        while(result.length<29){
+          result+=cadena[cont];
+          cont++;
+        }
+        result+= "...";
+      }
+      return result;
+    }
+
+    nota(media:number){
+      let nota:string;
+      if (media >4 && media<8){
+        nota="REGULAR"
+      }
+      else if(media<4){
+        nota="MALA"
+      }
+      else{
+        nota="BUENA"
+      }
+      return nota; 
+      }
+    
+
 }

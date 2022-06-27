@@ -24,13 +24,14 @@
         color: red!important;
     }
 
+@media (max-width: 3888px) { .container {height: 340%;} }
 
-@media (max-width: 768px) { .container {height: 120% !important;} }
+@media (min-width: 389px) { .container {height: 120%;} }
 
-@media (min-width: 769px) { .container {height: 110% !important;}  }
+@media (min-width: 769px) { .container {height: 110% ;} img{width: 75%;} }
 
-@media (min-width: 995px) { .container {height: 105% !important;}  }
+@media (min-width: 995px) { .container {height: 105% ;} img{width: 90%;}  }
 
-@media (min-width: 1200px) {  .container {height: 100% !important;} }
+@media (min-width: 1200px) {  .container {height: 100%;} }
 
 

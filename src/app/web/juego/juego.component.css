@@ -38,12 +38,15 @@ margin-right: auto;
 
 }
 
+img{
+    width:14.063rem; 
+    height:20rem}
 
 
 @media (max-width: 576px) { .card-img-top{width: 80%; height:auto;} .container {height: auto;} }
 
-@media (max-width: 768px) { .card-img-top{width: 65%; height:auto; } .container {height: auto;}}
+@media (min-width: 577px) { .card-img-top{width: 70%; height:auto; } .container {height: auto;}}
 
-@media (min-width: 992px) { .card-img-top{width: 55%;  height: auto; } }
+@media (min-width: 992px) { .card-img-top{width: 65%;  height: auto; } .container {height: 100%;} }
 
-@media (min-width: 1200px) { .card-img-top{width: 55%;  height: auto;  } }
+@media (min-width: 1200px) { .card-img-top{width: 65%;  height: auto;  } .container {height: 100%;}  }

@@ -21,17 +21,17 @@
       #listado{
         text-align: left;
       }
-      
+      @media (max-width: 376px) { .container {height: 270% !important;}; }
 
-      @media (max-width: 576px) { .container {height: 300% !important;}; }
+      @media (min-width: 377px) { .container {height: 250%;}; }
 
-      @media (max-width: 768px) { .container {height: 150%;}}
+      @media (min-width: 768px) { .container {height: 110%;}}
       
-      @media (max-width: 992px) { .container {height: 130%;}  }
+      @media (min-width: 992px) { .container {height: 110%;}  }
       
-      @media (max-width: 1200px) {  .container {height: 130%;}  }
+      @media (min-width: 1200px) {  .container {height: 120%;}  }
 
-      @media (max-width: 2000px) {  .container {height: 130%;}  }
+      @media (min-width: 2000px) {  .container {height: 100%;}  }
 
     
     

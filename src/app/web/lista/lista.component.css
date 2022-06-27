@@ -18,8 +18,12 @@
     text-align: center;
   }
 
-  @media (max-width: 500px) {  img{width: 60%; margin-left: 3.2rem !important;}}
+  .card-img-top{
+width:14.063rem; 
+height:20rem}
 
-  @media (max-width: 768px) {  img{width: 60%; margin-left: 3.6rem !important;}}
+  @media (max-width: 355px) {  .card-img-top{width: 80%; margin-left: 2.2rem !important;}}
 
-  @media (min-width: 992px) {   img{margin-left: -2rem ; }}
+  @media (min-width: 356px) {  .card-img-top{width: 70%; margin-left: 3.2rem;}}
+
+  @media (min-width: 992px) {  .card-img-top{ width: 60%;}}

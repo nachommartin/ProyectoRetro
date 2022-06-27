@@ -37,16 +37,28 @@
             <img *ngIf="!juego.imagen" alt="caratula" src="https://i.ibb.co/sV1y6Sm/artoffighting.jpg">
         <div class="card-body">
                 <h5 class="card-title text-center">
-                    {{juego.titulo}}
+                    {{formateador(juego.titulo)}}
                 </h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Año: {{juego.year}}</li>
                     <li class="list-group-item">Desarrollador: {{juego.desarrollador}}</li>
                     <li class="list-group-item">Categoría:  {{juego.categoria}}</li>
+                    <li class="list-group-item">Valoración: 
+                        <span *ngIf="juego.votacionMedia>7">
+                            <span class="pi pi-star-fill" style="color: #9bd169"></span>
+                            <span class="pi pi-star-fill" style="color: #9bd169"></span>
+                            <span class="pi pi-star-fill" style="color: #9bd169"></span>
+                    </span>
+                        <span *ngIf="nota(juego.votacionMedia)=='REGULAR'">
+                            <span class="pi pi-star-fill" style="color: #e4d00a"></span>
+                            <span class="pi pi-star-fill" style="color: #e4d00a"></span>
+                        </span>
+                        <span *ngIf="nota(juego.votacionMedia)=='MALA'">
+                            <span class="pi pi-star-fill" style="color: red"></span>
+                        </span>
+                    </li>
+
                   </ul>
-                <p class="card-text">
-                    Aquí irá una breve sinopsis del juego
-                </p>
                 <div style="text-align: center">
                     <button class="btn btn-primary"  (click)="getJuego(juego.titulo)">Accede para votar</button>
                 </div>

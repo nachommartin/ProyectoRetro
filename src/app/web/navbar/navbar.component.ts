@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/login/services/login.service';
+import { AmistadService } from '../services/amistad.service';
 import { BuscadorService } from '../services/buscador.service';
 
 @Component({
@@ -13,12 +14,13 @@ export class NavbarComponent implements OnInit {
   usuario!:string; 
   rol!:string; 
   mySidenav:any; 
+  numMensaje!:number;
  
 
 
 
 
-  constructor(private servicioLogin: LoginService, private servicioBusqueda: BuscadorService, private router: Router) { }
+  constructor(private servicioLogin: LoginService, private servicioBusqueda: BuscadorService, private router: Router, private servicioAmistad:AmistadService) { }
 
   //Cargamos de inicio el usuario por token y un elemento de DOM para abrir y cerrar la hamburguesa cuando se muestre
   // en pantallas prqueñas
@@ -31,6 +33,8 @@ export class NavbarComponent implements OnInit {
     subscribe((resp)=>{
       this.usuario=resp.nick; 
       this.rol=resp.rol
+      this.servicioAmistad.cargarMensajes(resp.nick).subscribe((data)=>
+      this.numMensaje=data.length)
     }
     )
   }
@@ -52,9 +56,12 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  verSeguidores(){
+    this.router.navigateByUrl('/seguidores');
+  }
 
   verJuegos(){
-    this.router.navigateByUrl('/datos');
+    this.router.navigateByUrl('/lista_juegos');
   }
 
   masVotados(){

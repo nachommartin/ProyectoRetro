@@ -11,6 +11,7 @@ h4{display: flex; justify-content:center; align-items: center;}
     #avatar{
         width: 100%;
         max-width: 14rem;
+        max-height: 14rem;
         height: auto;
     }
 
@@ -24,21 +25,28 @@ margin-top: 0.6rem;
 }
 
 
+
 #paginacion{
     text-align: center;
     display: block;
   }
 
-  @media (max-width: 500px) { .container {height: 270% !important} #avatar {width: 30% !important;}  }
+  @media (max-width: 380px) { .container {height: 335% !important} #avatar {width: 30% !important;}  }
 
-  @media (max-width: 768px) { .container {height: 275% !important;} #avatar {width: 30% !important;}}
+  @media (min-width: 381px) { .container {height: 255% } #avatar {width: 30%;}  }
+
+  @media (min-width: 501px) { .container {height: 250% ;} #avatar {width: 30% ;}}
   
-  @media (min-width: 769px) { .container {height: 220% !important;}  }
+  @media (min-width: 769px) { .container {height: 200%}  #avatar {width: 100% ;}}
 
-  @media (min-width: 995px) { .container {height: 140% !important;} .card{width: 105%;} }
+  @media (min-width: 985px) { .container {height: 200%} button{ font-size:0.769rem} }
+
+  @media (min-width: 990px) { .container {height: 130%} button{ font-size:0.769rem} }
+
+  @media (min-width: 995px) { .container {height: 120%} button{ font-size:0.769rem} }
   
-  @media (min-width: 1200px) {  .container {height: 130% !important;} .card{width: 100%;} }
+  @media (min-width: 1200px) {  .container {height: 120%} button{ font-size:1rem} } 
 
-  @media (min-width: 2000px) {  .container {height: 100% !important;}  }
+  @media (min-width: 2000px) {  .container {height: 100%;}  }
 
 

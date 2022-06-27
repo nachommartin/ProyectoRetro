@@ -40,17 +40,23 @@
                     <ul class="dropdown-menu">
                         <li class="profile-li"><a class="profile-links" (click)="verUser()">{{usuario}}</a></li>
                         <li class="profile-li"><a class="profile-links" (click)="verVotos()">Ver tus votos</a></li>
-                        <li class="profile-li"><a class="profile-links" (click)="verMensajes()">Ver tus mensajes</a></li>
+                        <li class="profile-li"><a class="profile-links" (click)="verSeguidores()">Ver tus seguidores</a></li>
                         <li class="profile-li"><a class="profile-links" (click)="logout()">Cerrar sesión</a></li>
                     </ul>
                 </li>
+                <li *ngIf="numMensaje>0" class="upper-links">
+                <i class="pi pi-envelope p-text-secondary" pBadge style="font-size: 1.05rem; color: white; cursor: pointer;" value="{{numMensaje}}" severity="danger" (click)="verMensajes()" ></i>
+                </li>
+                <li *ngIf="numMensaje==0" class="upper-links">
+                    <i class="pi pi-envelope p-text-secondary" style="font-size: 1.05rem; color: white; cursor: pointer;" (click)="verMensajes()"></i>
+                    </li>
                 <li *ngIf="rol=='ADMIN'" class="upper-links"><a class="links" routerLink="/administracion">Panel de administración</a></li>
             </ul>
         </div>
         <div class="row row2">
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6">
                 <h2 style="margin:0px;"><span class="smallnav menu" (click)="openNav()">☰ MegaDriver</span></h2>
-                <h2 style="margin:0px;"><span class="largenav">MegaDriver</span></h2>
+                <img src="https://i.ibb.co/92Lq31y/Recurso-1.png"  alt="Logotipo" style="width: 10rem; margin-top: -2rem;">
             </div>
             <div class="flipkart-navbar-search smallsearch col-xl-9 col-lg-9 col-md-8 col-sm-8 col-12">
                 <div class="row">
@@ -72,9 +78,10 @@
     </div>
     <a routerLink="/main" id="navlink"><i class="fa fa-home"></i><span id="spanito">Inicio</span></a>
     <a routerLink="/datos" id="navlink"><i class="fa fa-database"></i><span id="spanito">Lista de juegos</span></a>
-    <a href="#" id="navlink"><i class="fa fa-star"></i><span id="spanito">Más votados</span></a>
+    <a routerLink="/mas_votados" id="navlink"><i class="fa fa-star"></i><span id="spanito">Más votados</span></a>
     <a routerLink="/usuario" id="navlink"><i class="fa fa-user"></i><span id="spanito">Usuario</span></a>
-    <a href="#" id="navlink"><i class="fas fa-envelope-open-text"></i><span id="spanito">Mensajes</span></a>
+    <a routerLink="/mensajes" id="navlink"><i class="fas fa-envelope-open-text"></i><span id="spanito">Mensajes</span></a>
     <a (click)="logout()" id="navlink"><i class="fa fa-times"></i><span id="spanito">Cerrar sesión</span></a>
+    <a  *ngIf="rol=='ADMIN'"  routerLink="/administracion" id="navlink"><i class="fas fa-envelope-open-text"></i><span id="spanito">Administración</span></a>
                     
 </div>

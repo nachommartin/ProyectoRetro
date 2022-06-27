@@ -44,8 +44,8 @@
             <div  *ngIf="!juego.imagen" class="col-md-2">
                 <img  alt="caratula" src="https://i.ibb.co/sV1y6Sm/artoffighting.jpg" width="200%">
             </div>  
-            <div  *ngIf="juego.imagen" class="col-md-2">
-                <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juego)}}  alt="Caratula del juego"  class="shadow-4" />
+            <div  *ngIf="juego.imagen" class="col-md-12">
+                <img class="card-img-top center-block d-block mx-auto" src={{obtenerImagen(juego)}}  alt="Caratula del juego" />
             </div>      
             <div class="card-body">
                 <h5 class="card-title text-center">

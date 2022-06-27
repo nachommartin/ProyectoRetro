@@ -47,7 +47,9 @@ h4{
     height: 100%;
   }
 
-  @media (max-width: 548px) { .container {height: 160% !important;} }
+  @media (max-width: 388px) { .container {height: 200% !important;} }
+
+  @media (min-width: 389px) { .container {height: 160% !important;} }
 
   @media (min-width: 549px) { .container {height: 157% !important;} }
 

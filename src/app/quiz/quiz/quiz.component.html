@@ -3,7 +3,7 @@
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
     <p-tabView (onChange)="cargarRespuestas($event)">
         <p-tabPanel header="{{nombreQuiz}}">
-            Este es el primer nivel. Cada respuesta correcta vale 5 puntos y las incorrectas restan 1 punto
+            Este es el {{nombreQuiz}}. Cada respuesta correcta vale 5 puntos y las incorrectas restan 1 punto
         </p-tabPanel>
         <p-tabPanel header="1ª Pregunta">
             <div *ngIf="preguntas[0].isValid">

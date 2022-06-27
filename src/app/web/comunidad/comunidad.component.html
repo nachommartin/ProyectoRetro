@@ -18,6 +18,7 @@
 
     </div>
     </div>
+    <br>
     <div *ngIf="sizeArray==0">
         <h5 class="text-center">No hay resultados para su búsqueda</h5>
     </div>
@@ -37,10 +38,10 @@
                   </ul>
                   <span class="p-buttonset">
                      
-                        <button  *ngIf="!user.esAmigo" pButton pRipple label="Seguir" (click)="follow(user.user.correo)"></button>
-                        <button  *ngIf="user.esAmigo" pButton pRipple label="Unfollow" (click)="unfollow(user.user.correo)"></button>
-                    <button pButton pRipple label="Votos"   (click)="verVotos(user.user.correo, user.user.nick)"></button>
-                    <button pButton pRipple label="Listas"   (click)="verListas(user.user.nick)"></button>
+                        <button  *ngIf="!user.esAmigo" pButton pRipple label="Seguir" (click)="follow(user.user.correo)" ></button>
+                        <button  *ngIf="user.esAmigo" pButton pRipple label="Unfollow" (click)="unfollow(user.user.correo)" ></button>
+                    <button pButton pRipple label="Votos"   (click)="verVotos(user.user.correo, user.user.nick)" > </button>
+                    <button pButton pRipple label="Listas"   (click)="verListas(user.user.nick)" ></button>
                 </span>
                 <div  style="text-align: center" id="mensaje">
                 <button pButton pRipple label="Enviar mensaje"  class="p-button-outlined p-button-rounded" icon="pi pi-envelope" (click)="mandarMensaje(user.user.nick)"></button>
@@ -51,6 +52,7 @@
 
     </div>
     </div>
+    <br>
     <div id="paginacion" *ngIf="usuarios.length>1">
         <pagination-controls    previousLabel="Anterior"
               nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
